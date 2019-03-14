@@ -1,0 +1,58 @@
+
+<ion-header>
+  <ion-row>
+    <ion-col text-start padding-top>
+      <ion-title>Enter Your Track Mobile Data</ion-title>
+    </ion-col>
+    <ion-col text-end>
+      <ion-button (click)="loadMap()" shape="round" fill="outline">
+        <ion-icon slot="start" name="locate"></ion-icon>
+        Where !s !t
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-header>
+<ion-content>
+
+  <ion-grid>
+  <ion-row>
+    <ion-col>
+        <ion-item>
+          <ion-label floating>MCC</ion-label>
+          <ion-input [(ngModel)]="mcc" type="text" value="" ></ion-input>
+        </ion-item>
+    </ion-col>
+    <ion-col>
+     <ion-item>
+          <ion-label floating>MNC</ion-label>
+          <ion-input [(ngModel)]="mnc" type="text" value="" ></ion-input>
+        </ion-item>
+    </ion-col>
+    <ion-col>
+<ion-item>
+          <ion-label floating>LAC</ion-label>
+          <ion-input [(ngModel)]="lac" type="text" value="" ></ion-input>
+        </ion-item>    </ion-col>
+    <ion-col>
+      <ion-item>
+          <ion-label floating>CELL ID</ion-label>
+          <ion-input [(ngModel)]="cellId" type="text" value="" ></ion-input>
+        </ion-item>
+    </ion-col>
+  </ion-row>
+   </ion-grid>
+
+
+<div #map class="map"></div>
+    
+  <!--  
+  <div class="map-wrapper">
+   <div #map id="map"></div>
+  </div>
+  <div id="address">
+    <span>{{address}}</span>
+  </div> </div>
+  -->
+
+
+</ion-content>

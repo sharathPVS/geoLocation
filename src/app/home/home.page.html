@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      GEO Location
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+<ion-list>
+<span style="color: red">{{message}}</span>
+  	<br>
+  <ion-item>
+    <ion-label floating>Username</ion-label>
+    <ion-input [(ngModel)]="username" type="text" value="" (change)="onChange()"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Password</ion-label>
+    <ion-input [(ngModel)]="password"  type="password" value="" (change)="onChange()"></ion-input>
+  </ion-item>
+
+</ion-list>
+
+<div padding>
+  <!-- <ion-button href="/location" routerDirection="root"> -->
+	<ion-button color="light" (click)="login()">Login In</ion-button>
+</div>
+</ion-content>
