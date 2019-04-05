@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 //sim
-import { Sim } from '@ionic-native/sim/ngx';
+//import { Sim } from '@ionic-native/Sim/ngx';
 import { HttpClientModule } from  '@angular/common/http';
 
 
@@ -31,7 +31,7 @@ import { HttpClientModule } from  '@angular/common/http';
     SplashScreen,
     Geolocation,
     NativeGeocoder,
-    Sim,
+   // Sim,
     HttpClientModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

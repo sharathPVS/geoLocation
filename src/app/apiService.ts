@@ -1,7 +1,7 @@
 
-
 export class apiService {
 
-   mobileData: 'http://localhost:3000/mobileCodes'
+   login: 'http://18.188.66.126:5984/logins/'
 
 }
+

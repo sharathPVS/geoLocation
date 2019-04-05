@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import {apiService} from '../apiService';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,28 +8,39 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 
-export class HomePage{
-  username:string;
-  password:string;
-  message:string;
+export class HomePage {
+  username: string;
+  password: string;
+  message: string;
+  public loginButton: boolean = false;
+  public signUpButton: boolean = false;
 
+  constructor(private router: Router) { }
 
-  constructor( private router:Router) {
+  submit() {
+    if (this.username == "admin" && this.password == 'admin') {
+      this.message = " Login success!!!!!";
+      //this.router.navigateByUrl('/location');
+      //this.router.navigateByUrl('/simData');
+    }
+    else {
+      this.message = "Oops!! Username or password is Wrong";
+    }
   }
 
   login() {
-     if(this.username == "admin" && this.password == 'admin'){
-          this.message = " Login success!!!!!";
-           //this.router.navigateByUrl('/location');
-           this.router.navigateByUrl('/simData');
-     }
-     else{
-     this.message = "Oops!! Username or password is Wrong";
-
-     }
-   }
-  onChange(){
-   this.message = "";
- }
+    this.loginButton = true;
+    this.signUpButton = false;
+  }
+  signUp() {
+    this.loginButton = false;
+    this.signUpButton = true;
+  }
+  RegisterSubmit(){
+     console.log(apiService)
+  }
+  onChange() {
+    this.message = "";
+  }
 
 }

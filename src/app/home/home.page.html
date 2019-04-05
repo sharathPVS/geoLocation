@@ -8,8 +8,11 @@
 
 <ion-content padding>
 <ion-list>
-<span style="color: red">{{message}}</span>
-  	<br>
+    <ion-button color="primary" (click)="login()">Login In</ion-button>
+    <ion-button color="secondary" (click)="signUp()">Sign Up</ion-button>
+       <span style="color: red">{{message}}</span>
+       <br>
+   <div *ngIf="loginButton">
   <ion-item>
     <ion-label floating>Username</ion-label>
     <ion-input [(ngModel)]="username" type="text" value="" (change)="onChange()"></ion-input>
@@ -20,10 +23,36 @@
     <ion-input [(ngModel)]="password"  type="password" value="" (change)="onChange()"></ion-input>
   </ion-item>
 
+<div padding>
+    <!-- <ion-button href="/location" routerDirection="root"> -->
+    <ion-button color="success" (click)="submit()">Submit </ion-button>
+  </div>
+</div>
+<div *ngIf="signUpButton">
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input [(ngModel)]="name"  type="text" value="" (change)="onChange()"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input [(ngModel)]="email"  type="email" value="" (change)="onChange()"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Phone</ion-label>
+            <ion-input [(ngModel)]="phone"  type="number" value="" (change)="onChange()"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label floating>Password</ion-label>
+              <ion-input [(ngModel)]="password"  type="password" value="" (change)="onChange()"></ion-input>
+            </ion-item>
+            <div padding>
+                <!-- <ion-button href="/location" routerDirection="root"> -->
+                <ion-button color="success" (click)="RegisterSubmit()">Submit </ion-button>
+              </div>
+</div>
+ 
+
 </ion-list>
 
-<div padding>
-  <!-- <ion-button href="/location" routerDirection="root"> -->
-	<ion-button color="light" (click)="login()">Login In</ion-button>
-</div>
+
 </ion-content>
