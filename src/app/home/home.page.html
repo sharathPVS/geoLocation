@@ -29,9 +29,11 @@
   </div>
 </div>
 <div *ngIf="signUpButton">
+    
+    <span style="color: red">{{userEmailMessage}}</span>
       <ion-item>
         <ion-label floating>Name</ion-label>
-        <ion-input [(ngModel)]="name"  type="text" value="" (change)="onChange()"></ion-input>
+        <ion-input [(ngModel)]="name"  type="text" value="" (change)="onChange()" aria-required ></ion-input>
       </ion-item>
       <ion-item>
           <ion-label floating>Email</ion-label>
@@ -49,6 +51,7 @@
                 <!-- <ion-button href="/location" routerDirection="root"> -->
                 <ion-button color="success" (click)="RegisterSubmit()">Submit </ion-button>
               </div>
+            
 </div>
  
 
