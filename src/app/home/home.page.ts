@@ -12,7 +12,7 @@ export class HomePage {
   username: string;
   password: string;
   message: string;
-  public loginButton: boolean = false;
+  public loginButton: boolean = true;
   public signUpButton: boolean = false;
 
   constructor(private router: Router) { }
@@ -37,7 +37,7 @@ export class HomePage {
     this.signUpButton = true;
   }
   RegisterSubmit(){
-     console.log(apiService)
+     console.log(apiService.login)
   }
   onChange() {
     this.message = "";
