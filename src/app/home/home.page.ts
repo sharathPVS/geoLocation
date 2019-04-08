@@ -22,24 +22,34 @@ export class HomePage {
   public signUpButton: boolean = false;
    // error messages 
    public userEmailMessage: string;
+   private loginData:any;
   
 
   constructor(private router: Router,private http:HttpClient) { }
 
   submit() {
-    if (this.username == "admin" && this.password == 'admin') {
-      this.message = " Login success!!!!!";
-      //this.router.navigateByUrl('/location');
-      //this.router.navigateByUrl('/simData');
-    }
-    else {
-      this.message = "Oops!! Username or password is Wrong";
-    }
+     // for login 
+      // get the data from db  with validation 
+      console.log(apiService.login + '"'+this.username+'"');
+      this.http.get(apiService.login + '"'+this.username+'"').subscribe(data=>{
+                 this.loginData = data;
+       // console.log(this.loginData.message.rows[0].value);
+       if (this.loginData.message.rows[0].value._id == this.username && this.loginData.message.rows[0].value.password == this.password) {
+        this.message = " Login success!!!!!";
+        //this.router.navigateByUrl('/location');
+        //this.router.navigateByUrl('/simData');
+      }
+      else {
+        this.message = "Oops!! Username or password is Wrong";
+      }
+});
+    
   }
-
   login() {
+    // only  for sisplay the login feilds 
     this.loginButton = true;
     this.signUpButton = false;
+        
   }
   signUp() {
     this.loginButton = false;
