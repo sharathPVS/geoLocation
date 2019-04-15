@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomePageModule'
   },
   { path: 'location', loadChildren: './location/location.module#LocationPageModule' },
-  { path: 'simData', loadChildren: './sim-data/sim-data.module#SimDataPageModule' }
+  { path: 'simData', loadChildren: './sim-data/sim-data.module#SimDataPageModule' },
 ];
 
 @NgModule({

@@ -85,44 +85,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SimDataPage", function() { return SimDataPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ionic_native_sim_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic-native/sim/ngx */ "./node_modules/@ionic-native/sim/ngx/index.js");
 
 
-
+//import { Sim } from '@ionic-native/sim/ngx';
 var SimDataPage = /** @class */ (function () {
-    function SimDataPage(sim) {
-        this.sim = sim;
+    function SimDataPage() {
     }
     SimDataPage.prototype.ngOnInit = function () {
         alert('inated');
-    };
-    SimDataPage.prototype.getSimData = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var simPermission, simData, error_1;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 4, , 5]);
-                        return [4 /*yield*/, this.sim.requestReadPermission()];
-                    case 1:
-                        simPermission = _a.sent();
-                        if (!(simPermission == "OK")) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.sim.getSimInfo()];
-                    case 2:
-                        simData = _a.sent();
-                        this.simInfo = simData;
-                        this.cards = simData.cards;
-                        console.log(simData);
-                        _a.label = 3;
-                    case 3: return [3 /*break*/, 5];
-                    case 4:
-                        error_1 = _a.sent();
-                        console.log(error_1);
-                        return [3 /*break*/, 5];
-                    case 5: return [2 /*return*/];
-                }
-            });
-        });
     };
     SimDataPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -130,7 +100,7 @@ var SimDataPage = /** @class */ (function () {
             template: __webpack_require__(/*! ./sim-data.page.html */ "./src/app/sim-data/sim-data.page.html"),
             styles: [__webpack_require__(/*! ./sim-data.page.scss */ "./src/app/sim-data/sim-data.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_native_sim_ngx__WEBPACK_IMPORTED_MODULE_2__["Sim"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], SimDataPage);
     return SimDataPage;
 }());
