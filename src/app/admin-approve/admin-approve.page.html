@@ -4,9 +4,34 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content padding>
-         <p style="color:green" > {{userMessage}}</p>
-	<p>
-   
-  </p>
+    <p style="color:green" > {{userMessage}}</p>
+    <!-- <ion-list>
+    
+       <ion-item >
+        <h4> Name: {{item.name}}</h4>
+        <h4> Phone: {{item.phone}}</h4>
+    
+      </ion-item> 
+    </ion-list> -->
+    <table>
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of adminData">
+         <td> {{item.name}}</td>
+         <td> {{item.phone}}</td>
+         <td>{{item.email}}</td>
+         <td><ion-button color="success" (click)="statusChange(item)">{{item.state}}</ion-button></td>
+        </tr>
+        </tbody>
+      </table>
+    
 </ion-content>

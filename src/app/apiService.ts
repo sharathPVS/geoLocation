@@ -6,6 +6,7 @@
 export let apiService = {
       login: url +'login?id=',
       signUp: url + 'signUp',
-      getllDocsForAdminApproveOrReject: url + 'getAll'  
+      getllDocsForAdminApproveOrReject: url + 'getAll',
+      updateLogin:url +'update'  
 }
 

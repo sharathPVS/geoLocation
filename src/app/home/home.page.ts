@@ -103,7 +103,7 @@ export class HomePage {
         }).subscribe(
           data => {
             console.log("POST Request is successful ", data);
-            this.userEmailMessage = 'successfully Storing Data ..';
+            this.userEmailMessage = 'successfully submitted your request...';
             this.reset();
           },
           error => {
