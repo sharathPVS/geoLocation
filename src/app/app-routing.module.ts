@@ -13,6 +13,7 @@ const routes: Routes = [
   },
   { path: 'location', loadChildren: './location/location.module#LocationPageModule' },
   { path: 'simData', loadChildren: './sim-data/sim-data.module#SimDataPageModule' },
+  { path: 'adminApprove', loadChildren: './admin-approve/admin-approve.module#adminApprovePageModule' },
 ];
 
 @NgModule({

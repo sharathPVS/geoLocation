@@ -49,7 +49,7 @@ export class HomePage {
                   if(this.loginData._id =="admin"){
                     this.message = "Admin Login success!!!!!";
                     // admin page redirect  
-                    //this.router.navigateByUrl('/simData');
+                    this.router.navigateByUrl('/adminApprove');
                   }else{
                     this.message = this.loginData._id + "Login success!!!!!";
                   }
