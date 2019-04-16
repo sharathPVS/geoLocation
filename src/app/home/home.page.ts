@@ -71,11 +71,13 @@ export class HomePage {
     // only  for sisplay the login feilds 
     this.loginButton = true;
     this.signUpButton = false;
+    this.message =  '';
 
   }
   signUp() {
     this.loginButton = false;
     this.signUpButton = true;
+    this.message = '';
   }
   RegisterSubmit() {
 

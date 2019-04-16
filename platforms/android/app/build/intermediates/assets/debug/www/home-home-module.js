@@ -1,26 +1,5 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["home-home-module"],{
 
-/***/ "./src/app/apiService.ts":
-/*!*******************************!*\
-  !*** ./src/app/apiService.ts ***!
-  \*******************************/
-/*! exports provided: apiService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "apiService", function() { return apiService; });
-// this belongs to c DB
-//let url  = 'http://18.188.66.126:8888';
-var url = "http://localhost:6003/";
-var apiService = {
-    login: url + 'login?id=',
-    signUp: url + 'signUp'
-};
-
-
-/***/ }),
-
 /***/ "./src/app/home/home.module.ts":
 /*!*************************************!*\
   !*** ./src/app/home/home.module.ts ***!
@@ -139,7 +118,7 @@ var HomePage = /** @class */ (function () {
                         if (_this.loginData._id == "admin") {
                             _this.message = "Admin Login success!!!!!";
                             // admin page redirect  
-                            //this.router.navigateByUrl('/simData');
+                            _this.router.navigateByUrl('/adminApprove');
                         }
                         else {
                             _this.message = _this.loginData._id + "Login success!!!!!";
@@ -161,10 +140,12 @@ var HomePage = /** @class */ (function () {
         // only  for sisplay the login feilds 
         this.loginButton = true;
         this.signUpButton = false;
+        this.message = '';
     };
     HomePage.prototype.signUp = function () {
         this.loginButton = false;
         this.signUpButton = true;
+        this.message = '';
     };
     HomePage.prototype.RegisterSubmit = function () {
         var _this = this;
@@ -191,7 +172,7 @@ var HomePage = /** @class */ (function () {
                 state: "inActive"
             }).subscribe(function (data) {
                 console.log("POST Request is successful ", data);
-                _this.userEmailMessage = 'successfully Storing Data ..';
+                _this.userEmailMessage = 'successfully submitted your request...';
                 _this.reset();
             }, function (error) {
                 console.log("Error", error);

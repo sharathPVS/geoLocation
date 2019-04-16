@@ -837,8 +837,14 @@ module.exports = webpackAsyncContext;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./admin-approve/admin-approve.module": [
+		"./src/app/admin-approve/admin-approve.module.ts",
+		"common",
+		"admin-approve-admin-approve-module"
+	],
 	"./home/home.module": [
 		"./src/app/home/home.module.ts",
+		"common",
 		"home-home-module"
 	],
 	"./location/location.module": [
@@ -859,7 +865,7 @@ function webpackAsyncContext(req) {
 			throw e;
 		});
 	}
-	return __webpack_require__.e(ids[1]).then(function() {
+	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
 		var id = ids[0];
 		return __webpack_require__(id);
 	});
@@ -900,6 +906,7 @@ var routes = [
     },
     { path: 'location', loadChildren: './location/location.module#LocationPageModule' },
     { path: 'simData', loadChildren: './sim-data/sim-data.module#SimDataPageModule' },
+    { path: 'adminApprove', loadChildren: './admin-approve/admin-approve.module#adminApprovePageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
