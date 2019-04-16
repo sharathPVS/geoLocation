@@ -58,7 +58,7 @@ var adminApprovePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title> Give Access To Your Clients </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content padding>\n    <p style=\"color:green\" > {{userMessage}}</p>\n   \n    <table>\n        <thead>\n        <tr>\n          <th>Name</th>\n          <th>Phone</th>\n          <th>Email</th>\n          <th>Status</th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr *ngFor=\"let item of adminData\">\n         <td> {{item.name}}</td>\n         <td> {{item.phone}}</td>\n         <td>{{item.email}}</td>\n         <td><ion-button color=\"success\" (click)=\"statusChange(item)\">{{item.state}}</ion-button></td>\n        </tr>\n        </tbody>\n      </table>\n    \n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title> Give Access To Your Clients     <ion-button color=\"primary\" style=\"float: right;\"  (click)=\"goBack()\"> Go back</ion-button> </ion-title>\n\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content padding>\n    <p style=\"color:green\" > {{userMessage}}</p>\n   \n    <table>\n        <thead>\n        <tr>\n          <th>Name</th>\n          <th>Phone</th>\n          <th>Email</th>\n          <th>Status</th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr *ngFor=\"let item of adminData\">\n         <td> {{item.name}}</td>\n         <td> {{item.phone}}</td>\n         <td>{{item.email}}</td>\n         <td><ion-button color=\"success\" (click)=\"statusChange(item)\">{{item.state}}</ion-button></td>\n        </tr>\n        </tbody>\n      </table>\n    \n</ion-content>"
 
 /***/ }),
 
@@ -87,13 +87,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _apiService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../apiService */ "./src/app/apiService.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
 
 var adminApprove = /** @class */ (function () {
-    function adminApprove(http) {
+    function adminApprove(http, router) {
         this.http = http;
+        this.router = router;
     }
     adminApprove.prototype.ngOnInit = function () {
         this.getAllData();
@@ -125,13 +128,16 @@ var adminApprove = /** @class */ (function () {
             }
         });
     };
+    adminApprove.prototype.goBack = function () {
+        this.router.navigateByUrl('/home');
+    };
     adminApprove = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-admin-approve',
             template: __webpack_require__(/*! ./admin-approve.page.html */ "./src/app/admin-approve/admin-approve.page.html"),
             styles: [__webpack_require__(/*! ./admin-approve.page.scss */ "./src/app/admin-approve/admin-approve.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], adminApprove);
     return adminApprove;
 }());

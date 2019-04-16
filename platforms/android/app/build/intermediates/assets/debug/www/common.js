@@ -96,7 +96,7 @@ var _sPassive,GestureController=function(){function t(t){this.doc=t,this.gesture
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "apiService", function() { return apiService; });
 // this belongs to c DB
-var url = 'http://18.188.66.126:8888';
+var url = 'http://18.188.66.126:8888/';
 //let url = "http://192.168.1.10:6003/";
 var apiService = {
     login: url + 'login?id=',
