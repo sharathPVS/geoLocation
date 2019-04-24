@@ -13,8 +13,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 //sim
-//import { Sim } from '@ionic-native/Sim/ngx';
+import { Sim } from '@ionic-native/sim/ngx';
 import { HttpClientModule } from  '@angular/common/http';
+import { SelectorMatcher } from '@angular/compiler';
 
 
 @NgModule({
@@ -31,10 +32,31 @@ import { HttpClientModule } from  '@angular/common/http';
     SplashScreen,
     Geolocation,
     NativeGeocoder,
-   // Sim,
+    Sim,
     HttpClientModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+
+constructor(private sim: Sim) {
+  alert('ass');
+  this.sim.getSimInfo().then(
+    (info) => alert( 'sim info' + info),
+    (err) => alert('err' + err)
+  );
+  
+  this.sim.hasReadPermission().then(
+    (info) => alert('Has permission: ' + info)
+  );
+  
+  this.sim.requestReadPermission().then(
+    () => alert('Permission granted'),
+    () => alert('Permission denied')
+  );
+  
+  }
+}
+
+

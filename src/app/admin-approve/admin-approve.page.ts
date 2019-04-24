@@ -20,6 +20,8 @@ export class adminApprove implements OnInit {
     this.getAllData();
 
   }
+
+
   statusChange(val) {
      
    
@@ -43,6 +45,7 @@ export class adminApprove implements OnInit {
       } else {
         this.userMessage = '';
         this.adminData = this.handleData.message;
+      
        // console.log('final Data', this.adminData[0].name);
       }
 
