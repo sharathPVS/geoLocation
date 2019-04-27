@@ -28,7 +28,7 @@ export class adminApprove implements OnInit {
      val.state = (val.state == "inActive") ? 'active' :'inActive';
      //console.log(val);
 
-     this.http.put(apiService.updateLogin,val).subscribe(data=>{
+     this.http.put(apiService.updateLogin  +'?collection=dblogins',val).subscribe(data=>{
                  console.log(data);
                 this.getAllData();
     },error=>{
@@ -37,7 +37,7 @@ export class adminApprove implements OnInit {
   }
   getAllData() {
     this.userMessage = ' Kindly wait we are preparng the Client List ........ ';
-    this.http.get(apiService.getllDocsForAdminApproveOrReject).subscribe(data => {
+    this.http.get(apiService.getllDocsForAdminApproveOrReject+'?collection=dblogins').subscribe(data => {
       this.handleData = data;
      // console.log(this.handleData);
       if (this.handleData.length == 0) {

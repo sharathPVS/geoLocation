@@ -1035,13 +1035,22 @@ __webpack_require__.r(__webpack_exports__);
 //sim
 
 
+
 var AppModule = /** @class */ (function () {
-    function AppModule(sim) {
+    function AppModule(platform, sim) {
+        // this.sim.getSimInfo().then(
+        //   (info) => alert( 'sim info' + info),
+        //   (err) => alert('err' + err)
+        // );
+        this.platform = platform;
         this.sim = sim;
-        alert('ass');
-        this.sim.getSimInfo().then(function (info) { return alert('sim info' + info); }, function (err) { return alert('err' + err); });
-        this.sim.hasReadPermission().then(function (info) { return alert('Has permission: ' + info); });
-        this.sim.requestReadPermission().then(function () { return alert('Permission granted'); }, function () { return alert('Permission denied'); });
+        // this.sim.hasReadPermission().then(
+        //   (info) => alert('Has permission: ' + info)
+        // );
+        // this.sim.requestReadPermission().then(
+        //   () => alert('Permission granted'),
+        //   () => alert('Permission denied')
+        // );
     }
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
@@ -1064,7 +1073,7 @@ var AppModule = /** @class */ (function () {
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_native_sim_ngx__WEBPACK_IMPORTED_MODULE_11__["Sim"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"], _ionic_native_sim_ngx__WEBPACK_IMPORTED_MODULE_11__["Sim"]])
     ], AppModule);
     return AppModule;
 }());

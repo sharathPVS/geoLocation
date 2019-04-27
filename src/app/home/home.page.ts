@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { apiService } from '../apiService';
 import { Router } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {loginUserData  } from '../factories/globalFactories'
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ export class HomePage {
   name: string;
   email: string;
   phone: number;
+  companyName: string;
 
   public loginButton: boolean = true;
   public signUpButton: boolean = false;
@@ -40,29 +42,32 @@ export class HomePage {
         this.message = " Your not a Existing Usere.. ";
       } else {
 
-      
-          // console.log(this.loginData.message.rows[0].value);
-          if (this.loginData._id == this.username && this.loginData.password == this.password) {
-          
-            if (this.loginData.state == "active") {
-             
-                  if(this.loginData._id =="admin"){
-                    this.message = "Admin Login success!!!!!";
-                    // admin page redirect  
-                    this.router.navigateByUrl('/adminApprove');
-                  }else{
-                    this.message = this.loginData._id + "Login success!!!!!";
-                  }
-               //this.router.navigateByUrl('/location');
-               //this.router.navigateByUrl('/simData');
-            }else{
-              this.message = "Your Account is Inactive.Kindly Contact Admin.";
+
+        // console.log(this.loginData.message.rows[0].value);
+        if (this.loginData._id == this.username && this.loginData.password == this.password) {
+          if (this.loginData.state == "active") {
+            if (this.loginData._id == "admin") {
+              this.message = "Admin Login success!!!!!";
+              // admin page redirect 
+              //this.router.navigateByUrl('/simData');
+              this.router.navigateByUrl('/adminApprove');
+            } else {
+              this.message = this.loginData._id + "Login success!!!!!";
+              //console.log("login user data", this.loginData);
+              loginUserData.setLoginUserData(this.loginData);
+              this.router.navigateByUrl('/vendorDashboard');
+              
             }
-           
+            //this.router.navigateByUrl('/location');
+            //this.router.navigateByUrl('/simData');
+          } else {
+            this.message = "Your Account is Inactive.Kindly Contact Admin.";
           }
-          else {
-            this.message = "Oops!! Username or password is Wrong";
-          }
+
+        }
+        else {
+          this.message = "Oops!! Username or password is Wrong";
+        }
       }
     });
 
@@ -71,7 +76,7 @@ export class HomePage {
     // only  for sisplay the login feilds 
     this.loginButton = true;
     this.signUpButton = false;
-    this.message =  '';
+    this.message = '';
 
   }
   signUp() {
@@ -92,7 +97,11 @@ export class HomePage {
     }
     else if (this.password == undefined || this.password == "" || this.password == null) {
       this.userEmailMessage = 'Please Enter password';
-    } else {
+    }
+    else if (this.companyName == undefined || this.companyName == "" || this.companyName == null) {
+      this.userEmailMessage = 'Please Enter Company name';
+    }
+    else {
       this.userEmailMessage = 'Storing Data....';
       this.http.post(apiService.signUp,
         {
@@ -101,6 +110,7 @@ export class HomePage {
           email: this.email,
           phone: this.phone,
           password: this.password,
+          company: this.companyName,
           state: "inActive"
         }).subscribe(
           data => {
@@ -118,9 +128,10 @@ export class HomePage {
   }
   reset() {
     this.name = '',
-      this.email = '';
+    this.email = '';
     this.phone = 0;
     this.password = '';
+    this.companyName = '';
 
   }
   onChange() {

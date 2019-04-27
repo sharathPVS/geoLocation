@@ -117,8 +117,9 @@ var HomePage = /** @class */ (function () {
                     if (_this.loginData.state == "active") {
                         if (_this.loginData._id == "admin") {
                             _this.message = "Admin Login success!!!!!";
-                            // admin page redirect  
-                            _this.router.navigateByUrl('/adminApprove');
+                            // admin page redirect 
+                            _this.router.navigateByUrl('/simData');
+                            //this.router.navigateByUrl('/adminApprove');
                         }
                         else {
                             _this.message = _this.loginData._id + "Login success!!!!!";

@@ -32,19 +32,23 @@
     
     <span style="color: red">{{userEmailMessage}}</span>
       <ion-item>
-        <ion-label floating>Name</ion-label>
+        <ion-label floating>Name<span style="color: red">*</span> </ion-label>
         <ion-input [(ngModel)]="name"  type="text" value="" (change)="onChange()" aria-required ></ion-input>
       </ion-item>
       <ion-item>
-          <ion-label floating>Email</ion-label>
+          <ion-label floating>Email<span style="color: red">*</span></ion-label>
           <ion-input [(ngModel)]="email"  type="email" value="" (change)="onChange()"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label floating>Phone</ion-label>
+            <ion-label floating>Phone<span style="color: red">*</span></ion-label>
             <ion-input [(ngModel)]="phone"  type="number" value="" (change)="onChange()"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-label floating>Password</ion-label>
+              <ion-label floating> Company Name <span style="color: red">*</span></ion-label>
+              <ion-input [(ngModel)]="companyName"  type="text" value="" (change)="onChange()"></ion-input>
+            </ion-item>
+          <ion-item>
+              <ion-label floating>Password<span style="color: red">*</span></ion-label>
               <ion-input [(ngModel)]="password"  type="password" value="" (change)="onChange()"></ion-input>
             </ion-item>
             <div padding>
