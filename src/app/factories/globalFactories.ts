@@ -1,13 +1,27 @@
 
- let loginData:any
+let loginData: any;
+let adminLoginFactory: boolean = false;
 
 export let loginUserData = {
-    setLoginUserData: function(val){
+    setLoginUserData: function (val) {
         this.loginDatta = val;
     },
-    getLoginUserData: function(){
+    getLoginUserData: function () {
         return this.loginDatta;
+    },
+    initialiseLoginUsereDataFactory: function () {
+        this.loginData = "";
     }
+};
+export let logOutfactory = {
+    setAdminLoginFactory: function (val) {
+        adminLoginFactory = val;
+    },
+    getAdminLoginFactory: function () {
+        return adminLoginFactory
+    },
 
- }
-    
+
+}
+
+

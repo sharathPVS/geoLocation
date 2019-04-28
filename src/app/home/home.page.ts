@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { apiService } from '../apiService';
 import { Router } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import {loginUserData  } from '../factories/globalFactories'
+import {loginUserData,logOutfactory  } from '../factories/globalFactories'
 
 @Component({
   selector: 'app-home',
@@ -11,6 +11,8 @@ import {loginUserData  } from '../factories/globalFactories'
 })
 
 export class HomePage {
+
+
   username: string;
   password: string;
   message: string;
@@ -27,7 +29,12 @@ export class HomePage {
   private loginData: any;
 
 
-  constructor(private router: Router, private http: HttpClient) { }
+
+  constructor(private router: Router, private http: HttpClient) {
+    logOutfactory.setAdminLoginFactory(true);
+    loginUserData.initialiseLoginUsereDataFactory();
+
+   }
 
   submit() {
     this.message = " Fetching Login Details ..........";

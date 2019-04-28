@@ -1,35 +1,94 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title> Welcome to Vendor DashBoard  <ion-button color="primary" style="float: right;"  (click)="goBack()">Logout</ion-button> </ion-title>
+    <ion-title> Welcome to {{vendorName}} DashBoard <ion-button color="primary" style="float: right;" (click)="goBack()">Logout
+      </ion-button>
+    </ion-title>
 
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
-    <p style="color:green" > {{userMessage}}</p>
-    <ion-button color="success" style="float: left;"  (click)="createEmployee()">Add Employee</ion-button> 
-    <ion-button color="success" style="float: left;"  (click)="createEmployee()">Get All Employee List</ion-button> 
-    <p> </p>
+  <p style="color:red"> {{userMessage}}</p>
+  <ion-button color="success" style="float: left;" (click)="createEmployee()">Add Employee</ion-button>
+  <ion-button color="warning" style="float: left;" (click)="getAllEmployees()">Get All Employee List</ion-button>
 
-   
-    <!-- <table>
-        <thead>
+
+  <div *ngIf="addEmployee">
+    <br>
+    <br>
+    <p>Add Your Employee</p>
+    <ion-item><td>
+    </td>
+      <ion-label floating>Name <span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="name" type="text" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Phone<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="Phone" type="text" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Aadhar Card Numbe<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="aadharCardNumber" type="text" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <br>
+    <p> Add mobile Detils</p>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>MCC</ion-label>
+            <ion-input [(ngModel)]="mcc" type="text" value="" (change)="onChange()"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>MNC</ion-label>
+            <ion-input [(ngModel)]="mnc" type="text" value="" (change)="onChange()"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>LAC</ion-label>
+            <ion-input [(ngModel)]="lac" type="text" value="" (change)="onChange()"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>CELL ID</ion-label>
+            <ion-input [(ngModel)]="cellId" type="text" value="" (change)="onChange()"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-button color="success" style="float: left;" (click)="submitEmployee()">Submit</ion-button>
+    </ion-grid>
+  </div>
+  <div *ngIf="getEmployeeList">
+    <br>
+    <br>
+    <p> All Your Employee List </p>
+    <table>
+      <thead>
         <tr>
           <th>Name</th>
           <th>Phone</th>
-          <th>Email</th>
+          <th>Aadhar Card Number</th>
           <th>Status</th>
         </tr>
-        </thead>
-        <tbody>
+      </thead>
+      <tbody>
         <tr *ngFor="let item of adminData">
-         <td> {{item.name}}</td>
-         <td> {{item.phone}}</td>
-         <td>{{item.email}}</td>
-         <td><ion-button color="success" (click)="statusChange(item)">{{item.state}}</ion-button></td>
+          <td> {{item.name}}</td>
+          <td> {{item.Phone}}</td>
+          <td> {{item.aadharCardNumber}}</td>
+            <!-- Give update abd delete rights to the dmin -->
+            <td> 
+              <ion-button color="success" style="float: left;" (click)="update(item)">Update</ion-button>
+              <ion-button color="success" style="float: left;" (click)="delete(item)">Delete</ion-button>
+            </td>
+
         </tr>
-        </tbody>
-      </table> -->
-    
+      </tbody>
+    </table>
+  </div>
 </ion-content>

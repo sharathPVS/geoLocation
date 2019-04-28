@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { apiService } from '../apiService';
 import { Router } from '@angular/router';
+import {loginUserData,logOutfactory  } from '../factories/globalFactories'
 
 
 @Component({
@@ -11,14 +12,19 @@ import { Router } from '@angular/router';
 })
 export class adminApprove implements OnInit {
 
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private http: HttpClient,private router: Router) {
+
+    if(! logOutfactory.getAdminLoginFactory())
+    {
+     this.router.navigateByUrl('/home');
+    }
+   }
   public userMessage: string;
   private handleData: any;
   public adminData: any;
 
   ngOnInit() {
     this.getAllData();
-
   }
 
 

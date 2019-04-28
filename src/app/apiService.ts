@@ -6,6 +6,9 @@ export let apiService = {
       login: url +'login?id=',
       signUp: url + 'signUp',
       getllDocsForAdminApproveOrReject: url + 'getAll',
-      updateLogin:url +'update'  
+      updateLogin:url +'update',
+      createUserColletionDB: url + 'createUserColletion',
+      orgLevelEmplpyeeList: url +  'getAll',
+      updateOrgData: url +  'update'
 }
 
