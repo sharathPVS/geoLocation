@@ -9,6 +9,7 @@ export let apiService = {
       updateLogin:url +'update',
       createUserColletionDB: url + 'createUserColletion',
       orgLevelEmplpyeeList: url +  'getAll',
-      updateOrgData: url +  'update'
+      updateOrgData: url +  'update',
+      delete : url + 'delete'
 }
 

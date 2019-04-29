@@ -85,7 +85,7 @@ export class vendorDashboardPage implements OnInit {
 
        //console.log('store',url)
     this.http.post(url,{
-      _id: this.Phone,
+      _id: this.simNumber,
       name: this.name,
       Phone: this.Phone,
       aadharCardNumber: this.aadharCardNumber,
@@ -160,12 +160,12 @@ export class vendorDashboardPage implements OnInit {
     this.cellId = (val == undefined || null || "" || 0) ? "" : this.handleData.message.cellId;
     this.lac = (this.handleData.message  == undefined || null || "" ) ? "" : val.lac;
     this.simNumber  = (val  == undefined || null || "" || 0) ? "" : val.simNumber;
-screenLeft
-  }
+  } 
   update() {
     let url = apiService.updateOrgData + '?collection=' + this.LoginCollection;
     //console.log(url);
-    this.http.put(url,{_id: this.Phone,
+    this.http.put(url,{
+      _id: this.simNumber,
       name: this.name,
       Phone: this.Phone,
       aadharCardNumber: this.aadharCardNumber,
@@ -184,7 +184,14 @@ screenLeft
 
   // delete employee data 
   delete( val){
-    console.log("delete data",val);
+    let url = apiService.delete + '?collection=' + this.LoginCollection + '&id=' + val.simNumber ;
+    console.log('delete url',url)
+ 
+    this.http.delete(url).subscribe(data => {
+      this.handleData = data
+      this.userMessage =  this.handleData.message ;
+      this.getAllData();
+    })
   }
   goBack() {
     this.router.navigateByUrl('/home');
