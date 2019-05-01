@@ -116,24 +116,26 @@ var apiService = {
 /*!**********************************************!*\
   !*** ./src/app/factories/globalFactories.ts ***!
   \**********************************************/
-/*! exports provided: loginUserData, logOutfactory */
+/*! exports provided: loginUserData, logOutfactory, geoLocationFactory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginUserData", function() { return loginUserData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logOutfactory", function() { return logOutfactory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "geoLocationFactory", function() { return geoLocationFactory; });
 var loginData;
 var adminLoginFactory = false;
+var geoLocation;
 var loginUserData = {
     setLoginUserData: function (val) {
-        this.loginDatta = val;
+        loginData = val;
     },
     getLoginUserData: function () {
-        return this.loginDatta;
+        return loginData;
     },
     initialiseLoginUsereDataFactory: function () {
-        this.loginData = "";
+        loginData = "";
     }
 };
 var logOutfactory = {
@@ -142,6 +144,14 @@ var logOutfactory = {
     },
     getAdminLoginFactory: function () {
         return adminLoginFactory;
+    },
+};
+var geoLocationFactory = {
+    setGeoLocationFactory: function (val) {
+        geoLocation = val;
+    },
+    getGeoLocationFactory: function () {
+        return geoLocation;
     },
 };
 

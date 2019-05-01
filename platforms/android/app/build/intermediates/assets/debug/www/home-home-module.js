@@ -57,7 +57,7 @@ var HomePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      GEO Location\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n<ion-list>\n    <ion-button color=\"primary\" (click)=\"login()\">Login In</ion-button>\n    <ion-button color=\"secondary\" (click)=\"signUp()\">Sign Up</ion-button><br>\n       <span style=\"color: red\">{{message}}</span>\n       <br>\n   <div *ngIf=\"loginButton\">\n  <ion-item>\n    <ion-label floating>Username</ion-label>\n    <ion-input [(ngModel)]=\"username\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label floating>Password</ion-label>\n    <ion-input [(ngModel)]=\"password\"  type=\"password\" value=\"\" ></ion-input>\n  </ion-item>\n\n<div padding>\n    <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n    <ion-button color=\"success\" (click)=\"submit()\">Submit </ion-button>\n  </div>\n</div>\n<div *ngIf=\"signUpButton\">\n    \n    <span style=\"color: red\">{{userEmailMessage}}</span>\n      <ion-item>\n        <ion-label floating>Name<span style=\"color: red\">*</span> </ion-label>\n        <ion-input [(ngModel)]=\"name\"  type=\"text\" value=\"\" (change)=\"onChange()\" aria-required ></ion-input>\n      </ion-item>\n      <ion-item>\n          <ion-label floating>Email<span style=\"color: red\">*</span></ion-label>\n          <ion-input [(ngModel)]=\"email\"  type=\"email\" value=\"\" (change)=\"onChange()\"></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label floating>Phone<span style=\"color: red\">*</span></ion-label>\n            <ion-input [(ngModel)]=\"phone\"  type=\"number\" value=\"\" (change)=\"onChange()\"></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-label floating> Company Name <span style=\"color: red\">*</span></ion-label>\n              <ion-input [(ngModel)]=\"companyName\"  type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n            </ion-item>\n          <ion-item>\n              <ion-label floating>Password<span style=\"color: red\">*</span></ion-label>\n              <ion-input [(ngModel)]=\"password\"  type=\"password\" value=\"\" (change)=\"onChange()\"></ion-input>\n            </ion-item>\n            <div padding>\n                <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n                <ion-button color=\"success\" (click)=\"RegisterSubmit()\">Submit </ion-button>\n              </div>\n            \n</div>\n \n\n</ion-list>\n\n\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      GEO Location\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <span style=\"color: red\">{{message}}</span>\n    <div style=\"float:right\">\n    <a (click)=\"login()\">Login</a> | <a (click)=\"signUp()\">Sign Up </a>\n  </div>\n    <br>\n    <div *ngIf=\"loginButton\">\n      <ion-item>\n        <ion-label floating>Username</ion-label>\n        <ion-input [(ngModel)]=\"username\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label floating>Password</ion-label>\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\"></ion-input>\n      </ion-item>\n\n      <div padding>\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n        <ion-button color=\"success\" (click)=\"submit()\">Submit </ion-button>\n      </div>\n    </div>\n    <div *ngIf=\"signUpButton\">\n\n      <span style=\"color: red\">{{userEmailMessage}}</span>\n      <ion-item>\n        <ion-label floating>Name<span style=\"color: red\">*</span> </ion-label>\n        <ion-input [(ngModel)]=\"name\" type=\"text\" value=\"\" (change)=\"onChange()\" aria-required></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Email<span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"email\" type=\"email\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Phone<span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"phone\" type=\"number\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating> Company Name <span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"companyName\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Password<span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <div padding>\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n        <ion-button color=\"success\" (click)=\"RegisterSubmit()\">Submit </ion-button>\n      </div>\n\n    </div>\n\n\n  </ion-list>\n\n  <div #map class=\"map\"></div>\n\n\n</ion-content>"
 
 /***/ }),
 
@@ -68,7 +68,7 @@ module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      GEO Loca
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hvbWUvaG9tZS5wYWdlLnNjc3MifQ== */"
+module.exports = ".map {\n  background: grey;\n  height: 100vh;\n  width: 100vw; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3JhZGhha3Jpc2huYS9Eb2N1bWVudHMvTXlXb3Jrcy9PZmZpY2VMb2NhbEhvc3QvbXlPZmZpY2VXb3Jrcy9zdHVmZjIvZ2VvTG9jYXRpb24vc3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0ksZ0JBQWdCO0VBQ2hCLGFBQWE7RUFDYixZQUFZLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4ubWFwIHtcbiAgICBiYWNrZ3JvdW5kOiBncmV5O1xuICAgIGhlaWdodDogMTAwdmg7XG4gICAgd2lkdGg6IDEwMHZ3O1xuICB9Il19 */"
 
 /***/ }),
 
@@ -88,21 +88,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../factories/globalFactories */ "./src/app/factories/globalFactories.ts");
+/* harmony import */ var _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/geolocation/ngx */ "./node_modules/@ionic-native/geolocation/ngx/index.js");
 
 
 
 
 
 
+
+var H = window['H'];
 var HomePage = /** @class */ (function () {
-    function HomePage(router, http) {
+    function HomePage(router, http, geolocation) {
         this.router = router;
         this.http = http;
-        this.loginButton = true;
+        this.geolocation = geolocation;
+        this.loginButton = false;
         this.signUpButton = false;
         _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["logOutfactory"].setAdminLoginFactory(true);
         _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["loginUserData"].initialiseLoginUsereDataFactory();
+        this.location();
     }
+    HomePage.prototype.location = function () {
+        var _this = this;
+        this.geolocation.getCurrentPosition().then(function (resp) {
+            // console.log(resp.coords)
+            _this.mapData({ lat: resp.coords.latitude, lon: resp.coords.longitude });
+        }).catch(function (error) {
+            //console.log('Error getting location', error);
+        });
+    };
+    // display in map 
+    HomePage.prototype.mapData = function (val) {
+        var coordsData = { lat: val.lat, lng: val.lon };
+        var platform = new H.service.Platform({
+            app_id: 'Xs9OgBdukNyvJbPrJjS7',
+            app_code: 'rveTk4vWm3IgrJo4qdb_0g',
+            useCIT: true,
+            useHTTPS: true
+        });
+        var defaultLayers = platform.createDefaultLayers({
+            tileSize: 256 * Math.min(2, devicePixelRatio),
+            ppi: devicePixelRatio > 1 ? 320 : 72
+        });
+        var map = new H.Map(this.mapContainer.nativeElement, defaultLayers.normal.map, {
+            center: coordsData,
+            pixelRatio: Math.min(2, devicePixelRatio),
+            zoom: 10
+        });
+        var marker = new H.map.Marker(coordsData);
+        map.addObject(marker);
+        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+        var ui = H.ui.UI.createDefault(map, defaultLayers);
+        return map;
+    };
     HomePage.prototype.submit = function () {
         var _this = this;
         this.message = " Fetching Login Details ..........";
@@ -122,7 +160,7 @@ var HomePage = /** @class */ (function () {
                         if (_this.loginData._id == "admin") {
                             _this.message = "Admin Login success!!!!!";
                             // admin page redirect 
-                            //this.router.navigateByUrl('/simData');
+                            //this.router.navigateByUrl('/location');
                             _this.router.navigateByUrl('/adminApprove');
                         }
                         else {
@@ -146,13 +184,13 @@ var HomePage = /** @class */ (function () {
     };
     HomePage.prototype.login = function () {
         // only  for sisplay the login feilds 
-        this.loginButton = true;
+        this.loginButton = !this.loginButton;
         this.signUpButton = false;
         this.message = '';
     };
     HomePage.prototype.signUp = function () {
+        this.signUpButton = !this.signUpButton;
         this.loginButton = false;
-        this.signUpButton = true;
         this.message = '';
     };
     HomePage.prototype.RegisterSubmit = function () {
@@ -202,13 +240,17 @@ var HomePage = /** @class */ (function () {
         this.message = "";
         this.userEmailMessage = "";
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('map'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], HomePage.prototype, "mapContainer", void 0);
     HomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-home',
             template: __webpack_require__(/*! ./home.page.html */ "./src/app/home/home.page.html"),
             styles: [__webpack_require__(/*! ./home.page.scss */ "./src/app/home/home.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"], _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_6__["Geolocation"]])
     ], HomePage);
     return HomePage;
 }());

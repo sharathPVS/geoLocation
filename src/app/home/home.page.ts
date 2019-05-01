@@ -53,9 +53,8 @@ export class HomePage {
 
 
   // display in map 
-
   public mapData(val) {
-    let coordsData = val;
+    let coordsData = {  lat: val.lat ,lng:val.lon };
 
     const platform = new H.service.Platform({
       app_id: 'Xs9OgBdukNyvJbPrJjS7',
@@ -108,7 +107,7 @@ export class HomePage {
             if (this.loginData._id == "admin") {
               this.message = "Admin Login success!!!!!";
               // admin page redirect 
-              //this.router.navigateByUrl('/simData');
+              //this.router.navigateByUrl('/location');
               this.router.navigateByUrl('/adminApprove');
             } else {
               this.message = this.loginData._id + "Login success!!!!!";
