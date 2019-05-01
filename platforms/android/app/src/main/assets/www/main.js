@@ -854,6 +854,11 @@ var map = {
 	"./sim-data/sim-data.module": [
 		"./src/app/sim-data/sim-data.module.ts",
 		"sim-data-sim-data-module"
+	],
+	"./vendor-dashbord/vendor-dashbord.module": [
+		"./src/app/vendor-dashbord/vendor-dashbord.module.ts",
+		"common",
+		"vendor-dashbord-vendor-dashbord-module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -907,6 +912,7 @@ var routes = [
     { path: 'location', loadChildren: './location/location.module#LocationPageModule' },
     { path: 'simData', loadChildren: './sim-data/sim-data.module#SimDataPageModule' },
     { path: 'adminApprove', loadChildren: './admin-approve/admin-approve.module#adminApprovePageModule' },
+    { path: 'vendorDashboard', loadChildren: './vendor-dashbord/vendor-dashbord.module#vendorDashboard' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1143,7 +1149,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/radhakrishna/Documents/MyWorks/OfficeLocalHost/myOfficeWorks/hopeForSuccess/geoLocation/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/radhakrishna/Documents/MyWorks/OfficeLocalHost/myOfficeWorks/stuff2/geoLocation/src/main.ts */"./src/main.ts");
 
 
 /***/ })

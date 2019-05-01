@@ -97,12 +97,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "apiService", function() { return apiService; });
 // this belongs to c DB
 var url = 'http://18.188.66.126:8888/';
-//let url = "http://192.168.0.101:6003/";
+//let url = "http://localhost:6003/";
 var apiService = {
     login: url + 'login?id=',
     signUp: url + 'signUp',
     getllDocsForAdminApproveOrReject: url + 'getAll',
-    updateLogin: url + 'update'
+    updateLogin: url + 'update',
+    createUserColletionDB: url + 'createUserColletion',
+    orgLevelEmplpyeeList: url + 'getAll',
+    updateOrgData: url + 'update',
+    delete: url + 'delete'
+};
+
+
+/***/ }),
+
+/***/ "./src/app/factories/globalFactories.ts":
+/*!**********************************************!*\
+  !*** ./src/app/factories/globalFactories.ts ***!
+  \**********************************************/
+/*! exports provided: loginUserData, logOutfactory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginUserData", function() { return loginUserData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logOutfactory", function() { return logOutfactory; });
+var loginData;
+var adminLoginFactory = false;
+var loginUserData = {
+    setLoginUserData: function (val) {
+        this.loginDatta = val;
+    },
+    getLoginUserData: function () {
+        return this.loginDatta;
+    },
+    initialiseLoginUsereDataFactory: function () {
+        this.loginData = "";
+    }
+};
+var logOutfactory = {
+    setAdminLoginFactory: function (val) {
+        adminLoginFactory = val;
+    },
+    getAdminLoginFactory: function () {
+        return adminLoginFactory;
+    },
 };
 
 

@@ -14,9 +14,12 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 //sim
 import { Sim } from '@ionic-native/sim/ngx';
-import { HttpClientModule } from  '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { SelectorMatcher } from '@angular/compiler';
 import { Platform } from '@ionic/angular';
+import { loginUserData, logOutfactory, geoLocationFactory } from './factories/globalFactories';
+
+
 
 
 @NgModule({
@@ -41,22 +44,24 @@ import { Platform } from '@ionic/angular';
 })
 export class AppModule {
 
-constructor( private platform: Platform,private sim: Sim) {
-  
-  // this.sim.getSimInfo().then(
-  //   (info) => alert( 'sim info' + info),
-  //   (err) => alert('err' + err)
-  // );
-  
-  // this.sim.hasReadPermission().then(
-  //   (info) => alert('Has permission: ' + info)
-  // );
-  
-  // this.sim.requestReadPermission().then(
-  //   () => alert('Permission granted'),
-  //   () => alert('Permission denied')
-  // );
-  
+  constructor(private platform: Platform, private sim: Sim, private geolocation: Geolocation) {
+
+
+    // this.sim.getSimInfo().then(
+    //   (info) => alert( 'sim info' + info),
+    //   (err) => alert('err' + err)
+    // );
+
+    // this.sim.hasReadPermission().then(
+    //   (info) => alert('Has permission: ' + info)
+    // );
+
+    // this.sim.requestReadPermission().then(
+    //   () => alert('Permission granted'),
+    //   () => alert('Permission denied')
+    // );
+
+
   }
 }
 

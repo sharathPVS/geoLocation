@@ -2,7 +2,11 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { apiService } from '../apiService';
 import { Router } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import {loginUserData,logOutfactory  } from '../factories/globalFactories'
+import { loginUserData, logOutfactory, geoLocationFactory } from '../factories/globalFactories';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
+
+const H = window['H'];
 
 @Component({
   selector: 'app-home',
@@ -11,8 +15,7 @@ import {loginUserData,logOutfactory  } from '../factories/globalFactories'
 })
 
 export class HomePage {
-
-
+  map: any;
   username: string;
   password: string;
   message: string;
@@ -22,19 +25,68 @@ export class HomePage {
   phone: number;
   companyName: string;
 
-  public loginButton: boolean = true;
+  public loginButton: boolean = false;
   public signUpButton: boolean = false;
   // error messages 
   public userEmailMessage: string;
   private loginData: any;
+  @ViewChild('map') mapContainer: ElementRef;
 
 
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, public geolocation: Geolocation) {
     logOutfactory.setAdminLoginFactory(true);
     loginUserData.initialiseLoginUsereDataFactory();
+    this.location();
 
-   }
+  }
+
+  location() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      // console.log(resp.coords)
+      this.mapData({ lat: resp.coords.latitude, lon: resp.coords.longitude })
+    }).catch((error) => {
+      //console.log('Error getting location', error);
+    });
+
+  }
+
+
+  // display in map 
+
+  public mapData(val) {
+    let coordsData = val;
+
+    const platform = new H.service.Platform({
+      app_id: 'Xs9OgBdukNyvJbPrJjS7',
+      app_code: 'rveTk4vWm3IgrJo4qdb_0g',
+      useCIT: true,
+      useHTTPS: true
+    });
+    const defaultLayers = platform.createDefaultLayers({
+      tileSize: 256 * Math.min(2, devicePixelRatio),
+      ppi: devicePixelRatio > 1 ? 320 : 72
+    });
+    const map = new H.Map(
+      this.mapContainer.nativeElement,
+      defaultLayers.normal.map,
+      {
+        center: coordsData,
+        pixelRatio: Math.min(2, devicePixelRatio),
+        zoom: 10
+      }
+    );
+
+    var marker = new H.map.Marker(coordsData);
+    map.addObject(marker);
+
+    const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+    const ui = H.ui.UI.createDefault(map, defaultLayers);
+
+    return map;
+
+  }
+
 
   submit() {
     this.message = " Fetching Login Details ..........";
@@ -43,7 +95,7 @@ export class HomePage {
     //console.log(apiService.login + this.username);
     this.http.get(apiService.login + this.username).subscribe(data => {
       this.loginData = data;
-     // console.log(data);
+      // console.log(data);
 
       if (this.loginData == null) {
         this.message = " Your not a Existing Usere.. ";
@@ -63,7 +115,7 @@ export class HomePage {
               //console.log("login user data", this.loginData);
               loginUserData.setLoginUserData(this.loginData);
               this.router.navigateByUrl('/vendorDashboard');
-              
+
             }
             //this.router.navigateByUrl('/location');
             //this.router.navigateByUrl('/simData');
@@ -81,14 +133,14 @@ export class HomePage {
   }
   login() {
     // only  for sisplay the login feilds 
-    this.loginButton = true;
+    this.loginButton = !this.loginButton;
     this.signUpButton = false;
     this.message = '';
 
   }
   signUp() {
+    this.signUpButton = !this.signUpButton;
     this.loginButton = false;
-    this.signUpButton = true;
     this.message = '';
   }
   RegisterSubmit() {
@@ -135,7 +187,7 @@ export class HomePage {
   }
   reset() {
     this.name = '',
-    this.email = '';
+      this.email = '';
     this.phone = 0;
     this.password = '';
     this.companyName = '';

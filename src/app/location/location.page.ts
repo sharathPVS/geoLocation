@@ -4,12 +4,7 @@ import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } fr
 import { apiService } from '../apiService';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 
-
-
-
-
 declare var google;
-
 const H = window['H'];
 
 @Component({

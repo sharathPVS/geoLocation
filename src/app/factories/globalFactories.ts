@@ -1,16 +1,17 @@
 
-let loginData: any;
+let loginData:any ;
 let adminLoginFactory: boolean = false;
+let geoLocation:any
 
 export let loginUserData = {
     setLoginUserData: function (val) {
-        this.loginDatta = val;
+        loginData = val;
     },
     getLoginUserData: function () {
-        return this.loginDatta;
+        return loginData;
     },
     initialiseLoginUsereDataFactory: function () {
-        this.loginData = "";
+        loginData = "";
     }
 };
 export let logOutfactory = {
@@ -20,8 +21,15 @@ export let logOutfactory = {
     getAdminLoginFactory: function () {
         return adminLoginFactory
     },
+}
 
-
+export let geoLocationFactory = {
+    setGeoLocationFactory: function (val) {
+     geoLocation = val;
+    },
+    getGeoLocationFactory: function () {
+        return geoLocation
+    },
 }
 
 

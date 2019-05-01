@@ -7,59 +7,62 @@
 </ion-header>
 
 <ion-content padding>
-<ion-list>
-    <ion-button color="primary" (click)="login()">Login In</ion-button>
-    <ion-button color="secondary" (click)="signUp()">Sign Up</ion-button><br>
-       <span style="color: red">{{message}}</span>
-       <br>
-   <div *ngIf="loginButton">
-  <ion-item>
-    <ion-label floating>Username</ion-label>
-    <ion-input [(ngModel)]="username" type="text" value="" (change)="onChange()"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Password</ion-label>
-    <ion-input [(ngModel)]="password"  type="password" value="" ></ion-input>
-  </ion-item>
-
-<div padding>
-    <!-- <ion-button href="/location" routerDirection="root"> -->
-    <ion-button color="success" (click)="submit()">Submit </ion-button>
+  <ion-list>
+    <span style="color: red">{{message}}</span>
+    <div style="float:right">
+    <a (click)="login()">Login</a> | <a (click)="signUp()">Sign Up </a>
   </div>
-</div>
-<div *ngIf="signUpButton">
-    
-    <span style="color: red">{{userEmailMessage}}</span>
+    <br>
+    <div *ngIf="loginButton">
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input [(ngModel)]="username" type="text" value="" (change)="onChange()"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input [(ngModel)]="password" type="password" value=""></ion-input>
+      </ion-item>
+
+      <div padding>
+        <!-- <ion-button href="/location" routerDirection="root"> -->
+        <ion-button color="success" (click)="submit()">Submit </ion-button>
+      </div>
+    </div>
+    <div *ngIf="signUpButton">
+
+      <span style="color: red">{{userEmailMessage}}</span>
       <ion-item>
         <ion-label floating>Name<span style="color: red">*</span> </ion-label>
-        <ion-input [(ngModel)]="name"  type="text" value="" (change)="onChange()" aria-required ></ion-input>
+        <ion-input [(ngModel)]="name" type="text" value="" (change)="onChange()" aria-required></ion-input>
       </ion-item>
       <ion-item>
-          <ion-label floating>Email<span style="color: red">*</span></ion-label>
-          <ion-input [(ngModel)]="email"  type="email" value="" (change)="onChange()"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label floating>Phone<span style="color: red">*</span></ion-label>
-            <ion-input [(ngModel)]="phone"  type="number" value="" (change)="onChange()"></ion-input>
-          </ion-item>
-          <ion-item>
-              <ion-label floating> Company Name <span style="color: red">*</span></ion-label>
-              <ion-input [(ngModel)]="companyName"  type="text" value="" (change)="onChange()"></ion-input>
-            </ion-item>
-          <ion-item>
-              <ion-label floating>Password<span style="color: red">*</span></ion-label>
-              <ion-input [(ngModel)]="password"  type="password" value="" (change)="onChange()"></ion-input>
-            </ion-item>
-            <div padding>
-                <!-- <ion-button href="/location" routerDirection="root"> -->
-                <ion-button color="success" (click)="RegisterSubmit()">Submit </ion-button>
-              </div>
-            
-</div>
- 
+        <ion-label floating>Email<span style="color: red">*</span></ion-label>
+        <ion-input [(ngModel)]="email" type="email" value="" (change)="onChange()"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Phone<span style="color: red">*</span></ion-label>
+        <ion-input [(ngModel)]="phone" type="number" value="" (change)="onChange()"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating> Company Name <span style="color: red">*</span></ion-label>
+        <ion-input [(ngModel)]="companyName" type="text" value="" (change)="onChange()"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Password<span style="color: red">*</span></ion-label>
+        <ion-input [(ngModel)]="password" type="password" value="" (change)="onChange()"></ion-input>
+      </ion-item>
+      <div padding>
+        <!-- <ion-button href="/location" routerDirection="root"> -->
+        <ion-button color="success" (click)="RegisterSubmit()">Submit </ion-button>
+      </div>
 
-</ion-list>
+    </div>
+
+
+  </ion-list>
+
+  <div #map class="map"></div>
 
 
 </ion-content>

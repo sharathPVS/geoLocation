@@ -57,7 +57,7 @@ var HomePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      GEO Location\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n<ion-list>\n    <ion-button color=\"primary\" (click)=\"login()\">Login In</ion-button>\n    <ion-button color=\"secondary\" (click)=\"signUp()\">Sign Up</ion-button><br>\n       <span style=\"color: red\">{{message}}</span>\n       <br>\n   <div *ngIf=\"loginButton\">\n  <ion-item>\n    <ion-label floating>Username</ion-label>\n    <ion-input [(ngModel)]=\"username\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label floating>Password</ion-label>\n    <ion-input [(ngModel)]=\"password\"  type=\"password\" value=\"\" (change)=\"onChange()\"></ion-input>\n  </ion-item>\n\n<div padding>\n    <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n    <ion-button color=\"success\" (click)=\"submit()\">Submit </ion-button>\n  </div>\n</div>\n<div *ngIf=\"signUpButton\">\n    \n    <span style=\"color: red\">{{userEmailMessage}}</span>\n      <ion-item>\n        <ion-label floating>Name</ion-label>\n        <ion-input [(ngModel)]=\"name\"  type=\"text\" value=\"\" (change)=\"onChange()\" aria-required ></ion-input>\n      </ion-item>\n      <ion-item>\n          <ion-label floating>Email</ion-label>\n          <ion-input [(ngModel)]=\"email\"  type=\"email\" value=\"\" (change)=\"onChange()\"></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label floating>Phone</ion-label>\n            <ion-input [(ngModel)]=\"phone\"  type=\"number\" value=\"\" (change)=\"onChange()\"></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-label floating>Password</ion-label>\n              <ion-input [(ngModel)]=\"password\"  type=\"password\" value=\"\" (change)=\"onChange()\"></ion-input>\n            </ion-item>\n            <div padding>\n                <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n                <ion-button color=\"success\" (click)=\"RegisterSubmit()\">Submit </ion-button>\n              </div>\n            \n</div>\n \n\n</ion-list>\n\n\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      GEO Location\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n<ion-list>\n    <ion-button color=\"primary\" (click)=\"login()\">Login In</ion-button>\n    <ion-button color=\"secondary\" (click)=\"signUp()\">Sign Up</ion-button><br>\n       <span style=\"color: red\">{{message}}</span>\n       <br>\n   <div *ngIf=\"loginButton\">\n  <ion-item>\n    <ion-label floating>Username</ion-label>\n    <ion-input [(ngModel)]=\"username\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n  </ion-item>\n\n  <ion-item>\n    <ion-label floating>Password</ion-label>\n    <ion-input [(ngModel)]=\"password\"  type=\"password\" value=\"\" ></ion-input>\n  </ion-item>\n\n<div padding>\n    <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n    <ion-button color=\"success\" (click)=\"submit()\">Submit </ion-button>\n  </div>\n</div>\n<div *ngIf=\"signUpButton\">\n    \n    <span style=\"color: red\">{{userEmailMessage}}</span>\n      <ion-item>\n        <ion-label floating>Name<span style=\"color: red\">*</span> </ion-label>\n        <ion-input [(ngModel)]=\"name\"  type=\"text\" value=\"\" (change)=\"onChange()\" aria-required ></ion-input>\n      </ion-item>\n      <ion-item>\n          <ion-label floating>Email<span style=\"color: red\">*</span></ion-label>\n          <ion-input [(ngModel)]=\"email\"  type=\"email\" value=\"\" (change)=\"onChange()\"></ion-input>\n        </ion-item>\n        <ion-item>\n            <ion-label floating>Phone<span style=\"color: red\">*</span></ion-label>\n            <ion-input [(ngModel)]=\"phone\"  type=\"number\" value=\"\" (change)=\"onChange()\"></ion-input>\n          </ion-item>\n          <ion-item>\n              <ion-label floating> Company Name <span style=\"color: red\">*</span></ion-label>\n              <ion-input [(ngModel)]=\"companyName\"  type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n            </ion-item>\n          <ion-item>\n              <ion-label floating>Password<span style=\"color: red\">*</span></ion-label>\n              <ion-input [(ngModel)]=\"password\"  type=\"password\" value=\"\" (change)=\"onChange()\"></ion-input>\n            </ion-item>\n            <div padding>\n                <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n                <ion-button color=\"success\" (click)=\"RegisterSubmit()\">Submit </ion-button>\n              </div>\n            \n</div>\n \n\n</ion-list>\n\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -87,6 +87,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _apiService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../apiService */ "./src/app/apiService.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../factories/globalFactories */ "./src/app/factories/globalFactories.ts");
+
 
 
 
@@ -98,6 +100,8 @@ var HomePage = /** @class */ (function () {
         this.http = http;
         this.loginButton = true;
         this.signUpButton = false;
+        _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["logOutfactory"].setAdminLoginFactory(true);
+        _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["loginUserData"].initialiseLoginUsereDataFactory();
     }
     HomePage.prototype.submit = function () {
         var _this = this;
@@ -118,11 +122,14 @@ var HomePage = /** @class */ (function () {
                         if (_this.loginData._id == "admin") {
                             _this.message = "Admin Login success!!!!!";
                             // admin page redirect 
-                            _this.router.navigateByUrl('/simData');
-                            //this.router.navigateByUrl('/adminApprove');
+                            //this.router.navigateByUrl('/simData');
+                            _this.router.navigateByUrl('/adminApprove');
                         }
                         else {
                             _this.message = _this.loginData._id + "Login success!!!!!";
+                            //console.log("login user data", this.loginData);
+                            _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["loginUserData"].setLoginUserData(_this.loginData);
+                            _this.router.navigateByUrl('/vendorDashboard');
                         }
                         //this.router.navigateByUrl('/location');
                         //this.router.navigateByUrl('/simData');
@@ -162,6 +169,9 @@ var HomePage = /** @class */ (function () {
         else if (this.password == undefined || this.password == "" || this.password == null) {
             this.userEmailMessage = 'Please Enter password';
         }
+        else if (this.companyName == undefined || this.companyName == "" || this.companyName == null) {
+            this.userEmailMessage = 'Please Enter Company name';
+        }
         else {
             this.userEmailMessage = 'Storing Data....';
             this.http.post(_apiService__WEBPACK_IMPORTED_MODULE_2__["apiService"].signUp, {
@@ -170,6 +180,7 @@ var HomePage = /** @class */ (function () {
                 email: this.email,
                 phone: this.phone,
                 password: this.password,
+                company: this.companyName,
                 state: "inActive"
             }).subscribe(function (data) {
                 console.log("POST Request is successful ", data);
@@ -185,6 +196,7 @@ var HomePage = /** @class */ (function () {
             this.email = '';
         this.phone = 0;
         this.password = '';
+        this.companyName = '';
     };
     HomePage.prototype.onChange = function () {
         this.message = "";
