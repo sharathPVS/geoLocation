@@ -11,9 +11,26 @@
 
 <ion-content padding>
   <p style="color:red"> {{userMessage}}</p>
-  <ion-button color="success" style="float: left;" (click)="createEmployee()">Add Employee</ion-button>
-  <ion-button color="warning" style="float: left;" (click)="getAllEmployees()">Get All Employee List</ion-button>
+  <ion-row>
+    <ion-col>
+      <ion-button color="success" style="float: left;" (click)="createEmployee()">Add Employee</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button color="warning" style="float: left;" (click)="getAllEmployees()">Get All Employee List</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button color="primary" style="float: left;" (click)="reports()">Reports</ion-button>
+    </ion-col>
 
+
+  </ion-row>
+
+  <div *ngIf="reportsTable">
+    <br>
+    <br>
+
+    Reports On the Way
+  </div>
 
   <div *ngIf="addEmployee">
     <br>
@@ -89,6 +106,9 @@
           <td> {{item.aadharCardNumber}}</td>
           <!-- Give update abd delete rights to the dmin -->
           <td>
+            <ion-button color="primary" style="float: left;" (click)="trackByGeoLocation(item)">Geo Location
+            </ion-button>
+            <ion-button color="dark" style="float: left;" (click)="trackByNumber(item)">Mobile Number</ion-button>
             <ion-button color="warning" style="float: left;" (click)="edit(item)">{{updateButtonValue}}</ion-button>
             <ion-button color="danger" style="float: left;" (click)="delete(item)">Delete</ion-button>
           </td>

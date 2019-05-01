@@ -196,5 +196,8 @@ export class HomePage {
     this.message = "";
     this.userEmailMessage = "";
   }
+  upload(){
+    alert("upload data")
+  }
 
 }

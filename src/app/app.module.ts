@@ -47,19 +47,19 @@ export class AppModule {
   constructor(private platform: Platform, private sim: Sim, private geolocation: Geolocation) {
 
 
-    // this.sim.getSimInfo().then(
-    //   (info) => alert( 'sim info' + info),
-    //   (err) => alert('err' + err)
-    // );
+    this.sim.getSimInfo().then(
+      //(info) => alert(JSON.stringify(info)),
+      //(err) => alert('err' + err)
+    );
 
-    // this.sim.hasReadPermission().then(
-    //   (info) => alert('Has permission: ' + info)
-    // );
+    this.sim.hasReadPermission().then(
+      //(info) => alert('Has permission: ' + info)
+    );
 
-    // this.sim.requestReadPermission().then(
-    //   () => alert('Permission granted'),
-    //   () => alert('Permission denied')
-    // );
+    this.sim.requestReadPermission().then(
+      //() => alert('Permission granted'),
+      //() => alert('Permission denied')
+    );
 
 
   }

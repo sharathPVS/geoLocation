@@ -1044,20 +1044,20 @@ __webpack_require__.r(__webpack_exports__);
 
 var AppModule = /** @class */ (function () {
     function AppModule(platform, sim, geolocation) {
-        // this.sim.getSimInfo().then(
-        //   (info) => alert( 'sim info' + info),
-        //   (err) => alert('err' + err)
-        // );
         this.platform = platform;
         this.sim = sim;
         this.geolocation = geolocation;
-        // this.sim.hasReadPermission().then(
-        //   (info) => alert('Has permission: ' + info)
-        // );
-        // this.sim.requestReadPermission().then(
-        //   () => alert('Permission granted'),
-        //   () => alert('Permission denied')
-        // );
+        this.sim.getSimInfo().then(
+        //(info) => alert(JSON.stringify(info)),
+        //(err) => alert('err' + err)
+        );
+        this.sim.hasReadPermission().then(
+        //(info) => alert('Has permission: ' + info)
+        );
+        this.sim.requestReadPermission().then(
+        //() => alert('Permission granted'),
+        //() => alert('Permission denied')
+        );
     }
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({

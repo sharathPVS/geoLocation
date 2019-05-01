@@ -28,6 +28,7 @@ export class vendorDashboardPage implements OnInit {
   public addEmployee: boolean = false;
   public getEmployeeList: boolean = false;
   public UpdateDataFeilds:boolean = false;
+  public reportsTable:boolean = false;
 
   public name: string;
   public Phone: number;
@@ -47,12 +48,21 @@ export class vendorDashboardPage implements OnInit {
     this.userMessage = '';
     this.vendorName =  (loginUserData.getLoginUserData() == undefined) ? '' : loginUserData.getLoginUserData().company
   }
+  reports(){
+    this.reportsTable = true;
+    this.addEmployee = false;
+    this.getEmployeeList = false;
+    this.userMessage = '';
+    this.UpdateDataFeilds = false;
+  }
+
 
   createEmployee() {
     this.addEmployee = true;
     this.getEmployeeList = false;
     this.userMessage = '';
     this.UpdateDataFeilds = false;
+    this.reportsTable = false;
 
   };
   getAllEmployees() {
@@ -65,6 +75,7 @@ export class vendorDashboardPage implements OnInit {
     this.addEmployee = false;
     this.userMessage = '';
     this.UpdateDataFeilds = false;
+    this.reportsTable = false;
 
   }
 
