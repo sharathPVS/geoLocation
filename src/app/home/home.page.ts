@@ -30,6 +30,7 @@ export class HomePage {
   // error messages 
   public userEmailMessage: string;
   private loginData: any;
+  public existingUser: boolean = false;
   @ViewChild('map') mapContainer: ElementRef;
 
 
@@ -54,7 +55,7 @@ export class HomePage {
 
   // display in map 
   public mapData(val) {
-    let coordsData = {  lat: val.lat ,lng:val.lon };
+    let coordsData = { lat: val.lat, lng: val.lon };
 
     const platform = new H.service.Platform({
       app_id: 'Xs9OgBdukNyvJbPrJjS7',
@@ -195,9 +196,22 @@ export class HomePage {
   onChange() {
     this.message = "";
     this.userEmailMessage = "";
+    if (this.email) // if a is Not negative,undefined,null,empty value then...
+    {
+      this.checkUserNameExists(this.email);
+    }
   }
-  upload(){
+  upload() {
     alert("upload data")
   }
-
+  checkUserNameExists(email) {
+    console.log("Entered Email id-->" + email);
+    this.http.get(apiService.checkUserExists + email).subscribe(data => {
+      this.loginData = data;
+      if (this.loginData !== null) {
+        console.log('Api Response-->' + this.loginData._id)
+        this.userEmailMessage = 'Email Id Already Exists';        
+      }
+    });
+  }
 }

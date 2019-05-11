@@ -4,8 +4,11 @@ import { apiService } from '../apiService';
 import { Router } from '@angular/router';
 import { loginUserData,logOutfactory } from '../factories/globalFactories'
 import { error } from '@angular/compiler/src/util';
+import { LocationPage } from '../location/location.page';
+import { ViewChild, ElementRef } from '@angular/core';
+import { GeoLocationService } from '../service/geo-location.service';
 
-
+// const H = window['H'];
 @Component({
   selector: 'app-admin-approve',
   templateUrl: './vendor-dashbord.page.html',
@@ -15,7 +18,7 @@ export class vendorDashboardPage implements OnInit {
 
 
 
-  constructor(private http: HttpClient, private router: Router) { 
+  constructor(private http: HttpClient, private router: Router,private geoService:GeoLocationService) { 
 
    if(! logOutfactory.getAdminLoginFactory())
    {
@@ -40,10 +43,10 @@ export class vendorDashboardPage implements OnInit {
   private LoginCollection: string;
   public vendorName: string;
   public simNumber:number;
-
+  public 
   // update button value 
    public updateButtonValue:string = "Update";
-
+  //  @ViewChild('map') mapContainer: ElementRef;
   ngOnInit() {
     this.userMessage = '';
     this.vendorName =  (loginUserData.getLoginUserData() == undefined) ? '' : loginUserData.getLoginUserData().company
@@ -208,4 +211,54 @@ export class vendorDashboardPage implements OnInit {
     this.router.navigateByUrl('/home');
     this.userMessage = '';
   }
+  //TO Get the Location Co-ordinates
+  trackByNumber(val){
+    console.log("Db Obj-->"+val.mnc);
+    let url = apiService.geoFetchMobileLocation ;
+    this.http.post(url,{
+      mcc: val.mcc,
+      mnc: val.mnc,
+      lac: val.lac,
+      cid: val.cellId
+    }).subscribe(data => {
+      this.handleData = data
+      console.log("LAT"+this.handleData.lat+"Long-->"+this.handleData.lon)
+      this.userMessage =  this.handleData.message+"LAT"+this.handleData.lat+"Long-->"+this.handleData.lon ;      
+      this.geoService.mapData({latitude:this.handleData.lat,longitude:this.handleData.lon});
+    })
+  }
+    // display in map 
+    // public mapData(val) {
+    //   let coordsData = { lat: val.latitude, lng: val.longitude };
+    //   console.log('Preparing Map-->'+coordsData);
+    //   const platform = new H.service.Platform({
+    //     app_id: 'Xs9OgBdukNyvJbPrJjS7',
+    //     app_code: 'rveTk4vWm3IgrJo4qdb_0g',
+    //     useCIT: true,
+    //     useHTTPS: true
+    //   });
+    //   const defaultLayers = platform.createDefaultLayers({
+    //     tileSize: 256 * Math.min(2, devicePixelRatio),
+    //     ppi: devicePixelRatio > 1 ? 320 : 72
+    //   });
+    //   const map = new H.Map(
+    //     this.mapContainer.nativeElement,
+    //     defaultLayers.normal.map,
+    //     {
+    //       center: coordsData,
+    //       pixelRatio: Math.min(2, devicePixelRatio),
+    //       zoom: 10
+    //     }
+    //   );
+  
+    //   var marker = new H.map.Marker(coordsData);
+    //   map.addObject(marker);
+  
+    //   const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+    //   const ui = H.ui.UI.createDefault(map, defaultLayers);
+    //   console.log('Returning Map-->'+map);
+      
+    //   return map;
+      
+    // }
 }
