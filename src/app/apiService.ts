@@ -1,6 +1,6 @@
 // this belongs to c DB
-let url  = 'http://18.188.66.126:8888/';
-//let url = "http://localhost:6003/";
+//let url  = 'http://18.188.66.126:8888/';
+let url = "http://localhost:6001/";
 
 export let apiService = {
       login: url +'login?id=',
@@ -10,6 +10,8 @@ export let apiService = {
       createUserColletionDB: url + 'createUserColletion',
       orgLevelEmplpyeeList: url +  'getAll',
       updateOrgData: url +  'update',
-      delete : url + 'delete'
+      delete : url + 'delete',
+      checkUserExists: url +'checkUserExists?username=',
+      geoFetchMobileLocation:url+'geoFeatch'
 }
 

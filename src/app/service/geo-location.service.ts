@@ -1,19 +1,17 @@
+import { Injectable } from '@angular/core';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { NativeGeocoder,  NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { apiService } from '../apiService';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
+
 
 declare var google;
 const H = window['H'];
 
-@Component({
-  selector: 'app-location',
-  templateUrl: './location.page.html',
-  styleUrls: ['./location.page.scss'],
+@Injectable({
+  providedIn: 'root'
 })
-export class LocationPage {
- // using here maps 
+export class GeoLocationService {
 
   @ViewChild('map') mapContainer: ElementRef;
 
@@ -39,6 +37,7 @@ map: any;
 
       });
      }
+     
      loadMap(){
        /*  This function will get the data from APi call 
            Based on the mcc,mnc,cid,lac
@@ -174,3 +173,4 @@ return map;
     }
 */
 }
+
