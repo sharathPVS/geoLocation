@@ -12,6 +12,7 @@ export let apiService = {
       updateOrgData: url +  'update',
       delete : url + 'delete',
       checkUserExists: url +'checkUserExists?username=',
-      geoFetchMobileLocation:url+'geoFeatch'
+      geoFetchMobileLocation:url+'geoFeatch',
+      activateUserEmail:url+'activateUserEmail'
 }
 
