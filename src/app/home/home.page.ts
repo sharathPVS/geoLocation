@@ -174,7 +174,7 @@ export class HomePage {
         }).subscribe(
           data => {
             console.log("POST Request is successful ", data);
-            this.userEmailMessage = 'successfully submitted your request...';
+            this.userEmailMessage = 'Registered successfully,An Verification Email has been sent to Your Email';
             this.reset();
           },
           error => {
