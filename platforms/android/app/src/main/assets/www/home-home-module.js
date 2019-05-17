@@ -57,7 +57,7 @@ var HomePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      GEO Location\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <span style=\"color: red\">{{message}}</span>\n    <div style=\"float:right\">\n        <a (click)=\"upload()\">Upload</a> | <a (click)=\"login()\">Login</a> | <a (click)=\"signUp()\">Sign Up </a>\n  </div>\n    <br>\n    <div *ngIf=\"loginButton\">\n      <ion-item>\n        <ion-label floating>Username</ion-label>\n        <ion-input [(ngModel)]=\"username\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label floating>Password</ion-label>\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\"></ion-input>\n      </ion-item>\n\n      <div padding>\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n        <ion-button color=\"success\" (click)=\"submit()\">Submit </ion-button>\n      </div>\n    </div>\n    <div *ngIf=\"signUpButton\">\n\n      <span style=\"color: red\">{{userEmailMessage}}</span>\n      <ion-item>\n        <ion-label floating>Name<span style=\"color: red\">*</span> </ion-label>\n        <ion-input [(ngModel)]=\"name\" type=\"text\" value=\"\" (change)=\"onChange()\" aria-required></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Email<span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"email\" type=\"email\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Phone<span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"phone\" type=\"number\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating> Company Name <span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"companyName\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Password<span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <div padding>\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n        <ion-button color=\"success\" (click)=\"RegisterSubmit()\">Submit </ion-button>\n      </div>\n\n    </div>\n\n\n  </ion-list>\n\n  <div #map class=\"map\"></div>\n\n\n</ion-content>"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      GEO Location\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <span style=\"color: red\">{{message}}</span>\n    <div style=\"float:right\">\n        <a (click)=\"upload()\">Upload</a> | <a (click)=\"login()\">Login</a> | <a (click)=\"signUp()\">Sign Up </a>\n  </div>\n    <br>\n    <div *ngIf=\"loginButton\">\n      <ion-item>\n        <ion-label floating>Username</ion-label>\n        <ion-input [(ngModel)]=\"username\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label floating>Password</ion-label>\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\"></ion-input>\n      </ion-item>\n\n      <div padding>\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n        <ion-button color=\"success\" (click)=\"submit()\">Submit </ion-button>\n      </div>\n    </div>\n    <div *ngIf=\"signUpButton\">\n\n      <span style=\"color: red\">{{userEmailMessage}}</span>\n      <ion-item>\n        <ion-label floating>Name<span style=\"color: red\">*</span> </ion-label>\n        <ion-input [(ngModel)]=\"name\" type=\"text\" value=\"\" (change)=\"onChange()\" aria-required></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Email<span style=\"color: red\">*</span></ion-label>\n        <ion-input autocomplete=\"off\" [(ngModel)]=\"email\" type=\"email\" id=\"emailId\" value=\"\" (change)=\"onChange()\" (paste)=\"false\" (focusout)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Phone<span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"phone\" type=\"number\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating> Company Name <span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"companyName\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Password<span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <div padding>\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n        <ion-button color=\"success\" (click)=\"RegisterSubmit()\">Submit </ion-button>\n      </div>\n\n    </div>\n\n\n  </ion-list>\n\n  <div #map class=\"map\"></div>\n\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -104,6 +104,7 @@ var HomePage = /** @class */ (function () {
         this.geolocation = geolocation;
         this.loginButton = false;
         this.signUpButton = false;
+        this.existingUser = false;
         _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["logOutfactory"].setAdminLoginFactory(true);
         _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["loginUserData"].initialiseLoginUsereDataFactory();
         this.location();
@@ -149,7 +150,7 @@ var HomePage = /** @class */ (function () {
         //console.log(apiService.login + this.username);
         this.http.get(_apiService__WEBPACK_IMPORTED_MODULE_2__["apiService"].login + this.username).subscribe(function (data) {
             _this.loginData = data;
-            // console.log(data);
+            console.log(data);
             if (_this.loginData == null) {
                 _this.message = " Your not a Existing Usere.. ";
             }
@@ -180,6 +181,8 @@ var HomePage = /** @class */ (function () {
                     _this.message = "Oops!! Username or password is Wrong";
                 }
             }
+        }, function (error) {
+            console.log(error);
         });
     };
     HomePage.prototype.login = function () {
@@ -222,7 +225,7 @@ var HomePage = /** @class */ (function () {
                 state: "inActive"
             }).subscribe(function (data) {
                 console.log("POST Request is successful ", data);
-                _this.userEmailMessage = 'successfully submitted your request...';
+                _this.userEmailMessage = 'Registered successfully,An Verification Email has been sent to Your Email';
                 _this.reset();
             }, function (error) {
                 console.log("Error", error);
@@ -239,9 +242,24 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.onChange = function () {
         this.message = "";
         this.userEmailMessage = "";
+        if (this.email) // if a is Not negative,undefined,null,empty value then...
+         {
+            this.checkUserNameExists(this.email);
+        }
     };
     HomePage.prototype.upload = function () {
         alert("upload data");
+    };
+    HomePage.prototype.checkUserNameExists = function (email) {
+        var _this = this;
+        console.log("Entered Email id-->" + email);
+        this.http.get(_apiService__WEBPACK_IMPORTED_MODULE_2__["apiService"].checkUserExists + email).subscribe(function (data) {
+            _this.loginData = data;
+            if (_this.loginData !== null) {
+                console.log('Api Response-->' + _this.loginData._id);
+                _this.userEmailMessage = 'Email Id Already Exists';
+            }
+        });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('map'),
