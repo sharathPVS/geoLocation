@@ -14,11 +14,12 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 //sim
 import { Sim } from '@ionic-native/sim/ngx';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HttpClient } from '@angular/common/http';
 import { SelectorMatcher } from '@angular/compiler';
 import { Platform } from '@ionic/angular';
 import { loginUserData, logOutfactory, geoLocationFactory } from './factories/globalFactories';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
+import { apiService,values } from './apiService';
 
 
 
@@ -44,16 +45,22 @@ import { EmailVerificationComponent } from './email-verification/email-verificat
 })
 export class AppModule {
 
-  constructor(private platform: Platform, private sim: Sim, private geolocation: Geolocation) {
+  private simData : any;
+
+  constructor(private platform: Platform, 
+              private sim: Sim, 
+              private geolocation: Geolocation,
+              private http: HttpClient) {
 
 
     this.sim.getSimInfo().then(
-      //(info) => alert(JSON.stringify(info)),
+              
+      (info) =>  this.getSimData(info),
       //(err) => alert('err' + err)
     );
 
     this.sim.hasReadPermission().then(
-      //(info) => alert('Has permission: ' + info)
+            //(info) => alert('Has permission: ' + info)
     );
 
     this.sim.requestReadPermission().then(
@@ -61,6 +68,46 @@ export class AppModule {
       //() => alert('Permission denied')
     );
 
+
+  }
+
+  getSimData (simNumber){
+
+    //  alert(simNumber.simSerialNumber);
+    //  alert(JSON.stringify(simNumber));
+    //alert(apiService.fetchSimData);
+
+    this.http.get(apiService.fetchSimData + simNumber.simSerialNumber + "&collection=" + values.collection ).subscribe(data => {
+      this.simData = data;
+      alert (this.simData);
+      if (this.simData !== null) {
+        this.update(this.simData ,simNumber);
+        console.log('Api Response-->' + this.simData)      
+      }else{
+        this.create(simNumber);
+      }
+    });
+  }
+
+  update (data,simNumber){
+    this.http.put(apiService.updateSimData + simNumber.simSerialNumber + "&collection=" + values.collection ,data  ).subscribe(data => {
+      this.simData = data;
+      alert (this.simData);
+      if (this.simData !== null) {
+        console.log('Api Response-->' + this.simData)      
+      }
+    });
+
+  }
+  create(simNumber){
+  
+    this.http.put(apiService.createNewSimdata + "&collection=" + values.collection , { _id:simNumber.simSerialNumber,data:simNumber}  ).subscribe(data => {
+      this.simData = data;
+      alert (this.simData);
+      if (this.simData !== null) {
+        console.log('Api Response-->' + this.simData)      
+      }
+    });
 
   }
 }
