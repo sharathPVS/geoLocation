@@ -95,7 +95,7 @@ export class HomePage {
     //console.log(apiService.login + this.username);
     this.http.get(apiService.login + this.username).subscribe(data => {
       this.loginData = data;
-      // console.log(data);
+      console.log(data);
 
       if (this.loginData == null) {
         this.message = " Your not a Existing Usere.. ";
@@ -128,6 +128,9 @@ export class HomePage {
           this.message = "Oops!! Username or password is Wrong";
         }
       }
+    },error =>{
+       console.log(error)
+ 
     });
 
   }

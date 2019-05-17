@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { apiService } from '../apiService';
+import { apiService,values } from '../apiService';
 import { Router } from '@angular/router';
 import { loginUserData,logOutfactory } from '../factories/globalFactories'
 import { error } from '@angular/compiler/src/util';
@@ -43,6 +43,7 @@ export class vendorDashboardPage implements OnInit {
   private LoginCollection: string;
   public vendorName: string;
   public simNumber:number;
+  public mapOnDisplay:boolean = false;
   public 
   // update button value 
    public updateButtonValue:string = "Update";
@@ -50,6 +51,7 @@ export class vendorDashboardPage implements OnInit {
   ngOnInit() {
     this.userMessage = '';
     this.vendorName =  (loginUserData.getLoginUserData() == undefined) ? '' : loginUserData.getLoginUserData().company
+    //console.log("CompanyName -->" ,this.vendorName)
   }
   reports(){
     this.reportsTable = true;
@@ -70,7 +72,7 @@ export class vendorDashboardPage implements OnInit {
   };
   getAllEmployees() {
 
-    this.LoginCollection = (loginUserData.getLoginUserData() == undefined) ? "" : loginUserData.getLoginUserData().collection;
+    this.LoginCollection = values.collection;
     this.getAllData();
     //console.log('get login data', this.LoginCollection);
 
@@ -84,7 +86,7 @@ export class vendorDashboardPage implements OnInit {
 
   // store empoyee data 
   submitEmployee() {
-
+console.log("ORG Name -->",this.vendorName)
 
      if( this.name == undefined || null || 0 || ''){
             this.userMessage  = "Required Name";
@@ -95,7 +97,7 @@ export class vendorDashboardPage implements OnInit {
       this.userMessage  = "Required AAdhar Number";
 
      }else{
-       let url = apiService.createUserColletionDB + '?collection=' + this.LoginCollection;
+       let url = apiService.createUserColletionDB + '?collection=' + values.collection;
 
        //console.log('store',url)
     this.http.post(url,{
@@ -107,9 +109,11 @@ export class vendorDashboardPage implements OnInit {
       mcc: this.mcc,
       mnc: this.mnc,
       lac: this.lac,
-      cellId: this.cellId
+      cellId: this.cellId,
+      contactBelongsTo:this.vendorName
     }).subscribe((res: Response) => {
       console.log('storedData', res)
+                 this.userMessage = "Data submitted "
       this.resetEmployeeData();
     },
       error => {
@@ -140,7 +144,7 @@ export class vendorDashboardPage implements OnInit {
 
     
     this.userMessage = ' Kindly wait we are preparng the Client List ........ ';
-    let url = apiService.orgLevelEmplpyeeList + '?collection=' + this.LoginCollection;
+    let url = apiService.orgLevelEmplpyeeList + '?collection=' + values.collection + '&recordBelongsTo='+this.vendorName; 
     //console.log(url);
     this.http.get(url).subscribe(data => {
       this.handleData = data;
@@ -176,7 +180,7 @@ export class vendorDashboardPage implements OnInit {
     this.simNumber  = (val  == undefined || null || "" || 0) ? "" : val.simNumber;
   } 
   update() {
-    let url = apiService.updateOrgData + '?collection=' + this.LoginCollection;
+    let url = apiService.updateOrgData + '?collection=' + values.collection;
     //console.log(url);
     this.http.put(url,{
       _id: this.simNumber,
@@ -198,7 +202,7 @@ export class vendorDashboardPage implements OnInit {
 
   // delete employee data 
   delete( val){
-    let url = apiService.delete + '?collection=' + this.LoginCollection + '&id=' + val.simNumber ;
+    let url = apiService.delete + '?collection=' + values.collection + '&id=' + val.simNumber ;
     console.log('delete url',url)
  
     this.http.delete(url).subscribe(data => {
@@ -213,6 +217,7 @@ export class vendorDashboardPage implements OnInit {
   }
   //TO Get the Location Co-ordinates
   trackByNumber(val){
+    this.mapOnDisplay = true;
     console.log("Db Obj-->"+val.mnc);
     let url = apiService.geoFetchMobileLocation ;
     this.http.post(url,{
@@ -225,6 +230,7 @@ export class vendorDashboardPage implements OnInit {
       console.log("LAT"+this.handleData.lat+"Long-->"+this.handleData.lon)
       this.userMessage =  this.handleData.message+"LAT"+this.handleData.lat+"Long-->"+this.handleData.lon ;      
       this.geoService.mapData({latitude:this.handleData.lat,longitude:this.handleData.lon});
+      
     })
   }
     // display in map 
