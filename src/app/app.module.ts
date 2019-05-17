@@ -18,12 +18,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { SelectorMatcher } from '@angular/compiler';
 import { Platform } from '@ionic/angular';
 import { loginUserData, logOutfactory, geoLocationFactory } from './factories/globalFactories';
-
+import { EmailVerificationComponent } from './email-verification/email-verification.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,EmailVerificationComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

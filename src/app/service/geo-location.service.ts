@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NativeGeocoder,  NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { apiService } from '../apiService';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
-
+import { IonicModule } from '@ionic/angular';
 
 declare var google;
 const H = window['H'];

@@ -13,10 +13,12 @@ export let apiService = {
       delete : url + 'delete',
       checkUserExists: url +'checkUserExists?username=',
       geoFetchMobileLocation:url+'geoFeatch',
+      activateUserEmail:url+'activateUserEmail'
 
 }; 
 export let values = {
       // store al employees data in single place 
       collection: 'employeeData'
+
 }
 
