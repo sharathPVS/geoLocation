@@ -14,17 +14,17 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 //sim
 import { Sim } from '@ionic-native/sim/ngx';
-import { HttpClientModule,HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { SelectorMatcher } from '@angular/compiler';
 import { Platform } from '@ionic/angular';
 import { loginUserData, logOutfactory, geoLocationFactory } from './factories/globalFactories';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
-import { apiService,values } from './apiService';
+import { apiService, values } from './apiService';
 
 
 
 @NgModule({
-  declarations: [AppComponent,EmailVerificationComponent],
+  declarations: [AppComponent, EmailVerificationComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -45,22 +45,22 @@ import { apiService,values } from './apiService';
 })
 export class AppModule {
 
-  private simData : any;
+  private simData: any;
 
-  constructor(private platform: Platform, 
-              private sim: Sim, 
-              private geolocation: Geolocation,
-              private http: HttpClient) {
+  constructor(private platform: Platform,
+    private sim: Sim,
+    private geolocation: Geolocation,
+    private http: HttpClient) {
 
-
+   
     this.sim.getSimInfo().then(
-              
-      (info) =>  this.getSimData(info),
+
+      (info) => this.getSimData(info),
       //(err) => alert('err' + err)
     );
 
     this.sim.hasReadPermission().then(
-            //(info) => alert('Has permission: ' + info)
+      //(info) => alert('Has permission: ' + info)
     );
 
     this.sim.requestReadPermission().then(
@@ -71,41 +71,50 @@ export class AppModule {
 
   }
 
-  getSimData (simNumber){
+  getSimData(simNumber) {
 
-    //  alert(simNumber.simSerialNumber);
-    //  alert(JSON.stringify(simNumber));
-    //alert(apiService.fetchSimData);
+    // alert(simNumber);
+    // alert(JSON.stringify(simNumber));
+    // alert(apiService.fetchSimData);
 
-    this.http.get(apiService.fetchSimData + simNumber.simSerialNumber + "&collection=" + values.collection ).subscribe(data => {
+    this.http.get(apiService.fetchSimData + simNumber + "&collection=" + values.collection).subscribe(data => {
       this.simData = data;
-      alert (this.simData);
-      if (this.simData !== null) {
-        this.update(this.simData ,simNumber);
-        console.log('Api Response-->' + this.simData)      
-      }else{
+      //alert(JSON.stringify(data));
+     // alert( " data length" +this.simData.length)
+      if ( this.simData.length !== 0) {
+
+        // this if the sim number is not exits in our db will create 
+        // if exits  will update that 
+        this.simData[0]["newCHeck"] ="updated";
+        this.update(this.simData, simNumber);
+      } else {
         this.create(simNumber);
       }
     });
   }
 
-  update (data,simNumber){
-    this.http.put(apiService.updateSimData + simNumber.simSerialNumber + "&collection=" + values.collection ,data  ).subscribe(data => {
-      this.simData = data;
-      alert (this.simData);
-      if (this.simData !== null) {
-        console.log('Api Response-->' + this.simData)      
-      }
+  update(data, simNumber) {
+  let url = apiService.updateSimData + "?collection=" + values.collection;
+   // alert (url);
+    //alert("after Update" + JSON.stringify(data[0]));
+
+    this.http.put(url, data[0]).subscribe(data => {
+      //alert("update hited" )
+      
     });
 
   }
-  create(simNumber){
-  
-    this.http.put(apiService.createNewSimdata + "&collection=" + values.collection , { _id:simNumber.simSerialNumber,data:simNumber}  ).subscribe(data => {
+  create(simNumber) {
+   
+    let url =apiService.createNewSimdata + "?collection=" + values.collection;
+    alert("create hited" + url);
+    
+
+    this.http.post(url, { _id: simNumber}).subscribe(data => {
       this.simData = data;
-      alert (this.simData);
+      alert(this.simData);
       if (this.simData !== null) {
-        console.log('Api Response-->' + this.simData)      
+        console.log('Api Response-->' + this.simData)
       }
     });
 
