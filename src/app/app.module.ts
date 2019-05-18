@@ -77,7 +77,7 @@ export class AppModule {
     // alert(JSON.stringify(simNumber));
     // alert(apiService.fetchSimData);
 
-    this.http.get(apiService.fetchSimData + simNumber + "&collection=" + values.collection).subscribe(data => {
+    this.http.get(apiService.fetchSimData + simNumber.simSerialNumber + "&collection=" + values.collection).subscribe(data => {
       this.simData = data;
       //alert(JSON.stringify(data));
      // alert( " data length" +this.simData.length)
@@ -85,7 +85,7 @@ export class AppModule {
 
         // this if the sim number is not exits in our db will create 
         // if exits  will update that 
-        this.simData[0]["newCHeck"] ="updated";
+        this.simData[0]["Simdata"] = simNumber ;
         this.update(this.simData, simNumber);
       } else {
         this.create(simNumber);
@@ -104,13 +104,13 @@ export class AppModule {
     });
 
   }
-  create(simNumber) {
+  create(simData) {
    
     let url =apiService.createNewSimdata + "?collection=" + values.collection;
     alert("create hited" + url);
     
 
-    this.http.post(url, { _id: simNumber}).subscribe(data => {
+    this.http.post(url, { _id: simData.simSerialNumber,Simdata:simData}).subscribe(data => {
       this.simData = data;
       alert(this.simData);
       if (this.simData !== null) {
