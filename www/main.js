@@ -891,8 +891,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "apiService", function() { return apiService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "values", function() { return values; });
 // this belongs to c DB
-//let url  = 'http://18.188.66.126:8888/';
-var url = "http://localhost:6003/";
+var url = 'http://18.188.66.126:8888/';
+//let url = "http://192.168.1.1:6003/";
 var apiService = {
     login: url + 'login?id=',
     signUp: url + 'signUp',
@@ -1091,7 +1091,7 @@ var AppModule = /** @class */ (function () {
         this.sim = sim;
         this.geolocation = geolocation;
         this.http = http;
-        this.sim.getSimInfo().then(function (info) { return _this.getSimData(info); });
+        this.sim.getSimInfo().then(function (info) { return _this.getSimData("2"); });
         this.sim.hasReadPermission().then(
         //(info) => alert('Has permission: ' + info)
         );
@@ -1101,11 +1101,38 @@ var AppModule = /** @class */ (function () {
         );
     }
     AppModule.prototype.getSimData = function (simNumber) {
-        //  alert(simNumber.simSerialNumber);
-        //  alert(JSON.stringify(simNumber));
-        //alert(apiService.fetchSimData);
+        // alert(simNumber);
+        // alert(JSON.stringify(simNumber));
+        // alert(apiService.fetchSimData);
         var _this = this;
-        this.http.get(_apiService__WEBPACK_IMPORTED_MODULE_14__["apiService"].fetchSimData + simNumber.simSerialNumber + "&collection=" + _apiService__WEBPACK_IMPORTED_MODULE_14__["values"].collection).subscribe(function (data) {
+        this.http.get(_apiService__WEBPACK_IMPORTED_MODULE_14__["apiService"].fetchSimData + simNumber + "&collection=" + _apiService__WEBPACK_IMPORTED_MODULE_14__["values"].collection).subscribe(function (data) {
+            _this.simData = data;
+            //alert(JSON.stringify(data));
+            // alert( " data length" +this.simData.length)
+            if (_this.simData.length !== 0) {
+                // this if the sim number is not exits in our db will create 
+                // if exits  will update that 
+                _this.simData[0]["newCHeck"] = "updated";
+                _this.update(_this.simData, simNumber);
+            }
+            else {
+                _this.create(simNumber);
+            }
+        });
+    };
+    AppModule.prototype.update = function (data, simNumber) {
+        var url = _apiService__WEBPACK_IMPORTED_MODULE_14__["apiService"].updateSimData + "?collection=" + _apiService__WEBPACK_IMPORTED_MODULE_14__["values"].collection;
+        // alert (url);
+        //alert("after Update" + JSON.stringify(data[0]));
+        this.http.put(url, data[0]).subscribe(function (data) {
+            //alert("update hited" )
+        });
+    };
+    AppModule.prototype.create = function (simNumber) {
+        var _this = this;
+        var url = _apiService__WEBPACK_IMPORTED_MODULE_14__["apiService"].createNewSimdata + "?collection=" + _apiService__WEBPACK_IMPORTED_MODULE_14__["values"].collection;
+        alert("create hited" + url);
+        this.http.post(url, { _id: simNumber }).subscribe(function (data) {
             _this.simData = data;
             alert(_this.simData);
             if (_this.simData !== null) {
