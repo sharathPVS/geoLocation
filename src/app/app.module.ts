@@ -46,11 +46,21 @@ import { apiService, values } from './apiService';
 export class AppModule {
 
   private simData: any;
+  private coords : any;
 
   constructor(private platform: Platform,
     private sim: Sim,
     private geolocation: Geolocation,
     private http: HttpClient) {
+     
+    
+         //  geo location 
+      geolocation.getCurrentPosition().then((location) => {
+               // based on the current location forming the data  to the  json  
+         coords = {latitude:location.coords.latitude,longitude:location.coords.longitude};
+           // this.create( url,coords )
+        
+      })
 
    
     this.sim.getSimInfo().then(
@@ -88,7 +98,8 @@ export class AppModule {
         this.simData[0]["Simdata"] = simNumber ;
         this.update(this.simData, simNumber);
       } else {
-        this.create(simNumber);
+        let url =apiService.createNewSimdata + "?collection=" + values.collection;
+        this.create(url,{ _id: simNumber.simSerialNumber,Simdata:simNumber,geoData:this.coords});
       }
     });
   }
@@ -104,13 +115,13 @@ export class AppModule {
     });
 
   }
-  create(simData) {
+  create(url,simData) {
    
-    let url =apiService.createNewSimdata + "?collection=" + values.collection;
+  
     alert("create hited" + url);
     
 
-    this.http.post(url, { _id: simData.simSerialNumber,Simdata:simData}).subscribe(data => {
+    this.http.post(url, simData).subscribe(data => {
       this.simData = data;
       alert(this.simData);
       if (this.simData !== null) {

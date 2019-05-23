@@ -17,13 +17,15 @@ export let apiService = {
       // sim data
       fetchSimData: url + 'fetchSimData?simNumber=',
       updateSimData: url + 'updateSimData',
-      createNewSimdata: url + 'createNewSimdata'
+      createNewSimdata: url + 'createNewSimdata',
+      storeGeoLocation:url + 'StoreGeoLocation'
 
 
 };
 export let values = {
       // store al employees data in single place 
-      collection: 'employeeData'
+      collection: 'employeeData',
+      geoCollection:"geoCollection"
 
 }
 
