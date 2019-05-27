@@ -191,7 +191,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// const H = window['H'];
+
+var H = window['H'];
 var vendorDashboardPage = /** @class */ (function () {
     function vendorDashboardPage(http, router, geoService) {
         this.http = http;
@@ -362,7 +363,7 @@ var vendorDashboardPage = /** @class */ (function () {
     vendorDashboardPage.prototype.trackByNumber = function (val) {
         var _this = this;
         this.mapOnDisplay = true;
-        console.log("Db Obj-->" + val.mnc);
+        console.log("DB Obj-->" + val.mnc);
         var url = _apiService__WEBPACK_IMPORTED_MODULE_3__["apiService"].geoFetchMobileLocation;
         this.http.post(url, {
             mcc: val.mcc,
@@ -371,11 +372,41 @@ var vendorDashboardPage = /** @class */ (function () {
             cid: val.cellId
         }).subscribe(function (data) {
             _this.handleData = data;
-            console.log("LAT" + _this.handleData.lat + "Long-->" + _this.handleData.lon);
+            // console.log("Db Data --> " ,data)
             _this.userMessage = _this.handleData.message + "LAT" + _this.handleData.lat + "Long-->" + _this.handleData.lon;
-            _this.geoService.mapData({ latitude: _this.handleData.lat, longitude: _this.handleData.lon });
+            _this.mapData({ latitude: _this.handleData.lat, longitude: _this.handleData.lon });
         });
     };
+    // display in map 
+    vendorDashboardPage.prototype.mapData = function (val) {
+        var coordsData = { lat: val.latitude, lng: val.longitude };
+        console.log('Preparing Map-->' + coordsData);
+        var platform = new H.service.Platform({
+            app_id: 'Xs9OgBdukNyvJbPrJjS7',
+            app_code: 'rveTk4vWm3IgrJo4qdb_0g',
+            useCIT: true,
+            useHTTPS: true
+        });
+        var defaultLayers = platform.createDefaultLayers({
+            tileSize: 256 * Math.min(2, devicePixelRatio),
+            ppi: devicePixelRatio > 1 ? 320 : 72
+        });
+        var map = new H.Map(this.mapContainer.nativeElement, defaultLayers.normal.map, {
+            center: coordsData,
+            pixelRatio: Math.min(2, devicePixelRatio),
+            zoom: 10
+        });
+        var marker = new H.map.Marker(coordsData);
+        map.addObject(marker);
+        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+        var ui = H.ui.UI.createDefault(map, defaultLayers);
+        console.log('Returning Map-->' + map);
+        return map;
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('map'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], vendorDashboardPage.prototype, "mapContainer", void 0);
     vendorDashboardPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-admin-approve',

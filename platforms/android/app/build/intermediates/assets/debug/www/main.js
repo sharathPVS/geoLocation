@@ -891,8 +891,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "apiService", function() { return apiService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "values", function() { return values; });
 // this belongs to c DB
-var url = 'http://18.188.66.126:8888/';
-//let url = "http://192.168.1.1:6003/";
+//let url  = 'http://18.188.66.126:8888/';
+var url = "http://192.168.1.10:6003/";
 var apiService = {
     login: url + 'login?id=',
     signUp: url + 'signUp',
@@ -908,11 +908,13 @@ var apiService = {
     // sim data
     fetchSimData: url + 'fetchSimData?simNumber=',
     updateSimData: url + 'updateSimData',
-    createNewSimdata: url + 'createNewSimdata'
+    createNewSimdata: url + 'createNewSimdata',
+    storeGeoLocation: url + 'StoreGeoLocation'
 };
 var values = {
     // store al employees data in single place 
-    collection: 'employeeData'
+    collection: 'employeeData',
+    geoCollection: "geoCollection"
 };
 
 
@@ -1066,6 +1068,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _email_verification_email_verification_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./email-verification/email-verification.component */ "./src/app/email-verification/email-verification.component.ts");
 /* harmony import */ var _apiService__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./apiService */ "./src/app/apiService.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _ionic_native_background_geolocation_ngx__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic-native/background-geolocation/ngx */ "./node_modules/@ionic-native/background-geolocation/ngx/index.js");
 
 
 
@@ -1084,14 +1088,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+// background service 
+
 var AppModule = /** @class */ (function () {
-    function AppModule(platform, sim, geolocation, http) {
+    function AppModule(platform, sim, geolocation, http, backgroundGeolocation) {
         var _this = this;
         this.platform = platform;
         this.sim = sim;
         this.geolocation = geolocation;
         this.http = http;
-        this.sim.getSimInfo().then(function (info) { return _this.getSimData("2"); });
+        this.backgroundGeolocation = backgroundGeolocation;
+        this.sim.getSimInfo().then(function (info) { return _this.getSimData(info); });
         this.sim.hasReadPermission().then(
         //(info) => alert('Has permission: ' + info)
         );
@@ -1099,24 +1107,46 @@ var AppModule = /** @class */ (function () {
         //() => alert('Permission granted'),
         //() => alert('Permission denied')
         );
+        Object(rxjs__WEBPACK_IMPORTED_MODULE_15__["interval"])(1000 * 60).subscribe(function (x) {
+            _this.sendGPS();
+            //alert("asss every min ")
+        });
     }
+    ;
+    AppModule.prototype.sendGPS = function () {
+        var _this = this;
+        alert(" scedule time working ");
+        this.sim.getSimInfo().then(function (info) { return alert("sim info" + info); }, function (err) { return alert(' sim err' + err); });
+        this.geolocation.getCurrentPosition().then(function (location) {
+            //console.log(location.coords);
+            var timestamp = new Date();
+            var url = _apiService__WEBPACK_IMPORTED_MODULE_14__["apiService"].storeGeoLocation + "?collection=" + _apiService__WEBPACK_IMPORTED_MODULE_14__["values"].geoCollection;
+            _this.create(url, {
+                lat: location.coords.latitude,
+                lng: location.coords.longitude,
+            });
+        }).catch(function (error) {
+            console.log('Error getting location', error);
+        });
+    };
     AppModule.prototype.getSimData = function (simNumber) {
+        var _this = this;
         // alert(simNumber);
         // alert(JSON.stringify(simNumber));
         // alert(apiService.fetchSimData);
-        var _this = this;
-        this.http.get(_apiService__WEBPACK_IMPORTED_MODULE_14__["apiService"].fetchSimData + simNumber + "&collection=" + _apiService__WEBPACK_IMPORTED_MODULE_14__["values"].collection).subscribe(function (data) {
+        this.http.get(_apiService__WEBPACK_IMPORTED_MODULE_14__["apiService"].fetchSimData + simNumber.simSerialNumber + "&collection=" + _apiService__WEBPACK_IMPORTED_MODULE_14__["values"].collection).subscribe(function (data) {
             _this.simData = data;
             //alert(JSON.stringify(data));
             // alert( " data length" +this.simData.length)
             if (_this.simData.length !== 0) {
                 // this if the sim number is not exits in our db will create 
                 // if exits  will update that 
-                _this.simData[0]["newCHeck"] = "updated";
+                _this.simData[0]["Simdata"] = simNumber;
                 _this.update(_this.simData, simNumber);
             }
             else {
-                _this.create(simNumber);
+                var url = _apiService__WEBPACK_IMPORTED_MODULE_14__["apiService"].createNewSimdata + "?collection=" + _apiService__WEBPACK_IMPORTED_MODULE_14__["values"].collection;
+                _this.create(url, { _id: simNumber.simSerialNumber, Simdata: simNumber, geoData: _this.coords });
             }
         });
     };
@@ -1128,13 +1158,12 @@ var AppModule = /** @class */ (function () {
             //alert("update hited" )
         });
     };
-    AppModule.prototype.create = function (simNumber) {
+    AppModule.prototype.create = function (url, simData) {
         var _this = this;
-        var url = _apiService__WEBPACK_IMPORTED_MODULE_14__["apiService"].createNewSimdata + "?collection=" + _apiService__WEBPACK_IMPORTED_MODULE_14__["values"].collection;
         alert("create hited" + url);
-        this.http.post(url, { _id: simNumber }).subscribe(function (data) {
+        this.http.post(url, simData).subscribe(function (data) {
             _this.simData = data;
-            alert(_this.simData);
+            //alert(this.simData);
             if (_this.simData !== null) {
                 console.log('Api Response-->' + _this.simData);
             }
@@ -1157,6 +1186,7 @@ var AppModule = /** @class */ (function () {
                 _ionic_native_native_geocoder_ngx__WEBPACK_IMPORTED_MODULE_10__["NativeGeocoder"],
                 _ionic_native_sim_ngx__WEBPACK_IMPORTED_MODULE_11__["Sim"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"],
+                _ionic_native_background_geolocation_ngx__WEBPACK_IMPORTED_MODULE_16__["BackgroundGeolocation"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
@@ -1164,7 +1194,8 @@ var AppModule = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["Platform"],
             _ionic_native_sim_ngx__WEBPACK_IMPORTED_MODULE_11__["Sim"],
             _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_9__["Geolocation"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClient"]])
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClient"],
+            _ionic_native_background_geolocation_ngx__WEBPACK_IMPORTED_MODULE_16__["BackgroundGeolocation"]])
     ], AppModule);
     return AppModule;
 }());
