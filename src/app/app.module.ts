@@ -17,18 +17,22 @@ import { Sim } from '@ionic-native/sim/ngx';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { SelectorMatcher } from '@angular/compiler';
 import { Platform } from '@ionic/angular';
-import { loginUserData, logOutfactory, geoLocationFactory } from './factories/globalFactories';
+import { loginUserData, logOutfactory, geoLocationFactory,SimFactory } from './factories/globalFactories';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import { apiService, values } from './apiService';
 import {interval} from 'rxjs';
 
+//camera attaching file 
+import { Camera } from '@ionic-native/camera/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+// import { FilePath } from '@ionic-native/file-path/ngx';
+
+import { IonicStorageModule } from '@ionic/storage';
+
 // background service 
-import {
-  BackgroundGeolocation,
-  BackgroundGeolocationConfig,
-  BackgroundGeolocationResponse,
-  BackgroundGeolocationEvents
-} from '@ionic-native/background-geolocation/ngx';
+
 
 
 
@@ -39,7 +43,8 @@ import {
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
     StatusBar,
@@ -48,7 +53,10 @@ import {
     NativeGeocoder,
     Sim,
     HttpClientModule,
-    BackgroundGeolocation,
+    Camera,
+    File,
+    WebView,
+    FilePath,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
@@ -64,12 +72,15 @@ export class AppModule {
     public sim: Sim,
     public geolocation: Geolocation,
     private http: HttpClient,
-    public backgroundGeolocation: BackgroundGeolocation) {
+    ) {
 
       
     this.sim.getSimInfo().then(
   
-      (info) => this.getSimData(info),
+      (info) => {
+        this.getSimData(info);
+        SimFactory.setSimFactory(info)
+      },
       //(err) => alert('err' + err)
     );
 
@@ -91,11 +102,11 @@ export class AppModule {
 
   
  public sendGPS() {
-     alert(" scedule time working ")
+     //alert(" scedule time working ")
      this.sim.getSimInfo().then(
   
       (info) => this.holdSimData =  info,
-      (err) => alert(' sim err' + err)
+      (err) => console.log(' sim err' + err)
     );
     this.geolocation.getCurrentPosition().then((location) => {
 

@@ -57,7 +57,7 @@ var HomePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      GEO Location\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <span style=\"color: red\">{{message}}</span>\n    <div style=\"float:right\">\n        <a (click)=\"upload()\">Upload</a> | <a (click)=\"login()\">Login</a> | <a (click)=\"signUp()\">Sign Up </a>\n  </div>\n    <br>\n    <div *ngIf=\"loginButton\">\n      <ion-item>\n        <ion-label floating>Username</ion-label>\n        <ion-input [(ngModel)]=\"username\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label floating>Password</ion-label>\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\"></ion-input>\n      </ion-item>\n\n      <div padding>\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n        <ion-button color=\"success\" (click)=\"submit()\">Submit </ion-button>\n      </div>\n    </div>\n    <div *ngIf=\"signUpButton\">\n\n      <span style=\"color: red\">{{userEmailMessage}}</span>\n      <ion-item>\n        <ion-label floating>Name<span style=\"color: red\">*</span> </ion-label>\n        <ion-input [(ngModel)]=\"name\" type=\"text\" value=\"\" (change)=\"onChange()\" aria-required></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Email<span style=\"color: red\">*</span></ion-label>\n        <ion-input autocomplete=\"off\" [(ngModel)]=\"email\" type=\"email\" id=\"emailId\" value=\"\" (change)=\"onChange()\" (paste)=\"false\" (focusout)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Phone<span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"phone\" type=\"number\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating> Company Name <span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"companyName\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Password<span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <div padding>\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n        <ion-button color=\"success\" (click)=\"RegisterSubmit()\">Submit </ion-button>\n      </div>\n\n    </div>\n\n\n  </ion-list>\n\n  <div #map class=\"map\"></div>\n\n\n</ion-content>\n"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>\r\n      GEO Location\r\n    </ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding>\r\n  <ion-list>\r\n    <span style=\"color: red\">{{message}}</span>\r\n    <div style=\"float:right\">\r\n        <a (click)=\"upload()\">Upload</a> | <a (click)=\"login()\">Login</a> | <a (click)=\"signUp()\">Sign Up </a>\r\n  </div>\r\n    <br>\r\n    <div *ngIf=\"loginButton\">\r\n      <ion-item>\r\n        <ion-label floating>Username</ion-label>\r\n        <ion-input [(ngModel)]=\"username\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n      </ion-item>\r\n\r\n      <ion-item>\r\n        <ion-label floating>Password</ion-label>\r\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\"></ion-input>\r\n      </ion-item>\r\n\r\n      <div padding>\r\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\r\n        <ion-button color=\"success\" (click)=\"submit()\">Submit </ion-button>\r\n      </div>\r\n    </div>\r\n    <div *ngIf=\"signUpButton\">\r\n\r\n      <span style=\"color: red\">{{userEmailMessage}}</span>\r\n      <ion-item>\r\n        <ion-label floating>Name<span style=\"color: red\">*</span> </ion-label>\r\n        <ion-input [(ngModel)]=\"name\" type=\"text\" value=\"\" (change)=\"onChange()\" aria-required></ion-input>\r\n      </ion-item>\r\n      <ion-item>\r\n        <ion-label floating>Email<span style=\"color: red\">*</span></ion-label>\r\n        <ion-input autocomplete=\"off\" [(ngModel)]=\"email\" type=\"email\" id=\"emailId\" value=\"\" (change)=\"onChange()\" (paste)=\"false\" (focusout)=\"onChange()\"></ion-input>\r\n      </ion-item>\r\n      <ion-item>\r\n        <ion-label floating>Phone<span style=\"color: red\">*</span></ion-label>\r\n        <ion-input [(ngModel)]=\"phone\" type=\"number\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n      </ion-item>\r\n      <ion-item>\r\n        <ion-label floating> Company Name <span style=\"color: red\">*</span></ion-label>\r\n        <ion-input [(ngModel)]=\"companyName\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n      </ion-item>\r\n      <ion-item>\r\n        <ion-label floating>Password<span style=\"color: red\">*</span></ion-label>\r\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n      </ion-item>\r\n      <div padding>\r\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\r\n        <ion-button color=\"success\" (click)=\"RegisterSubmit()\">Submit </ion-button>\r\n      </div>\r\n\r\n    </div>\r\n\r\n\r\n  </ion-list>\r\n  <div *ngIf=\"uploadImage\">\r\n  <h3 *ngIf=\"images.length == 0\" text-center>Please Select Image!</h3>\r\n \r\n  <ion-list>\r\n    <ion-item *ngFor=\"let img of images; index as pos\" text-wrap>\r\n      <ion-thumbnail slot=\"start\">\r\n        <ion-img [src]=\"img.path\"></ion-img>\r\n      </ion-thumbnail>\r\n      <ion-label>\r\n        {{ img.name }}\r\n      </ion-label>\r\n      <ion-button slot=\"end\" fill=\"clear\" (click)=\"startUpload(img,pos)\">\r\n        <ion-icon slot=\"icon-only\" name=\"cloud-upload\"></ion-icon>\r\n      </ion-button>\r\n      <ion-button slot=\"end\" fill=\"clear\" (click)=\"deleteImage(img, pos)\">\r\n        <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\r\n      </ion-button>\r\n    </ion-item>\r\n  </ion-list>\r\n</div>\r\n\r\n</ion-content>\r\n\r\n<ion-footer *ngIf=\"uploadImage\">\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-button fill=\"clear\" expand=\"full\" color=\"light\" (click)=\"selectImage()\">\r\n      <ion-icon slot=\"start\" name=\"camera\"></ion-icon>\r\n      Select Image</ion-button>\r\n  </ion-toolbar>\r\n</ion-footer>\r\n\r\n"
 
 /***/ }),
 
@@ -68,7 +68,7 @@ module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      GEO Loca
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".map {\n  background: grey;\n  height: 100vh;\n  width: 100vw; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3JhZGhha3Jpc2huYS9Eb2N1bWVudHMvTXlXb3Jrcy9PZmZpY2VMb2NhbEhvc3QvbXlPZmZpY2VXb3Jrcy9zdHVmZjIvZ2VvTG9jYXRpb24vc3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0ksZ0JBQWdCO0VBQ2hCLGFBQWE7RUFDYixZQUFZLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4ubWFwIHtcbiAgICBiYWNrZ3JvdW5kOiBncmV5O1xuICAgIGhlaWdodDogMTAwdmg7XG4gICAgd2lkdGg6IDEwMHZ3O1xuICB9Il19 */"
+module.exports = ".map {\n  background: grey;\n  height: 100vh;\n  width: 100vw; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9FOlxcZ2VvTG9jYXRpb24vc3JjXFxhcHBcXGhvbWVcXGhvbWUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0ksZ0JBQWdCO0VBQ2hCLGFBQWE7RUFDYixZQUFZLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbi5tYXAge1xyXG4gICAgYmFja2dyb3VuZDogZ3JleTtcclxuICAgIGhlaWdodDogMTAwdmg7XHJcbiAgICB3aWR0aDogMTAwdnc7XHJcbiAgfSJdfQ== */"
 
 /***/ }),
 
@@ -89,6 +89,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../factories/globalFactories */ "./src/app/factories/globalFactories.ts");
 /* harmony import */ var _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/geolocation/ngx */ "./node_modules/@ionic-native/geolocation/ngx/index.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
+/* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
+/* harmony import */ var _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/ionic-webview/ngx */ "./node_modules/@ionic-native/ionic-webview/ngx/index.js");
+/* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
+/* harmony import */ var _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/file-path/ngx */ "./node_modules/@ionic-native/file-path/ngx/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 
 
 
@@ -96,14 +103,36 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+//import { HttpClient } from '@angular/common/http';
+
+
+
+
+var STORAGE_KEY = 'my_images';
 var H = window['H'];
 var HomePage = /** @class */ (function () {
-    function HomePage(router, http, geolocation) {
+    function HomePage(router, geolocation, http, camera, file, webview, filePath, ref, actionSheetController, toastController, storage, plt, loadingController) {
         this.router = router;
-        this.http = http;
         this.geolocation = geolocation;
+        this.http = http;
+        this.camera = camera;
+        this.file = file;
+        this.webview = webview;
+        this.filePath = filePath;
+        this.ref = ref;
+        this.actionSheetController = actionSheetController;
+        this.toastController = toastController;
+        this.storage = storage;
+        this.plt = plt;
+        this.loadingController = loadingController;
+        this.fileUrl = null;
+        this.images = [];
         this.loginButton = false;
         this.signUpButton = false;
+        this.uploadImage = false;
         this.existingUser = false;
         _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["logOutfactory"].setAdminLoginFactory(true);
         _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["loginUserData"].initialiseLoginUsereDataFactory();
@@ -190,10 +219,12 @@ var HomePage = /** @class */ (function () {
         this.loginButton = !this.loginButton;
         this.signUpButton = false;
         this.message = '';
+        this.uploadImage = false;
     };
     HomePage.prototype.signUp = function () {
         this.signUpButton = !this.signUpButton;
         this.loginButton = false;
+        this.uploadImage = false;
         this.message = '';
     };
     HomePage.prototype.RegisterSubmit = function () {
@@ -248,7 +279,11 @@ var HomePage = /** @class */ (function () {
         }
     };
     HomePage.prototype.upload = function () {
-        alert("upload data");
+        this.uploadImage = !this.uploadImage;
+        this.signUpButton = false;
+        this.loginButton = false;
+        this.message = '';
+        //alert("upload data")
     };
     HomePage.prototype.checkUserNameExists = function (email) {
         var _this = this;
@@ -261,6 +296,232 @@ var HomePage = /** @class */ (function () {
             }
         });
     };
+    //Image upload code
+    HomePage.prototype.loadStoredImages = function () {
+        var _this = this;
+        (this.images.length != 0) ? this.images = [] : this.images;
+        this.storage.get(STORAGE_KEY).then(function (images) {
+            //alert('images :' + images);
+            if (images) {
+                var arr = JSON.parse(images);
+                _this.images = [];
+                for (var _i = 0, arr_1 = arr; _i < arr_1.length; _i++) {
+                    var img = arr_1[_i];
+                    var filePath = _this.file.dataDirectory + img;
+                    var resPath = _this.pathForImage(filePath);
+                    _this.images.push({ name: img, path: resPath, filePath: filePath });
+                    // alert("pushed Data: " + this.images);
+                }
+            }
+        });
+    };
+    HomePage.prototype.pathForImage = function (img) {
+        //alert("pathForImage:-->" + img)
+        if (img === null) {
+            return '';
+        }
+        else {
+            var converted = this.webview.convertFileSrc(img);
+            return converted;
+        }
+    };
+    HomePage.prototype.presentToast = function (text) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toastController.create({
+                            message: text,
+                            position: 'bottom',
+                            duration: 3000
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    // call done from user side 
+    HomePage.prototype.selectImage = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var actionSheet;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.actionSheetController.create({
+                            header: "Select Image source",
+                            buttons: [{
+                                    text: 'Load from Library',
+                                    handler: function () {
+                                        _this.takePicture(_this.camera.PictureSourceType.PHOTOLIBRARY);
+                                    }
+                                },
+                                {
+                                    text: 'Use Camera',
+                                    handler: function () {
+                                        _this.takePicture(_this.camera.PictureSourceType.CAMERA);
+                                    }
+                                },
+                                {
+                                    text: 'Cancel',
+                                    role: 'cancel'
+                                }
+                            ]
+                        })];
+                    case 1:
+                        actionSheet = _a.sent();
+                        return [4 /*yield*/, actionSheet.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    HomePage.prototype.takePicture = function (sourceType) {
+        var _this = this;
+        var options = {
+            quality: 100,
+            sourceType: sourceType,
+            saveToPhotoAlbum: false,
+            correctOrientation: true
+        };
+        this.camera.getPicture(options).then(function (imagePath) {
+            if (_this.plt.is('android') && sourceType === _this.camera.PictureSourceType.PHOTOLIBRARY) {
+                //alert("If android hited" + imagePath ) 
+                // From gelary
+                var correctPath_1 = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+                var currentName_1 = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+                _this.copyFileToLocalDir(correctPath_1, currentName_1, _this.createFileName());
+            }
+            else {
+                // from camera 
+                // alert("else hited" + imagePath)
+                var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+                var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+                _this.copyFileToLocalDir(correctPath, currentName, _this.createFileName());
+            }
+        });
+    };
+    HomePage.prototype.createFileName = function () {
+        var d = new Date(), n = d.getTime(), newFileName = n + ".jpg";
+        return newFileName;
+    };
+    HomePage.prototype.copyFileToLocalDir = function (namePath, currentName, newFileName) {
+        var _this = this;
+        this.file.copyFile(namePath, currentName, this.file.dataDirectory, newFileName).then(function (success) {
+            // alert("newFileName --> " + newFileName); 
+            _this.updateStoredImages(newFileName);
+        }, function (error) {
+            _this.presentToast('Error while storing file.');
+        });
+    };
+    HomePage.prototype.updateStoredImages = function (name) {
+        var _this = this;
+        //alert( 'updateStoredImages -->' + name )
+        this.storage.get(STORAGE_KEY).then(function (images) {
+            var arr = JSON.parse(images);
+            if (!arr) {
+                var newImages = [name];
+                _this.storage.set(STORAGE_KEY, JSON.stringify(newImages));
+            }
+            else {
+                arr.push(name);
+                _this.storage.set(STORAGE_KEY, JSON.stringify(arr));
+            }
+            var filePath = _this.file.dataDirectory + name;
+            var resPath = _this.pathForImage(filePath);
+            var newEntry = {
+                name: name,
+                path: resPath,
+                filePath: filePath
+            };
+            _this.images = [newEntry].concat(_this.images);
+            //alert("images: --> " + this.images);
+            _this.ref.detectChanges(); // trigger change detection cycle
+        });
+    };
+    HomePage.prototype.deleteImage = function (imgEntry, position) {
+        var _this = this;
+        this.images.splice(position, 1);
+        this.storage.get(STORAGE_KEY).then(function (images) {
+            var arr = JSON.parse(images);
+            var filtered = arr.filter(function (name) { return name != imgEntry.name; });
+            _this.storage.set(STORAGE_KEY, JSON.stringify(filtered));
+            var correctPath = imgEntry.filePath.substr(0, imgEntry.filePath.lastIndexOf('/') + 1);
+            _this.file.removeFile(correctPath, imgEntry.name).then(function (res) {
+                _this.presentToast('File removed.');
+            });
+        });
+    };
+    HomePage.prototype.startUpload = function (imgEntry, position) {
+        var _this = this;
+        this.positionData = position;
+        //alert('upload Button Hited ==>' + imgEntry)
+        this.file.resolveLocalFilesystemUrl(imgEntry.filePath)
+            .then(function (entry) {
+            entry.file(function (file) { return _this.readFile(file); });
+        })
+            .catch(function (err) {
+            _this.presentToast('Error while reading file.');
+        });
+    };
+    HomePage.prototype.readFile = function (file) {
+        var _this = this;
+        //alert("reading the file from input "+ file);
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            var formData = new FormData();
+            var imgBlob = new Blob([reader.result], {
+                type: file.type
+            });
+            //alert("blobImage --> " + imgBlob);
+            //alert("file " + file);
+            formData.append('myImage', imgBlob, file.name);
+            _this.uploadImageData(formData);
+        };
+        reader.readAsArrayBuffer(file);
+    };
+    HomePage.prototype.uploadImageData = function (formData) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var loading;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.loadingController.create({})];
+                    case 1:
+                        loading = _a.sent();
+                        return [4 /*yield*/, loading.present()];
+                    case 2:
+                        _a.sent();
+                        // var options = {
+                        //   enctype: 'multipart/form-data'
+                        // };
+                        formData["simNumber"] = _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["SimFactory"].getSimFactory().simSerialNumber;
+                        //alert(SimFactory.getSimFactory().simSerialNumber);
+                        this.http.post(_apiService__WEBPACK_IMPORTED_MODULE_2__["apiService"].uploadImage + '?collection=' + _apiService__WEBPACK_IMPORTED_MODULE_2__["values"].uploadImageCollection, formData)
+                            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_13__["finalize"])(function () {
+                            loading.dismiss();
+                        }))
+                            .subscribe(function (res) {
+                            //alert("upload REs" + JSON.stringify(res))
+                            if (res['message'] == 'Data submitted successfully.') {
+                                // alert("uploaded")
+                                _this.presentToast('File upload complete.');
+                                _this.images.splice(_this.positionData, 1);
+                            }
+                            else {
+                                //alert("faild");
+                                _this.presentToast('File upload failed.');
+                            }
+                        });
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('map'),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
@@ -271,7 +532,11 @@ var HomePage = /** @class */ (function () {
             template: __webpack_require__(/*! ./home.page.html */ "./src/app/home/home.page.html"),
             styles: [__webpack_require__(/*! ./home.page.scss */ "./src/app/home/home.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"], _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_6__["Geolocation"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_6__["Geolocation"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_8__["Camera"],
+            _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_9__["File"], _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_10__["WebView"], _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_12__["FilePath"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ActionSheetController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ToastController"],
+            _ionic_storage__WEBPACK_IMPORTED_MODULE_11__["Storage"], _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["Platform"], _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"]])
     ], HomePage);
     return HomePage;
 }());

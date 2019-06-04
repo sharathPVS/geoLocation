@@ -1,7 +1,8 @@
 
 let loginData:any ;
 let adminLoginFactory: boolean = false;
-let geoLocation:any
+let geoLocation:any;
+let simData:any;
 
 export let loginUserData = {
     setLoginUserData: function (val) {
@@ -29,6 +30,15 @@ export let geoLocationFactory = {
     },
     getGeoLocationFactory: function () {
         return geoLocation
+    },
+}
+
+export let SimFactory = {
+    setSimFactory: function (val) {
+     simData = val;
+    },
+    getSimFactory: function () {
+        return simData
     },
 }
 
