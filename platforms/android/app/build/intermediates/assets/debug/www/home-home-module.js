@@ -499,9 +499,9 @@ var HomePage = /** @class */ (function () {
                         // var options = {
                         //   enctype: 'multipart/form-data'
                         // };
-                        formData["simNumber"] = _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["SimFactory"].getSimFactory().simSerialNumber;
+                        //formData["simNumber"] = SimFactory.getSimFactory().simSerialNumber;
                         //alert(SimFactory.getSimFactory().simSerialNumber);
-                        this.http.post(_apiService__WEBPACK_IMPORTED_MODULE_2__["apiService"].uploadImage + '?collection=' + _apiService__WEBPACK_IMPORTED_MODULE_2__["values"].uploadImageCollection, formData)
+                        this.http.post(_apiService__WEBPACK_IMPORTED_MODULE_2__["apiService"].uploadImage + '?collection=' + _apiService__WEBPACK_IMPORTED_MODULE_2__["values"].uploadImageCollection, { imageData: formData, simNumber: _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["SimFactory"].getSimFactory().simSerialNumber })
                             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_13__["finalize"])(function () {
                             loading.dismiss();
                         }))
