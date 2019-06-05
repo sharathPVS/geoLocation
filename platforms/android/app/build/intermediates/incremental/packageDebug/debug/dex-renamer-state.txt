@@ -1,4 +1,4 @@
-#Tue Jun 04 17:32:48 IST 2019
-base.0=E\:\\geoLocation\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Wed Jun 05 12:59:06 IST 2019
+base.0=/home/radhakrishna/Documents/MyWorks/OfficeLocalHost/myOfficeWorks/stuff2/geoLocation/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
 renamed.0=classes.dex
-file.0=E\:\\geoLocation\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex
+file.0=/home/radhakrishna/Documents/MyWorks/OfficeLocalHost/myOfficeWorks/stuff2/geoLocation/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex

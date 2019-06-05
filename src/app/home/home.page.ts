@@ -12,9 +12,6 @@ import { File, FileEntry } from '@ionic-native/file/ngx';
 //import { HttpClient } from '@angular/common/http';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { Storage } from '@ionic/storage';
-// import { FilePath } from '@ionic-native/file-path/ngx';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { FilePath } from '@ionic-native/file-path/ngx';
 
 import { finalize } from 'rxjs/operators';
  
@@ -44,23 +41,21 @@ export class HomePage {
   images = [];
   public positionData: any;
 
+  // these are the  on click button show and hide the  fetures 
   public loginButton: boolean = false;
   public signUpButton: boolean = false;
   public uploadImage: boolean = false;
+  public mapsData: boolean = true;
+
   // error messages 
   public userEmailMessage: string;
   private loginData: any;
   public existingUser: boolean = false;
   @ViewChild('map') mapContainer: ElementRef;
 
-
-
-
-
-
    constructor(private router: Router, public geolocation: Geolocation,
   private http: HttpClient, public camera: Camera,
-    public file: File, public webview: WebView,  public filePath: FilePath, public ref: ChangeDetectorRef,
+    public file: File, public webview: WebView,public ref: ChangeDetectorRef,
     public actionSheetController: ActionSheetController, public toastController: ToastController,
     public storage: Storage, public plt: Platform, public loadingController: LoadingController) {
     logOutfactory.setAdminLoginFactory(true);
@@ -167,6 +162,7 @@ export class HomePage {
     this.signUpButton = false;
     this.message = '';
     this.uploadImage = false;
+    this.mapsData = false;
 
   }
   signUp() {
@@ -174,6 +170,7 @@ export class HomePage {
     this.loginButton = false;
     this.uploadImage = false;
     this.message = '';
+    this.mapsData = false;
   }
   RegisterSubmit() {
 
@@ -238,6 +235,7 @@ export class HomePage {
     this.signUpButton = false;
     this.loginButton = false;
     this.message = '';
+    this.mapsData = false;
     //alert("upload data")
   }
   checkUserNameExists(email) {
@@ -342,8 +340,8 @@ loadStoredImages() {
   }
   createFileName() {
     var d = new Date(),
-      n = d.getTime(),
-      newFileName = n + ".jpg";
+        n = d.getTime(),
+      newFileName =  SimFactory.getSimFactory().simSerialNumber + ".jpg";
     return newFileName;
   }
 
@@ -422,30 +420,24 @@ loadStoredImages() {
     reader.onloadend = () => {
       const formData = new FormData();
       const imgBlob = new Blob([reader.result], {
-        type: file.type
+        type: file.type,
       });
+
       //alert("blobImage --> " + imgBlob);
       //alert("file " + file);
       formData.append('myImage', imgBlob, file.name);
+      alert("SIMInfo" +SimFactory.getSimFactory().simSerialNumber);
       this.uploadImageData(formData);
     };
     reader.readAsArrayBuffer(file);
   }
 
   async uploadImageData(formData: FormData) {
-
-    //alert( " uploading Data" + JSON.stringify(formData))
-    const loading = await this.loadingController.create({
-
-    });
-
-
+    const loading = await this.loadingController.create({});
     await loading.present();
-    // var options = {
-    //   enctype: 'multipart/form-data'
-    // };
-      //formData["simNumber"] = SimFactory.getSimFactory().simSerialNumber;
-      //alert(SimFactory.getSimFactory().simSerialNumber);
+     
+//simNumberData: SimFactory.getSimFactory().simSerialNumber,
+
     this.http.post(apiService.uploadImage + '?collection=' + values.uploadImageCollection, formData)
       .pipe(
         finalize(() => {
