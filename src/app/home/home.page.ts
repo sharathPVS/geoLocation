@@ -342,6 +342,8 @@ loadStoredImages() {
     var d = new Date(),
         n = d.getTime(),
       newFileName =  SimFactory.getSimFactory().simSerialNumber + ".jpg";
+      //alert("upload Image with SImNumber " + SimFactory.getSimFactory().simSerialNumber);
+      //alert("Total Sim Info  " + JSON.stringify(SimFactory.getSimFactory()));
     return newFileName;
   }
 

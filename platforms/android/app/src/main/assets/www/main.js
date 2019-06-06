@@ -908,6 +908,7 @@ var apiService = {
     createNewSimdata: url + 'createNewSimdata',
     storeGeoLocation: url + 'StoreGeoLocation',
     uploadImage: url + 'uploadImage',
+    fetchEmpImages: url + 'fetchEmpImages',
 };
 var values = {
     // store al employees data in single place 

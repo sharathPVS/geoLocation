@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jun 05 12:59:07 IST 2019
+#Thu Jun 06 10:38:53 IST 2019
 1073.file=/home/radhakrishna/Documents/MyWorks/OfficeLocalHost/myOfficeWorks/stuff2/geoLocation/platforms/android/app/build/intermediates/assets/debug/www/svg/md-ice-cream.svg
 1090.base=/home/radhakrishna/Documents/MyWorks/OfficeLocalHost/myOfficeWorks/stuff2/geoLocation/platforms/android/app/build/intermediates/assets/debug
 1007.base=/home/radhakrishna/Documents/MyWorks/OfficeLocalHost/myOfficeWorks/stuff2/geoLocation/platforms/android/app/build/intermediates/assets/debug

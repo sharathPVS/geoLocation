@@ -409,6 +409,8 @@ var HomePage = /** @class */ (function () {
     };
     HomePage.prototype.createFileName = function () {
         var d = new Date(), n = d.getTime(), newFileName = _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["SimFactory"].getSimFactory().simSerialNumber + ".jpg";
+        //alert("upload Image with SImNumber " + SimFactory.getSimFactory().simSerialNumber);
+        //alert("Total Sim Info  " + JSON.stringify(SimFactory.getSimFactory()));
         return newFileName;
     };
     HomePage.prototype.copyFileToLocalDir = function (namePath, currentName, newFileName) {
