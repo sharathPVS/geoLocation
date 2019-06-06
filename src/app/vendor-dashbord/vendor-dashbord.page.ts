@@ -268,5 +268,29 @@ console.log("ORG Name -->",this.vendorName)
       
       return map;
       
+    };
+    // fetch the selected user Data from api those are images and uplad date data images 
+    selectedUserImages(val){
+         
+      alert("selected Sim Info " + JSON.stringify(val));
+        let url = apiService.fetchEmpImages + "?id=" + val._id + "&collection=" + values.uploadImageCollection;
+         alert("sim Number" +  val.simNumber)
+        this.userMessage = ' Kindly wait we are preparng the Client List ........ ';
+        //console.log(url);
+        this.http.get(url).subscribe(data => {
+          this.handleData = data;
+         // console.log(this.handleData.message);
+          if (this.handleData.message.length == 0) {
+            this.userMessage = " oops! no records are found.";
+            this.getEmployeeList = false;
+          } else {
+            this.userMessage = '';
+            this.adminData = this.handleData.message;
+            alert('get data ' + JSON.stringify(this.adminData));
+    
+            // console.log('final Data', this.adminData[0].name);
+          }
+        })
     }
+
 }

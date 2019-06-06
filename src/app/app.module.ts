@@ -26,15 +26,7 @@ import {interval} from 'rxjs';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
-import { FilePath } from '@ionic-native/file-path/ngx';
-// import { FilePath } from '@ionic-native/file-path/ngx';
-
 import { IonicStorageModule } from '@ionic/storage';
-
-// background service 
-
-
-
 
 @NgModule({
   declarations: [AppComponent, EmailVerificationComponent],
@@ -56,7 +48,6 @@ import { IonicStorageModule } from '@ionic/storage';
     Camera,
     File,
     WebView,
-    FilePath,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
@@ -165,7 +156,7 @@ export class AppModule {
 
   }
   create(url, simData) {
-    alert("create hited" + url);
+    //alert("create hited" + url);
     this.http.post(url, simData).subscribe(data => {
       this.simData = data;
       //alert(this.simData);

@@ -20,6 +20,7 @@ export let apiService = {
       createNewSimdata: url + 'createNewSimdata',
       storeGeoLocation: url + 'StoreGeoLocation',
       uploadImage: url + 'uploadImage',
+      fetchEmpImages:url+'fetchEmpImages',
 
 
 };

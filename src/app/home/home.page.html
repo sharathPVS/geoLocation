@@ -82,10 +82,11 @@
   </ion-list>
 </div>
 
+<div #map class="map" *ngIf="mapsData"></div>
 </ion-content>
 
 <ion-footer *ngIf="uploadImage">
-  <ion-toolbar color="primary">
+  <ion-toolbar color="success">
     <ion-button fill="clear" expand="full" color="light" (click)="selectImage()">
       <ion-icon slot="start" name="camera"></ion-icon>
       Select Image</ion-button>

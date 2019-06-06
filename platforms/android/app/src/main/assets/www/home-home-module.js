@@ -57,7 +57,7 @@ var HomePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>\r\n      GEO Location\r\n    </ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding>\r\n  <ion-list>\r\n    <span style=\"color: red\">{{message}}</span>\r\n    <div style=\"float:right\">\r\n        <a (click)=\"upload()\">Upload</a> | <a (click)=\"login()\">Login</a> | <a (click)=\"signUp()\">Sign Up </a>\r\n  </div>\r\n    <br>\r\n    <div *ngIf=\"loginButton\">\r\n      <ion-item>\r\n        <ion-label floating>Username</ion-label>\r\n        <ion-input [(ngModel)]=\"username\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n      </ion-item>\r\n\r\n      <ion-item>\r\n        <ion-label floating>Password</ion-label>\r\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\"></ion-input>\r\n      </ion-item>\r\n\r\n      <div padding>\r\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\r\n        <ion-button color=\"success\" (click)=\"submit()\">Submit </ion-button>\r\n      </div>\r\n    </div>\r\n    <div *ngIf=\"signUpButton\">\r\n\r\n      <span style=\"color: red\">{{userEmailMessage}}</span>\r\n      <ion-item>\r\n        <ion-label floating>Name<span style=\"color: red\">*</span> </ion-label>\r\n        <ion-input [(ngModel)]=\"name\" type=\"text\" value=\"\" (change)=\"onChange()\" aria-required></ion-input>\r\n      </ion-item>\r\n      <ion-item>\r\n        <ion-label floating>Email<span style=\"color: red\">*</span></ion-label>\r\n        <ion-input autocomplete=\"off\" [(ngModel)]=\"email\" type=\"email\" id=\"emailId\" value=\"\" (change)=\"onChange()\" (paste)=\"false\" (focusout)=\"onChange()\"></ion-input>\r\n      </ion-item>\r\n      <ion-item>\r\n        <ion-label floating>Phone<span style=\"color: red\">*</span></ion-label>\r\n        <ion-input [(ngModel)]=\"phone\" type=\"number\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n      </ion-item>\r\n      <ion-item>\r\n        <ion-label floating> Company Name <span style=\"color: red\">*</span></ion-label>\r\n        <ion-input [(ngModel)]=\"companyName\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n      </ion-item>\r\n      <ion-item>\r\n        <ion-label floating>Password<span style=\"color: red\">*</span></ion-label>\r\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n      </ion-item>\r\n      <div padding>\r\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\r\n        <ion-button color=\"success\" (click)=\"RegisterSubmit()\">Submit </ion-button>\r\n      </div>\r\n\r\n    </div>\r\n\r\n\r\n  </ion-list>\r\n  <div *ngIf=\"uploadImage\">\r\n  <h3 *ngIf=\"images.length == 0\" text-center>Please Select Image!</h3>\r\n \r\n  <ion-list>\r\n    <ion-item *ngFor=\"let img of images; index as pos\" text-wrap>\r\n      <ion-thumbnail slot=\"start\">\r\n        <ion-img [src]=\"img.path\"></ion-img>\r\n      </ion-thumbnail>\r\n      <ion-label>\r\n        {{ img.name }}\r\n      </ion-label>\r\n      <ion-button slot=\"end\" fill=\"clear\" (click)=\"startUpload(img,pos)\">\r\n        <ion-icon slot=\"icon-only\" name=\"cloud-upload\"></ion-icon>\r\n      </ion-button>\r\n      <ion-button slot=\"end\" fill=\"clear\" (click)=\"deleteImage(img, pos)\">\r\n        <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\r\n      </ion-button>\r\n    </ion-item>\r\n  </ion-list>\r\n</div>\r\n\r\n</ion-content>\r\n\r\n<ion-footer *ngIf=\"uploadImage\">\r\n  <ion-toolbar color=\"primary\">\r\n    <ion-button fill=\"clear\" expand=\"full\" color=\"light\" (click)=\"selectImage()\">\r\n      <ion-icon slot=\"start\" name=\"camera\"></ion-icon>\r\n      Select Image</ion-button>\r\n  </ion-toolbar>\r\n</ion-footer>\r\n\r\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      GEO Location\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <span style=\"color: red\">{{message}}</span>\n    <div style=\"float:right\">\n        <a (click)=\"upload()\">Upload</a> | <a (click)=\"login()\">Login</a> | <a (click)=\"signUp()\">Sign Up </a>\n  </div>\n    <br>\n    <div *ngIf=\"loginButton\">\n      <ion-item>\n        <ion-label floating>Username</ion-label>\n        <ion-input [(ngModel)]=\"username\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label floating>Password</ion-label>\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\"></ion-input>\n      </ion-item>\n\n      <div padding>\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n        <ion-button color=\"success\" (click)=\"submit()\">Submit </ion-button>\n      </div>\n    </div>\n    <div *ngIf=\"signUpButton\">\n\n      <span style=\"color: red\">{{userEmailMessage}}</span>\n      <ion-item>\n        <ion-label floating>Name<span style=\"color: red\">*</span> </ion-label>\n        <ion-input [(ngModel)]=\"name\" type=\"text\" value=\"\" (change)=\"onChange()\" aria-required></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Email<span style=\"color: red\">*</span></ion-label>\n        <ion-input autocomplete=\"off\" [(ngModel)]=\"email\" type=\"email\" id=\"emailId\" value=\"\" (change)=\"onChange()\" (paste)=\"false\" (focusout)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Phone<span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"phone\" type=\"number\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating> Company Name <span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"companyName\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label floating>Password<span style=\"color: red\">*</span></ion-label>\n        <ion-input [(ngModel)]=\"password\" type=\"password\" value=\"\" (change)=\"onChange()\"></ion-input>\n      </ion-item>\n      <div padding>\n        <!-- <ion-button href=\"/location\" routerDirection=\"root\"> -->\n        <ion-button color=\"success\" (click)=\"RegisterSubmit()\">Submit </ion-button>\n      </div>\n\n    </div>\n\n\n  </ion-list>\n  <div *ngIf=\"uploadImage\">\n  <h3 *ngIf=\"images.length == 0\" text-center>Please Select Image!</h3>\n \n  <ion-list>\n    <ion-item *ngFor=\"let img of images; index as pos\" text-wrap>\n      <ion-thumbnail slot=\"start\">\n        <ion-img [src]=\"img.path\"></ion-img>\n      </ion-thumbnail>\n      <ion-label>\n        {{ img.name }}\n      </ion-label>\n      <ion-button slot=\"end\" fill=\"clear\" (click)=\"startUpload(img,pos)\">\n        <ion-icon slot=\"icon-only\" name=\"cloud-upload\"></ion-icon>\n      </ion-button>\n      <ion-button slot=\"end\" fill=\"clear\" (click)=\"deleteImage(img, pos)\">\n        <ion-icon slot=\"icon-only\" name=\"trash\"></ion-icon>\n      </ion-button>\n    </ion-item>\n  </ion-list>\n</div>\n\n<div #map class=\"map\" *ngIf=\"mapsData\"></div>\n</ion-content>\n\n<ion-footer *ngIf=\"uploadImage\">\n  <ion-toolbar color=\"success\">\n    <ion-button fill=\"clear\" expand=\"full\" color=\"light\" (click)=\"selectImage()\">\n      <ion-icon slot=\"start\" name=\"camera\"></ion-icon>\n      Select Image</ion-button>\n  </ion-toolbar>\n</ion-footer>\n\n"
 
 /***/ }),
 
@@ -68,7 +68,7 @@ module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>\r\n      GE
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".map {\n  background: grey;\n  height: 100vh;\n  width: 100vw; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9FOlxcZ2VvTG9jYXRpb24vc3JjXFxhcHBcXGhvbWVcXGhvbWUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0ksZ0JBQWdCO0VBQ2hCLGFBQWE7RUFDYixZQUFZLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbi5tYXAge1xyXG4gICAgYmFja2dyb3VuZDogZ3JleTtcclxuICAgIGhlaWdodDogMTAwdmg7XHJcbiAgICB3aWR0aDogMTAwdnc7XHJcbiAgfSJdfQ== */"
+module.exports = ".map {\n  background: grey;\n  height: 100vh;\n  width: 100vw; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL3JhZGhha3Jpc2huYS9Eb2N1bWVudHMvTXlXb3Jrcy9PZmZpY2VMb2NhbEhvc3QvbXlPZmZpY2VXb3Jrcy9zdHVmZjIvZ2VvTG9jYXRpb24vc3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0ksZ0JBQWdCO0VBQ2hCLGFBQWE7RUFDYixZQUFZLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4ubWFwIHtcbiAgICBiYWNrZ3JvdW5kOiBncmV5O1xuICAgIGhlaWdodDogMTAwdmg7XG4gICAgd2lkdGg6IDEwMHZ3O1xuICB9Il19 */"
 
 /***/ }),
 
@@ -94,8 +94,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic-native/file/ngx */ "./node_modules/@ionic-native/file/ngx/index.js");
 /* harmony import */ var _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic-native/ionic-webview/ngx */ "./node_modules/@ionic-native/ionic-webview/ngx/index.js");
 /* harmony import */ var _ionic_storage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/storage */ "./node_modules/@ionic/storage/fesm5/ionic-storage.js");
-/* harmony import */ var _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic-native/file-path/ngx */ "./node_modules/@ionic-native/file-path/ngx/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 
 
 
@@ -110,18 +109,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var STORAGE_KEY = 'my_images';
 var H = window['H'];
 var HomePage = /** @class */ (function () {
-    function HomePage(router, geolocation, http, camera, file, webview, filePath, ref, actionSheetController, toastController, storage, plt, loadingController) {
+    function HomePage(router, geolocation, http, camera, file, webview, ref, actionSheetController, toastController, storage, plt, loadingController) {
         this.router = router;
         this.geolocation = geolocation;
         this.http = http;
         this.camera = camera;
         this.file = file;
         this.webview = webview;
-        this.filePath = filePath;
         this.ref = ref;
         this.actionSheetController = actionSheetController;
         this.toastController = toastController;
@@ -130,9 +127,11 @@ var HomePage = /** @class */ (function () {
         this.loadingController = loadingController;
         this.fileUrl = null;
         this.images = [];
+        // these are the  on click button show and hide the  fetures 
         this.loginButton = false;
         this.signUpButton = false;
         this.uploadImage = false;
+        this.mapsData = true;
         this.existingUser = false;
         _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["logOutfactory"].setAdminLoginFactory(true);
         _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["loginUserData"].initialiseLoginUsereDataFactory();
@@ -220,12 +219,14 @@ var HomePage = /** @class */ (function () {
         this.signUpButton = false;
         this.message = '';
         this.uploadImage = false;
+        this.mapsData = false;
     };
     HomePage.prototype.signUp = function () {
         this.signUpButton = !this.signUpButton;
         this.loginButton = false;
         this.uploadImage = false;
         this.message = '';
+        this.mapsData = false;
     };
     HomePage.prototype.RegisterSubmit = function () {
         var _this = this;
@@ -283,6 +284,7 @@ var HomePage = /** @class */ (function () {
         this.signUpButton = false;
         this.loginButton = false;
         this.message = '';
+        this.mapsData = false;
         //alert("upload data")
     };
     HomePage.prototype.checkUserNameExists = function (email) {
@@ -406,7 +408,9 @@ var HomePage = /** @class */ (function () {
         });
     };
     HomePage.prototype.createFileName = function () {
-        var d = new Date(), n = d.getTime(), newFileName = n + ".jpg";
+        var d = new Date(), n = d.getTime(), newFileName = _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["SimFactory"].getSimFactory().simSerialNumber + ".jpg";
+        //alert("upload Image with SImNumber " + SimFactory.getSimFactory().simSerialNumber);
+        //alert("Total Sim Info  " + JSON.stringify(SimFactory.getSimFactory()));
         return newFileName;
     };
     HomePage.prototype.copyFileToLocalDir = function (namePath, currentName, newFileName) {
@@ -475,11 +479,12 @@ var HomePage = /** @class */ (function () {
         reader.onloadend = function () {
             var formData = new FormData();
             var imgBlob = new Blob([reader.result], {
-                type: file.type
+                type: file.type,
             });
             //alert("blobImage --> " + imgBlob);
             //alert("file " + file);
             formData.append('myImage', imgBlob, file.name);
+            alert("SIMInfo" + _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["SimFactory"].getSimFactory().simSerialNumber);
             _this.uploadImageData(formData);
         };
         reader.readAsArrayBuffer(file);
@@ -496,13 +501,9 @@ var HomePage = /** @class */ (function () {
                         return [4 /*yield*/, loading.present()];
                     case 2:
                         _a.sent();
-                        // var options = {
-                        //   enctype: 'multipart/form-data'
-                        // };
-                        formData["simNumber"] = _factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["SimFactory"].getSimFactory().simSerialNumber;
-                        //alert(SimFactory.getSimFactory().simSerialNumber);
+                        //simNumberData: SimFactory.getSimFactory().simSerialNumber,
                         this.http.post(_apiService__WEBPACK_IMPORTED_MODULE_2__["apiService"].uploadImage + '?collection=' + _apiService__WEBPACK_IMPORTED_MODULE_2__["values"].uploadImageCollection, formData)
-                            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_13__["finalize"])(function () {
+                            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_12__["finalize"])(function () {
                             loading.dismiss();
                         }))
                             .subscribe(function (res) {
@@ -534,7 +535,7 @@ var HomePage = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_6__["Geolocation"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"], _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_8__["Camera"],
-            _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_9__["File"], _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_10__["WebView"], _ionic_native_file_path_ngx__WEBPACK_IMPORTED_MODULE_12__["FilePath"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"],
+            _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_9__["File"], _ionic_native_ionic_webview_ngx__WEBPACK_IMPORTED_MODULE_10__["WebView"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ActionSheetController"], _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["ToastController"],
             _ionic_storage__WEBPACK_IMPORTED_MODULE_11__["Storage"], _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["Platform"], _ionic_angular__WEBPACK_IMPORTED_MODULE_7__["LoadingController"]])
     ], HomePage);

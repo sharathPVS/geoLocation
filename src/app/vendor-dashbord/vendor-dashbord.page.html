@@ -64,6 +64,8 @@
             <ion-input [(ngModel)]="mcc" type="text" value="" (change)="onChange()"></ion-input>
           </ion-item>
         </ion-col>
+      </ion-row>
+      <ion-row>
         <ion-col>
           <ion-item>
             <ion-label floating>MNC</ion-label>
@@ -76,6 +78,8 @@
             <ion-input [(ngModel)]="lac" type="text" value="" (change)="onChange()"></ion-input>
           </ion-item>
         </ion-col>
+      </ion-row>
+      <ion-row>
         <ion-col>
           <ion-item>
             <ion-label floating>CELL ID</ion-label>
@@ -111,6 +115,8 @@
             <ion-button color="dark" style="float: left;" (click)="trackByNumber(item)">Mobile Number</ion-button>
             <ion-button color="warning" style="float: left;" (click)="edit(item)">{{updateButtonValue}}</ion-button>
             <ion-button color="danger" style="float: left;" (click)="delete(item)">Delete</ion-button>
+            <ion-button color="success" style="float: left;" (click)="selectedUserImages(item)">Get Images</ion-button>
+
           </td>
 
         </tr>
