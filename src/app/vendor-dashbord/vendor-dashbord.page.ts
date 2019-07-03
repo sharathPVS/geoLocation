@@ -40,6 +40,17 @@ export class vendorDashboardPage implements OnInit {
   public name: string;
   public Phone: number;
   public aadharCardNumber: number;
+  public vehicleNumber: string;
+  public vehicleType: string;
+  public fcExpDate: string;
+  public permitExpDate: string;
+  public taxExpDate: string;
+  public insuranceExpDate: string;
+  public driverName: string;
+  public licenseNumber: string;
+  public licenseExpDate: string;
+  public vehicleEngineNumber: string;
+  public vehicleSachtNumber: string;
   public mcc: number;
   public mnc: number;
   public lac: string;
@@ -129,6 +140,17 @@ console.log("ORG Name -->",this.vendorName)
       name: this.name,
       Phone: this.Phone,
       aadharCardNumber: this.aadharCardNumber,
+      vehicleNumber: this.vehicleNumber,
+      vehicleType: this.vehicleType,
+      fcExpDate: this.fcExpDate,
+      permitExpDate: this.permitExpDate,
+      taxExpDate: this.taxExpDate,
+      insuranceExpDate: this.insuranceExpDate,
+      driverName: this.driverName,
+      licenseNumber: this.licenseNumber,
+      licenseExpDate: this.licenseExpDate,
+      vehicleEngineNumber: this.vehicleEngineNumber,
+      vehicleSachtNumber: this.vehicleSachtNumber,
       simNumber:this.simNumber,
       mcc: this.mcc,
       mnc: this.mnc,
@@ -151,6 +173,17 @@ console.log("ORG Name -->",this.vendorName)
     this.name = " ";
     this.Phone = 0;
     this.aadharCardNumber = 0;
+    this.vehicleNumber = " ";
+    this.vehicleType = " ";
+    this.fcExpDate = " ";
+    this.permitExpDate = " ";
+    this.taxExpDate = " ";
+    this.insuranceExpDate = " ";
+    this.driverName = " ";
+    this.licenseNumber = " ";
+    this.licenseExpDate = " ";
+    this.vehicleEngineNumber = " ";
+    this.vehicleSachtNumber = " ";
     this.mcc = 0;
     this.mnc
     this.cellId = "";
@@ -197,6 +230,17 @@ console.log("ORG Name -->",this.vendorName)
     this.name = (val  == undefined || null || "") ? "" : val.name;
     this.Phone = (val  == undefined || null || "" || 0) ? "" : val.Phone;
     this.aadharCardNumber = (val  == undefined || null || "" || 0) ? "" : val.aadharCardNumber;
+    this.vehicleNumber = (val  == undefined || null || "" || 0) ? "" : val.vehicleNumber;
+    this.vehicleType = (val  == undefined || null || "" || 0) ? "" : val.vehicleType;
+    this.fcExpDate = (val  == undefined || null || "" || 0) ? "" : val.fcExpDate;
+    this.permitExpDate = (val  == undefined || null || "" || 0) ? "" : val.permitExpDate;
+    this.taxExpDate = (val  == undefined || null || "" || 0) ? "" : val.taxExpDate;
+    this.insuranceExpDate = (val  == undefined || null || "" || 0) ? "" : val.insuranceExpDate;
+    this.driverName = (val  == undefined || null || "" || 0) ? "" : val.driverName;
+    this.licenseNumber = (val  == undefined || null || "" || 0) ? "" : val.licenseNumber;
+    this.licenseExpDate = (val  == undefined || null || "" || 0) ? "" : val.licenseExpDate;
+    this.vehicleEngineNumber = (val  == undefined || null || "" || 0) ? "" : val.vehicleEngineNumber;
+    this.vehicleSachtNumber = (val  == undefined || null || "" || 0) ? "" : val.vehicleSachtNumber;
     this.mcc = (val  == undefined || null || "" || 0) ? "" : val.mcc;
     this.mnc = (val  == undefined || null || "" || 0) ? "" : val.mnc;
     this.cellId = (val == undefined || null || "" || 0) ? "" : this.handleData.message.cellId;
@@ -211,6 +255,17 @@ console.log("ORG Name -->",this.vendorName)
       name: this.name,
       Phone: this.Phone,
       aadharCardNumber: this.aadharCardNumber,
+      vehicleNumber: this.vehicleNumber,
+      vehicleType: this.vehicleType,
+      fcExpDate: this.fcExpDate,
+      permitExpDate: this.permitExpDate,
+      taxExpDate: this.taxExpDate,
+      insuranceExpDate: this.insuranceExpDate,
+      driverName: this.driverName,
+      licenseNumber: this.licenseNumber,
+      licenseExpDate: this.licenseExpDate,
+      vehicleEngineNumber: this.vehicleEngineNumber,
+      vehicleSachtNumber: this.vehicleSachtNumber,
       simNumber:this.simNumber,
       mcc: this.mcc,
       mnc: this.mnc,

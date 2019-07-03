@@ -110,8 +110,6 @@
     <br>
     <p>Add Your Employee</p>
     <ion-item>
-      <td>
-      </td>
       <ion-label floating>Name <span style="color:red">*</span></ion-label>
       <ion-input [(ngModel)]="name" type="text" value="" (change)="onChange()"></ion-input>
     </ion-item>
@@ -120,8 +118,59 @@
       <ion-input [(ngModel)]="Phone" type="text" value="" (change)="onChange()"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Aadhar Card Numbe<span style="color:red">*</span></ion-label>
+      <ion-label floating>Aadhar Card Number<span style="color:red">*</span></ion-label>
       <ion-input [(ngModel)]="aadharCardNumber" type="text" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Vehicle Number<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="vehicleNumber" type="text" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+     <ion-item>
+    <ion-label>Vehicle Type</ion-label>
+    <ion-select [(ngModel)]="vehicleType" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="crane">Crane</ion-select-option>
+      <ion-select-option value="lorry">Lorry</ion-select-option>
+      <ion-select-option value="tractor">Tractor</ion-select-option>
+      <ion-select-option value="forkLifter">Fork Lifter</ion-select-option>
+      <ion-select-option value="jcb">JCB</ion-select-option>
+      <ion-select-option value="tipper">Tipper</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+      <ion-label floating>F/c exp Date<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="fcExpDate" type="date" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+     <ion-item>
+      <ion-label floating>Permit Exp Date<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="permitExpDate" type="date" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Tax Exp Date<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="taxExpDate" type="date" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Insurance Exp Date<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="insuranceExpDate" type="date" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Driver Name<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="driverName" type="text" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>License Number<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="licenseNumber" type="text" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>License Exp Date<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="licenseExpDate" type="date" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Vehicle Engine Number<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="vehicleEngineNumber" type="text" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Vehicle Stock Number<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="vehicleSachtNumber" type="text" value="" (change)="onChange()"></ion-input>
     </ion-item>
     <br>
     <p> Add mobile Detils</p>
@@ -212,9 +261,7 @@
     <br>
     <p>update Your Employee</p>
     <ion-item>
-      <td>
-      </td>
-      <ion-label floating>Name <span style="color:red">*</span></ion-label>
+      <ion-label floating>Name<span style="color:red">*</span></ion-label>
       <ion-input [(ngModel)]="name" type="text" value="" (change)="onChange()"></ion-input>
     </ion-item>
     <ion-item>
@@ -224,6 +271,57 @@
     <ion-item>
       <ion-label floating>Aadhar Card Numbe<span style="color:red">*</span></ion-label>
       <ion-input [(ngModel)]="aadharCardNumber" type="text" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+     <ion-item>
+      <ion-label floating>Vehicle Number<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="vehicleNumber" type="text" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+     <ion-item>
+    <ion-label>Vehicle Type</ion-label>
+    <ion-select [(ngModel)]="vehicleType" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="crane">Crane</ion-select-option>
+      <ion-select-option value="lorry">Lorry</ion-select-option>
+      <ion-select-option value="tractor">Tractor</ion-select-option>
+      <ion-select-option value="forkLifter">Fork Lifter</ion-select-option>
+      <ion-select-option value="jcb">JCB</ion-select-option>
+      <ion-select-option value="tipper">Tipper</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+      <ion-label floating>F/c exp Date<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="fcExpDate" type="date" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+     <ion-item>
+      <ion-label floating>Permit Exp Date<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="permitExpDate" type="date" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Tax Exp Date<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="taxExpDate" type="date" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Insurance Exp Date<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="insuranceExpDate" type="date" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Driver Name<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="driverName" type="text" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>License Number<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="licenseNumber" type="text" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>License Exp Date<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="licenseExpDate" type="date" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Vehicle Engine Number<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="vehicleEngineNumber" type="text" value="" (change)="onChange()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Vehicle Stock Number<span style="color:red">*</span></ion-label>
+      <ion-input [(ngModel)]="vehicleSachtNumber" type="text" value="" (change)="onChange()"></ion-input>
     </ion-item>
     <br>
     <p> Update mobile Detils</p>
