@@ -10,6 +10,7 @@ import { GeoLocationService } from '../service/geo-location.service';
 
  const H = window['H'];
 
+
 @Component({
   selector: 'app-admin-approve',
   templateUrl: './vendor-dashbord.page.html',
@@ -17,6 +18,7 @@ import { GeoLocationService } from '../service/geo-location.service';
 })
 export class vendorDashboardPage implements OnInit {
   @ViewChild('map') mapContainer: ElementRef;
+
 
 
   constructor(private http: HttpClient, private router: Router,public geoService:GeoLocationService) { 
@@ -33,6 +35,7 @@ export class vendorDashboardPage implements OnInit {
   public getEmployeeList: boolean = false;
   public UpdateDataFeilds:boolean = false;
   public reportsTable:boolean = false;
+  public scheduleTable:boolean =  false;
 
   public name: string;
   public Phone: number;
@@ -44,10 +47,16 @@ export class vendorDashboardPage implements OnInit {
   private LoginCollection: string;
   public vendorName: string;
   public simNumber:number;
-  public mapOnDisplay:boolean = false; 
+  public mapOnDisplay:boolean = false;
+  public from: string;
+  public to:string; 
   // update button value 
    public updateButtonValue:string = "Update";
   //  @ViewChild('map') mapContainer: ElementRef;
+  //imageArray = [];
+  Customers = [];
+  reportingData = [];
+  geoChordsData = [];
   ngOnInit() {
     this.userMessage = '';
     this.vendorName =  (loginUserData.getLoginUserData() == undefined) ? '' : loginUserData.getLoginUserData().company
@@ -59,6 +68,19 @@ export class vendorDashboardPage implements OnInit {
     this.getEmployeeList = false;
     this.userMessage = '';
     this.UpdateDataFeilds = false;
+    this.scheduleTable = false;
+    this.getGeoChordsReportData();
+    
+  }
+
+  schedule(){
+    this.scheduleTable = true;
+    this.reportsTable = false;
+    this.addEmployee = false;
+    this.getEmployeeList = false;
+    this.userMessage = '';
+    this.UpdateDataFeilds = false;
+    //this.reportData();
   }
 
 
@@ -68,6 +90,7 @@ export class vendorDashboardPage implements OnInit {
     this.userMessage = '';
     this.UpdateDataFeilds = false;
     this.reportsTable = false;
+    this.scheduleTable = false;
 
   };
   getAllEmployees() {
@@ -81,6 +104,7 @@ export class vendorDashboardPage implements OnInit {
     this.userMessage = '';
     this.UpdateDataFeilds = false;
     this.reportsTable = false;
+    this.scheduleTable = false;
 
   }
 
@@ -287,10 +311,114 @@ console.log("ORG Name -->",this.vendorName)
             this.userMessage = '';
             this.adminData = this.handleData.message;
             alert('get data ' + JSON.stringify(this.adminData));
-    
-            // console.log('final Data', this.adminData[0].name);
+
+                 this.getAllData();
+                           for (let i in this.adminData){
+
+                         let convertPath = this.adminData[i].path.replace(/\\/g, '/');
+                        
+                          //console.log("convertPath",convertPath);
+                         
+                         let split_the_path = convertPath.split("/");
+                         
+                         //console.log('split_the_path',split_the_path);
+                        //response.data.message[i].path.replace(/\\/g, '/')
+                        this.Customers.push({imagePath: 'http://18.188.66.126:8888/' + split_the_path[2]});
+                        
+                        console.log("loop  changed path", this.Customers)
+                        console.log(JSON.stringify(this.adminData));
+
+                    }
+                    
           }
         })
     }
+
+    submit(){
+       this.reportData();
+    }
+
+    reportData(){
+      //alert("selected Sim Info " + JSON.stringify(val));
+        let url = apiService.getChords +'from=' + this.from + '&to='+ this.to;
+         //alert("sim Number" +  val.simNumber)
+        //this.userMessage = ' Kindly wait we are preparng the Client List ........ ';
+        //console.log(url);
+        this.http.get(url).subscribe(data => {
+          this.handleData = data;
+         console.log(this.handleData);
+         this.storeChords(data);
+          if (this.handleData.length == 0) {
+            this.userMessage = " oops! no records are found.";
+            this.getEmployeeList = false;
+          } else {
+            this.userMessage = '';
+                     
+
+                         
+                        this.reportingData.push(this.handleData.message[0].legs[0]);
+                        
+                        console.log("loop  changed path", this.reportingData)
+                        //console.log(JSON.stringify(this.adminData));
+
+                    
+                    
+          }
+        })
+    }
+
+
+    storeChords(data) {
+console.log("ORG Name -->",this.vendorName)
+
+     let url = apiService.storeGeoLocation + '?collection=' + values.geoCollection;
+
+       //console.log('store',url)
+    this.http.post(url,{
+      _id: this.simNumber,
+      from:this.handleData.message[0].legs[0].start_address,
+      to:this.handleData.message[0].legs[0].end_address,
+      distance:this.handleData.message[0].legs[0].distance.text,
+      duration:this.handleData.message[0].legs[0].duration.text,
+      contactBelongsTo:this.vendorName
+    }).subscribe((res: Response) => {
+      console.log('storedData', res)
+                 this.userMessage = "Data submitted "
+      //this.resetEmployeeData();
+    },
+      error => {
+        console.log('error', error)
+
+      })
+    
+  }
+
+   getGeoChordsReportData(){
+      //alert("selected Sim Info " + JSON.stringify(val));
+        let url = apiService.fetchGeoChords + 'recordBelongsTo='+ this.vendorName +  '&collection=' + values.geoCollection;
+         //alert("sim Number" +  val.simNumber)
+        //this.userMessage = ' Kindly wait we are preparng the Client List ........ ';
+        //console.log(url);
+        this.http.get(url).subscribe(data => {
+          this.handleData = data;
+         console.log(this.handleData);
+
+         this.adminData = this.handleData.message;
+
+       
+          if (this.handleData.length == 0) {
+            this.userMessage = " oops! no records are found.";
+            this.getEmployeeList = false;
+          } else {
+            this.userMessage = '';
+             for (let i in this.adminData){
+             this.geoChordsData.push(this.adminData[i]);
+         }
+
+        }
+        })
+    }
+
+
 
 }

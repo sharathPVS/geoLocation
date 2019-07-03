@@ -21,6 +21,8 @@ export let apiService = {
       storeGeoLocation: url + 'StoreGeoLocation',
       uploadImage: url + 'uploadImage',
       fetchEmpImages:url+'fetchEmpImages',
+      getChords:url+ 'getGeoCoords?',
+      fetchGeoChords: url + 'getGeoReportAsPerTheClient?',
 
 
 };

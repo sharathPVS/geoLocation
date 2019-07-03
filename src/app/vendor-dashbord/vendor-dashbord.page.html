@@ -21,6 +21,9 @@
     <ion-col>
       <ion-button color="primary" style="float: left;" (click)="reports()">Reports</ion-button>
     </ion-col>
+    <ion-col>
+      <ion-button color="secondary" style="float: left;" (click)="schedule()">Plan Schedule</ion-button>
+    </ion-col>
 
 
   </ion-row>
@@ -28,8 +31,78 @@
   <div *ngIf="reportsTable">
     <br>
     <br>
+    <p>Your Reports</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start</th>
+          <th>End</th>
+          <th>Distance</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of geoChordsData">
+          <td>{{item.from}}</td>
+          <td>{{item.to}}</td>
+          <td> {{item.distance}}</td>
+          <td> {{item.duration}}</td>
+          
+          
 
-    Reports On the Way
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="scheduleTable">
+    <br>
+    <br>
+     <ion-item>
+    <ion-label>From</ion-label>
+     <ion-input type="text" [(ngModel)]="from" name="from">
+       
+     </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>To</ion-label>
+   <ion-input type="text" [(ngModel)]="to" name="to">
+       
+     </ion-input>
+  </ion-item>
+  <ion-row>
+    <ion-col>
+      <ion-button color="success" style="float: left;" (click)="submit()">Submit</ion-button>
+    </ion-col>
+  </ion-row>
+  </div>
+
+  <div *ngIf="scheduleTable">
+    <br>
+    <br>
+    <p>Your Plan Schedule Data</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start</th>
+          <th>End</th>
+          <th>Distance</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of reportingData">
+          <td>{{item.start_address}}</td>
+          <td>{{item.end_address}}</td>
+          <td> {{item.distance.text}}</td>
+          <td> {{item.duration.text}}</td>
+          
+          
+
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div *ngIf="addEmployee">
@@ -123,6 +196,16 @@
       </tbody>
     </table>
   </div>
+  
+  <div *ngIf="getEmployeeList">
+  
+   <ion-item *ngFor="let item of Customers">
+    <ion-thumbnail>
+      <ion-img [src]="item.imagePath" style="float: left;"></ion-img>
+    </ion-thumbnail>
+   </ion-item>
+
+</div>
 
   <div *ngIf="UpdateDataFeilds">
     <br>
