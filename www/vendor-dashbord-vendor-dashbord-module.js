@@ -152,7 +152,7 @@ var vendorDashboard = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title> Welcome to {{vendorName}} DashBoard <ion-button color=\"primary\" style=\"float: right;\"\r\n        (click)=\"goBack()\">Logout\r\n      </ion-button>\r\n    </ion-title>\r\n\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n\r\n<ion-content padding>\r\n  <p style=\"color:red\"> {{userMessage}}</p>\r\n  <ion-row>\r\n    <ion-col>\r\n      <ion-button color=\"success\" style=\"float: left;\" (click)=\"createEmployee()\">Add Employee</ion-button>\r\n    </ion-col>\r\n    <ion-col>\r\n      <ion-button color=\"warning\" style=\"float: left;\" (click)=\"getAllEmployees()\">Get All Employee List</ion-button>\r\n    </ion-col>\r\n    <ion-col>\r\n      <ion-button color=\"primary\" style=\"float: left;\" (click)=\"reports()\">Reports</ion-button>\r\n    </ion-col>\r\n    <ion-col>\r\n      <ion-button color=\"secondary\" style=\"float: left;\" (click)=\"schedule()\">Plan Schedule</ion-button>\r\n    </ion-col>\r\n\r\n\r\n  </ion-row>\r\n\r\n  <div *ngIf=\"reportsTable\">\r\n    <br>\r\n    <br>\r\n    <p>Your Reports</p>\r\n    <table>\r\n      <thead>\r\n        <tr>\r\n          <th>Start</th>\r\n          <th>End</th>\r\n          <th>Distance</th>\r\n          <th>Duration</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let item of geoChordsData\">\r\n          <td>{{item.from}}</td>\r\n          <td>{{item.to}}</td>\r\n          <td> {{item.distance}}</td>\r\n          <td> {{item.duration}}</td>\r\n          \r\n          \r\n\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n\r\n  <div *ngIf=\"scheduleTable\">\r\n    <br>\r\n    <br>\r\n     <ion-item>\r\n    <ion-label>From</ion-label>\r\n     <ion-input type=\"text\" [(ngModel)]=\"from\" name=\"from\">\r\n       \r\n     </ion-input>\r\n  </ion-item>\r\n\r\n  <ion-item>\r\n    <ion-label>To</ion-label>\r\n   <ion-input type=\"text\" [(ngModel)]=\"to\" name=\"to\">\r\n       \r\n     </ion-input>\r\n  </ion-item>\r\n  <ion-row>\r\n    <ion-col>\r\n      <ion-button color=\"success\" style=\"float: left;\" (click)=\"submit()\">Submit</ion-button>\r\n    </ion-col>\r\n  </ion-row>\r\n  </div>\r\n\r\n  <div *ngIf=\"scheduleTable\">\r\n    <br>\r\n    <br>\r\n    <p>Your Plan Schedule Data</p>\r\n    <table>\r\n      <thead>\r\n        <tr>\r\n          <th>Start</th>\r\n          <th>End</th>\r\n          <th>Distance</th>\r\n          <th>Duration</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let item of reportingData\">\r\n          <td>{{item.start_address}}</td>\r\n          <td>{{item.end_address}}</td>\r\n          <td> {{item.distance.text}}</td>\r\n          <td> {{item.duration.text}}</td>\r\n          \r\n          \r\n\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n\r\n  <div *ngIf=\"addEmployee\">\r\n    <br>\r\n    <br>\r\n    <p>Add Your Employee</p>\r\n    <ion-item>\r\n      <td>\r\n      </td>\r\n      <ion-label floating>Name <span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"name\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Phone<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"Phone\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Aadhar Card Numbe<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"aadharCardNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <br>\r\n    <p> Add mobile Detils</p>\r\n    <ion-grid>\r\n      <ion-row>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>Sim Number</ion-label>\r\n            <ion-input [(ngModel)]=\"simNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n          <ion-item>\r\n            <ion-label floating>MCC</ion-label>\r\n            <ion-input [(ngModel)]=\"mcc\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n      </ion-row>\r\n      <ion-row>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>MNC</ion-label>\r\n            <ion-input [(ngModel)]=\"mnc\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>LAC</ion-label>\r\n            <ion-input [(ngModel)]=\"lac\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n      </ion-row>\r\n      <ion-row>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>CELL ID</ion-label>\r\n            <ion-input [(ngModel)]=\"cellId\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n      </ion-row>\r\n      <ion-button color=\"success\" style=\"float: left;\" (click)=\"submitEmployee()\">Submit</ion-button>\r\n    </ion-grid>\r\n  </div>\r\n  <div *ngIf=\"getEmployeeList\">\r\n    <br>\r\n    <br>\r\n    <p> All Your Employee List </p>\r\n    <table>\r\n      <thead>\r\n        <tr>\r\n          <th>Name</th>\r\n          <th>Phone</th>\r\n          <th>Aadhar Card Number</th>\r\n          <th>Status</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let item of adminData\">\r\n          <td> {{item.name}}</td>\r\n          <td> {{item.Phone}}</td>\r\n          <td> {{item.aadharCardNumber}}</td>\r\n          <!-- Give update abd delete rights to the dmin -->\r\n          <td>\r\n            <ion-button color=\"primary\" style=\"float: left;\" (click)=\"trackByGeoLocation(item)\">Geo Location\r\n            </ion-button>\r\n            <ion-button color=\"dark\" style=\"float: left;\" (click)=\"trackByNumber(item)\">Mobile Number</ion-button>\r\n            <ion-button color=\"warning\" style=\"float: left;\" (click)=\"edit(item)\">{{updateButtonValue}}</ion-button>\r\n            <ion-button color=\"danger\" style=\"float: left;\" (click)=\"delete(item)\">Delete</ion-button>\r\n            <ion-button color=\"success\" style=\"float: left;\" (click)=\"selectedUserImages(item)\">Get Images</ion-button>\r\n\r\n          </td>\r\n\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n  \r\n  <div *ngIf=\"getEmployeeList\">\r\n  \r\n   <ion-item *ngFor=\"let item of Customers\">\r\n    <ion-thumbnail>\r\n      <ion-img [src]=\"item.imagePath\" style=\"float: left;\"></ion-img>\r\n    </ion-thumbnail>\r\n   </ion-item>\r\n\r\n</div>\r\n\r\n  <div *ngIf=\"UpdateDataFeilds\">\r\n    <br>\r\n    <br>\r\n    <p>update Your Employee</p>\r\n    <ion-item>\r\n      <td>\r\n      </td>\r\n      <ion-label floating>Name <span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"name\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Phone<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"Phone\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Aadhar Card Numbe<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"aadharCardNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <br>\r\n    <p> Update mobile Detils</p>\r\n    <ion-grid>\r\n      <ion-row>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>Sim Number</ion-label>\r\n            <ion-input [(ngModel)]=\"simNumber\" type=\"text\" value=\"\" (change)=\"onChange()\" disabled></ion-input>\r\n          </ion-item>\r\n          <ion-item>\r\n            <ion-label floating>MCC</ion-label>\r\n            <ion-input [(ngModel)]=\"mcc\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>MNC</ion-label>\r\n            <ion-input [(ngModel)]=\"mnc\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>LAC</ion-label>\r\n            <ion-input [(ngModel)]=\"lac\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>CELL ID</ion-label>\r\n            <ion-input [(ngModel)]=\"cellId\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n      </ion-row>\r\n      <ion-button color=\"success\" style=\"float: left;\" (click)=\"update()\">Update</ion-button>\r\n    </ion-grid>\r\n\r\n  </div>\r\n  <div #map class=\"map\" *ngIf=\"mapOnDisplay\"></div>\r\n\r\n</ion-content>"
+module.exports = "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title> Welcome to {{vendorName}} DashBoard <ion-button color=\"primary\" style=\"float: right;\"\r\n        (click)=\"goBack()\">Logout\r\n      </ion-button>\r\n    </ion-title>\r\n\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n\r\n<ion-content padding>\r\n  <p style=\"color:red\"> {{userMessage}}</p>\r\n  <ion-row>\r\n    <ion-col>\r\n      <ion-button color=\"success\" style=\"float: left;\" (click)=\"createEmployee()\">Add Employee</ion-button>\r\n    </ion-col>\r\n    <ion-col>\r\n      <ion-button color=\"warning\" style=\"float: left;\" (click)=\"getAllEmployees()\">Get All Employee List</ion-button>\r\n    </ion-col>\r\n    <ion-col>\r\n      <ion-button color=\"primary\" style=\"float: left;\" (click)=\"reports()\">Reports</ion-button>\r\n    </ion-col>\r\n    <ion-col>\r\n      <ion-button color=\"secondary\" style=\"float: left;\" (click)=\"schedule()\">Plan Schedule</ion-button>\r\n    </ion-col>\r\n\r\n\r\n  </ion-row>\r\n  <div *ngIf=\"reportsTable\">\r\n  <ion-item>\r\n    <ion-label>From</ion-label>\r\n    <ion-select [(ngModel)]=\"from\">\r\n      <ion-select-option *ngFor=\"let user of geoFromData\" [value]=\"user\">{{user}}</ion-select-option>\r\n    </ion-select>\r\n  </ion-item>\r\n  <ion-item>\r\n    <ion-label>To</ion-label>\r\n    <ion-select [(ngModel)]=\"to\">\r\n      <ion-select-option *ngFor=\"let user of geoToData\" [value]=\"user\">{{user}}</ion-select-option>\r\n    </ion-select>\r\n  </ion-item>\r\n   <ion-row>\r\n    <ion-col>\r\n      <ion-button color=\"success\" style=\"float: left;\" (click)=\"onSelectingChords()\">Submit</ion-button>\r\n    </ion-col>\r\n  </ion-row>\r\n</div>\r\n\r\n  <div *ngIf=\"reportsTable\">\r\n    <br>\r\n    <br>\r\n    <p>Your Reports</p>\r\n    <table>\r\n      <thead>\r\n        <tr>\r\n          <th>Start</th>\r\n          <th>End</th>\r\n          <th>Distance</th>\r\n          <th>Duration</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let item of geoChordsData\">\r\n          <td>{{item.from}}</td>\r\n          <td>{{item.to}}</td>\r\n          <td> {{item.distance}}</td>\r\n          <td> {{item.duration}}</td>\r\n          \r\n          \r\n\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n\r\n  <div *ngIf=\"filteredTable\">\r\n    <br>\r\n    <br>\r\n    <p>Your Report filtered Data</p>\r\n    <table>\r\n      <thead>\r\n        <tr>\r\n          <th>Start</th>\r\n          <th>End</th>\r\n          <th>Distance</th>\r\n          <th>Duration</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let item of reportingData\">\r\n          <td>{{item.start_address}}</td>\r\n          <td>{{item.end_address}}</td>\r\n          <td> {{item.distance.text}}</td>\r\n          <td> {{item.duration.text}}</td>\r\n          \r\n          \r\n\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n\r\n  <div *ngIf=\"scheduleTable\">\r\n    <br>\r\n    <br>\r\n     <ion-item>\r\n    <ion-label>From</ion-label>\r\n     <ion-input type=\"text\" [(ngModel)]=\"from\" name=\"from\">\r\n       \r\n     </ion-input>\r\n  </ion-item>\r\n\r\n  <ion-item>\r\n    <ion-label>To</ion-label>\r\n   <ion-input type=\"text\" [(ngModel)]=\"to\" name=\"to\">\r\n       \r\n     </ion-input>\r\n  </ion-item>\r\n  <ion-row>\r\n    <ion-col>\r\n      <ion-button color=\"success\" style=\"float: left;\" (click)=\"submit()\">Submit</ion-button>\r\n    </ion-col>\r\n  </ion-row>\r\n  </div>\r\n\r\n  <div *ngIf=\"scheduleTable\">\r\n    <br>\r\n    <br>\r\n    <p>Your Plan Schedule Data</p>\r\n    <table>\r\n      <thead>\r\n        <tr>\r\n          <th>Start</th>\r\n          <th>End</th>\r\n          <th>Distance</th>\r\n          <th>Duration</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let item of reportingData\">\r\n          <td>{{item.start_address}}</td>\r\n          <td>{{item.end_address}}</td>\r\n          <td> {{item.distance.text}}</td>\r\n          <td> {{item.duration.text}}</td>\r\n          \r\n          \r\n\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n\r\n  <div *ngIf=\"addEmployee\">\r\n    <br>\r\n    <br>\r\n    <p>Add Your Employee</p>\r\n    <ion-item>\r\n      <ion-label floating>Name <span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"name\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Phone<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"Phone\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Aadhar Card Number<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"aadharCardNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Vehicle Number<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"vehicleNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n     <ion-item>\r\n    <ion-label>Vehicle Type</ion-label>\r\n    <ion-select [(ngModel)]=\"vehicleType\" okText=\"Okay\" cancelText=\"Dismiss\">\r\n      <ion-select-option value=\"crane\">Crane</ion-select-option>\r\n      <ion-select-option value=\"lorry\">Lorry</ion-select-option>\r\n      <ion-select-option value=\"tractor\">Tractor</ion-select-option>\r\n      <ion-select-option value=\"forkLifter\">Fork Lifter</ion-select-option>\r\n      <ion-select-option value=\"jcb\">JCB</ion-select-option>\r\n      <ion-select-option value=\"tipper\">Tipper</ion-select-option>\r\n    </ion-select>\r\n  </ion-item>\r\n  <ion-item>\r\n      <ion-label floating>F/c exp Date<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"fcExpDate\" type=\"date\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n     <ion-item>\r\n      <ion-label floating>Permit Exp Date<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"permitExpDate\" type=\"date\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Tax Exp Date<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"taxExpDate\" type=\"date\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Insurance Exp Date<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"insuranceExpDate\" type=\"date\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Driver Name<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"driverName\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>License Number<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"licenseNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>License Exp Date<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"licenseExpDate\" type=\"date\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Vehicle Engine Number<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"vehicleEngineNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Vehicle Stock Number<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"vehicleSachtNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <br>\r\n    <p> Add mobile Detils</p>\r\n    <ion-grid>\r\n      <ion-row>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>Sim Number</ion-label>\r\n            <ion-input [(ngModel)]=\"simNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n          <ion-item>\r\n            <ion-label floating>MCC</ion-label>\r\n            <ion-input [(ngModel)]=\"mcc\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n      </ion-row>\r\n      <ion-row>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>MNC</ion-label>\r\n            <ion-input [(ngModel)]=\"mnc\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>LAC</ion-label>\r\n            <ion-input [(ngModel)]=\"lac\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n      </ion-row>\r\n      <ion-row>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>CELL ID</ion-label>\r\n            <ion-input [(ngModel)]=\"cellId\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n      </ion-row>\r\n      <ion-button color=\"success\" style=\"float: left;\" (click)=\"submitEmployee()\">Submit</ion-button>\r\n    </ion-grid>\r\n  </div>\r\n  <div *ngIf=\"getEmployeeList\">\r\n    <br>\r\n    <br>\r\n    <p> All Your Employee List </p>\r\n    <table>\r\n      <thead>\r\n        <tr>\r\n          <th>Name</th>\r\n          <th>Phone</th>\r\n          <th>Aadhar Card Number</th>\r\n          <th>Status</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let item of adminData\">\r\n          <td> {{item.name}}</td>\r\n          <td> {{item.Phone}}</td>\r\n          <td> {{item.aadharCardNumber}}</td>\r\n          <!-- Give update abd delete rights to the dmin -->\r\n          <td>\r\n            <ion-button color=\"primary\" style=\"float: left;\" (click)=\"trackByGeoLocation(item)\">Geo Location\r\n            </ion-button>\r\n            <ion-button color=\"dark\" style=\"float: left;\" (click)=\"trackByNumber(item)\">Mobile Number</ion-button>\r\n            <ion-button color=\"warning\" style=\"float: left;\" (click)=\"edit(item)\">{{updateButtonValue}}</ion-button>\r\n            <ion-button color=\"danger\" style=\"float: left;\" (click)=\"delete(item)\">Delete</ion-button>\r\n            <ion-button color=\"success\" style=\"float: left;\" (click)=\"selectedUserImages(item)\">Get Images</ion-button>\r\n\r\n          </td>\r\n\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n  \r\n  <div *ngIf=\"getEmployeeList\">\r\n  \r\n   <ion-item *ngFor=\"let item of Customers\">\r\n    <ion-thumbnail>\r\n      <ion-img [src]=\"item.imagePath\" style=\"float: left;\"></ion-img>\r\n    </ion-thumbnail>\r\n   </ion-item>\r\n\r\n</div>\r\n\r\n  <div *ngIf=\"UpdateDataFeilds\">\r\n    <br>\r\n    <br>\r\n    <p>update Your Employee</p>\r\n    <ion-item>\r\n      <ion-label floating>Name<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"name\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Phone<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"Phone\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Aadhar Card Numbe<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"aadharCardNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n     <ion-item>\r\n      <ion-label floating>Vehicle Number<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"vehicleNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n     <ion-item>\r\n    <ion-label>Vehicle Type</ion-label>\r\n    <ion-select [(ngModel)]=\"vehicleType\" okText=\"Okay\" cancelText=\"Dismiss\">\r\n      <ion-select-option value=\"crane\">Crane</ion-select-option>\r\n      <ion-select-option value=\"lorry\">Lorry</ion-select-option>\r\n      <ion-select-option value=\"tractor\">Tractor</ion-select-option>\r\n      <ion-select-option value=\"forkLifter\">Fork Lifter</ion-select-option>\r\n      <ion-select-option value=\"jcb\">JCB</ion-select-option>\r\n      <ion-select-option value=\"tipper\">Tipper</ion-select-option>\r\n    </ion-select>\r\n  </ion-item>\r\n  <ion-item>\r\n      <ion-label floating>F/c exp Date<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"fcExpDate\" type=\"date\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n     <ion-item>\r\n      <ion-label floating>Permit Exp Date<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"permitExpDate\" type=\"date\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Tax Exp Date<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"taxExpDate\" type=\"date\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Insurance Exp Date<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"insuranceExpDate\" type=\"date\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Driver Name<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"driverName\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>License Number<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"licenseNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>License Exp Date<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"licenseExpDate\" type=\"date\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Vehicle Engine Number<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"vehicleEngineNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <ion-item>\r\n      <ion-label floating>Vehicle Stock Number<span style=\"color:red\">*</span></ion-label>\r\n      <ion-input [(ngModel)]=\"vehicleSachtNumber\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n    </ion-item>\r\n    <br>\r\n    <p> Update mobile Detils</p>\r\n    <ion-grid>\r\n      <ion-row>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>Sim Number</ion-label>\r\n            <ion-input [(ngModel)]=\"simNumber\" type=\"text\" value=\"\" (change)=\"onChange()\" disabled></ion-input>\r\n          </ion-item>\r\n          <ion-item>\r\n            <ion-label floating>MCC</ion-label>\r\n            <ion-input [(ngModel)]=\"mcc\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>MNC</ion-label>\r\n            <ion-input [(ngModel)]=\"mnc\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>LAC</ion-label>\r\n            <ion-input [(ngModel)]=\"lac\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n        <ion-col>\r\n          <ion-item>\r\n            <ion-label floating>CELL ID</ion-label>\r\n            <ion-input [(ngModel)]=\"cellId\" type=\"text\" value=\"\" (change)=\"onChange()\"></ion-input>\r\n          </ion-item>\r\n        </ion-col>\r\n      </ion-row>\r\n      <ion-button color=\"success\" style=\"float: left;\" (click)=\"update()\">Update</ion-button>\r\n    </ion-grid>\r\n\r\n  </div>\r\n  <div #map class=\"map\" *ngIf=\"mapOnDisplay\"></div>\r\n\r\n</ion-content>"
 
 /***/ }),
 
@@ -202,6 +202,7 @@ var vendorDashboardPage = /** @class */ (function () {
         this.getEmployeeList = false;
         this.UpdateDataFeilds = false;
         this.reportsTable = false;
+        this.filteredTable = false;
         this.scheduleTable = false;
         this.mapOnDisplay = false;
         // update button value 
@@ -211,6 +212,8 @@ var vendorDashboardPage = /** @class */ (function () {
         this.Customers = [];
         this.reportingData = [];
         this.geoChordsData = [];
+        this.geoToData = [];
+        this.geoFromData = [];
         if (!_factories_globalFactories__WEBPACK_IMPORTED_MODULE_5__["logOutfactory"].getAdminLoginFactory()) {
             this.router.navigateByUrl('/home');
         }
@@ -222,6 +225,7 @@ var vendorDashboardPage = /** @class */ (function () {
     };
     vendorDashboardPage.prototype.reports = function () {
         this.reportsTable = true;
+        this.filteredTable = false;
         this.addEmployee = false;
         this.getEmployeeList = false;
         this.userMessage = '';
@@ -232,6 +236,7 @@ var vendorDashboardPage = /** @class */ (function () {
     vendorDashboardPage.prototype.schedule = function () {
         this.scheduleTable = true;
         this.reportsTable = false;
+        this.filteredTable = false;
         this.addEmployee = false;
         this.getEmployeeList = false;
         this.userMessage = '';
@@ -244,6 +249,7 @@ var vendorDashboardPage = /** @class */ (function () {
         this.userMessage = '';
         this.UpdateDataFeilds = false;
         this.reportsTable = false;
+        this.filteredTable = false;
         this.scheduleTable = false;
     };
     ;
@@ -256,6 +262,7 @@ var vendorDashboardPage = /** @class */ (function () {
         this.userMessage = '';
         this.UpdateDataFeilds = false;
         this.reportsTable = false;
+        this.filteredTable = false;
         this.scheduleTable = false;
     };
     // store empoyee data 
@@ -279,6 +286,17 @@ var vendorDashboardPage = /** @class */ (function () {
                 name: this.name,
                 Phone: this.Phone,
                 aadharCardNumber: this.aadharCardNumber,
+                vehicleNumber: this.vehicleNumber,
+                vehicleType: this.vehicleType,
+                fcExpDate: this.fcExpDate,
+                permitExpDate: this.permitExpDate,
+                taxExpDate: this.taxExpDate,
+                insuranceExpDate: this.insuranceExpDate,
+                driverName: this.driverName,
+                licenseNumber: this.licenseNumber,
+                licenseExpDate: this.licenseExpDate,
+                vehicleEngineNumber: this.vehicleEngineNumber,
+                vehicleSachtNumber: this.vehicleSachtNumber,
                 simNumber: this.simNumber,
                 mcc: this.mcc,
                 mnc: this.mnc,
@@ -298,6 +316,17 @@ var vendorDashboardPage = /** @class */ (function () {
         this.name = " ";
         this.Phone = 0;
         this.aadharCardNumber = 0;
+        this.vehicleNumber = " ";
+        this.vehicleType = " ";
+        this.fcExpDate = " ";
+        this.permitExpDate = " ";
+        this.taxExpDate = " ";
+        this.insuranceExpDate = " ";
+        this.driverName = " ";
+        this.licenseNumber = " ";
+        this.licenseExpDate = " ";
+        this.vehicleEngineNumber = " ";
+        this.vehicleSachtNumber = " ";
         this.mcc = 0;
         this.mnc;
         this.cellId = "";
@@ -337,6 +366,17 @@ var vendorDashboardPage = /** @class */ (function () {
         this.name = (val == undefined || null || "") ? "" : val.name;
         this.Phone = (val == undefined || null || "" || 0) ? "" : val.Phone;
         this.aadharCardNumber = (val == undefined || null || "" || 0) ? "" : val.aadharCardNumber;
+        this.vehicleNumber = (val == undefined || null || "" || 0) ? "" : val.vehicleNumber;
+        this.vehicleType = (val == undefined || null || "" || 0) ? "" : val.vehicleType;
+        this.fcExpDate = (val == undefined || null || "" || 0) ? "" : val.fcExpDate;
+        this.permitExpDate = (val == undefined || null || "" || 0) ? "" : val.permitExpDate;
+        this.taxExpDate = (val == undefined || null || "" || 0) ? "" : val.taxExpDate;
+        this.insuranceExpDate = (val == undefined || null || "" || 0) ? "" : val.insuranceExpDate;
+        this.driverName = (val == undefined || null || "" || 0) ? "" : val.driverName;
+        this.licenseNumber = (val == undefined || null || "" || 0) ? "" : val.licenseNumber;
+        this.licenseExpDate = (val == undefined || null || "" || 0) ? "" : val.licenseExpDate;
+        this.vehicleEngineNumber = (val == undefined || null || "" || 0) ? "" : val.vehicleEngineNumber;
+        this.vehicleSachtNumber = (val == undefined || null || "" || 0) ? "" : val.vehicleSachtNumber;
         this.mcc = (val == undefined || null || "" || 0) ? "" : val.mcc;
         this.mnc = (val == undefined || null || "" || 0) ? "" : val.mnc;
         this.cellId = (val == undefined || null || "" || 0) ? "" : this.handleData.message.cellId;
@@ -352,6 +392,17 @@ var vendorDashboardPage = /** @class */ (function () {
             name: this.name,
             Phone: this.Phone,
             aadharCardNumber: this.aadharCardNumber,
+            vehicleNumber: this.vehicleNumber,
+            vehicleType: this.vehicleType,
+            fcExpDate: this.fcExpDate,
+            permitExpDate: this.permitExpDate,
+            taxExpDate: this.taxExpDate,
+            insuranceExpDate: this.insuranceExpDate,
+            driverName: this.driverName,
+            licenseNumber: this.licenseNumber,
+            licenseExpDate: this.licenseExpDate,
+            vehicleEngineNumber: this.vehicleEngineNumber,
+            vehicleSachtNumber: this.vehicleSachtNumber,
             simNumber: this.simNumber,
             mcc: this.mcc,
             mnc: this.mnc,
@@ -464,7 +515,7 @@ var vendorDashboardPage = /** @class */ (function () {
         var url = _apiService__WEBPACK_IMPORTED_MODULE_3__["apiService"].getChords + 'from=' + this.from + '&to=' + this.to;
         //alert("sim Number" +  val.simNumber)
         //this.userMessage = ' Kindly wait we are preparng the Client List ........ ';
-        //console.log(url);
+        console.log(url);
         this.http.get(url).subscribe(function (data) {
             _this.handleData = data;
             console.log(_this.handleData);
@@ -520,7 +571,39 @@ var vendorDashboardPage = /** @class */ (function () {
                 _this.userMessage = '';
                 for (var i in _this.adminData) {
                     _this.geoChordsData.push(_this.adminData[i]);
+                    _this.geoFromData.push(_this.adminData[i].from);
+                    console.log(_this.geoFromData);
+                    _this.geoToData.push(_this.adminData[i].to);
+                    console.log(_this.geoToData);
                 }
+            }
+        });
+    };
+    vendorDashboardPage.prototype.onSelectingChords = function () {
+        this.reportDataFromTo();
+    };
+    vendorDashboardPage.prototype.reportDataFromTo = function () {
+        var _this = this;
+        this.reportsTable = false;
+        //alert("selected Sim Info " + JSON.stringify(val));
+        var url = _apiService__WEBPACK_IMPORTED_MODULE_3__["apiService"].getChords + 'from=' + this.from + '&to=' + this.to;
+        //alert("sim Number" +  val.simNumber)
+        //this.userMessage = ' Kindly wait we are preparng the Client List ........ ';
+        console.log(url);
+        this.http.get(url).subscribe(function (data) {
+            _this.handleData = data;
+            console.log(_this.handleData);
+            //this.storeChords(data);
+            if (_this.handleData.length == 0) {
+                _this.userMessage = " oops! no records are found.";
+                _this.getEmployeeList = false;
+            }
+            else {
+                _this.userMessage = '';
+                _this.reportingData.push(_this.handleData.message[0].legs[0]);
+                _this.filteredTable = true;
+                console.log("loop  changed path", _this.reportingData);
+                //console.log(JSON.stringify(this.adminData));
             }
         });
     };

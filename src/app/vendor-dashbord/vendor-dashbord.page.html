@@ -27,6 +27,25 @@
 
 
   </ion-row>
+  <div *ngIf="reportsTable">
+  <ion-item>
+    <ion-label>From</ion-label>
+    <ion-select [(ngModel)]="from">
+      <ion-select-option *ngFor="let user of geoFromData" [value]="user">{{user}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>To</ion-label>
+    <ion-select [(ngModel)]="to">
+      <ion-select-option *ngFor="let user of geoToData" [value]="user">{{user}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+   <ion-row>
+    <ion-col>
+      <ion-button color="success" style="float: left;" (click)="onSelectingChords()">Submit</ion-button>
+    </ion-col>
+  </ion-row>
+</div>
 
   <div *ngIf="reportsTable">
     <br>
@@ -55,33 +74,10 @@
     </table>
   </div>
 
-  <div *ngIf="scheduleTable">
+  <div *ngIf="filteredTable">
     <br>
     <br>
-     <ion-item>
-    <ion-label>From</ion-label>
-     <ion-input type="text" [(ngModel)]="from" name="from">
-       
-     </ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>To</ion-label>
-   <ion-input type="text" [(ngModel)]="to" name="to">
-       
-     </ion-input>
-  </ion-item>
-  <ion-row>
-    <ion-col>
-      <ion-button color="success" style="float: left;" (click)="submit()">Submit</ion-button>
-    </ion-col>
-  </ion-row>
-  </div>
-
-  <div *ngIf="scheduleTable">
-    <br>
-    <br>
-    <p>Your Plan Schedule Data</p>
+    <p>Your Report filtered Data</p>
     <table>
       <thead>
         <tr>
@@ -104,6 +100,8 @@
       </tbody>
     </table>
   </div>
+
+  
 
   <div *ngIf="addEmployee">
     <br>

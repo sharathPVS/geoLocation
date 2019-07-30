@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { loginUserData, logOutfactory, geoLocationFactory,SimFactory } from '../factories/globalFactories';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
-
+import { LocationPage } from '../location/location.page';
+import { GeoLocationService } from '../service/geo-location.service';
 import { ActionSheetController, ToastController, Platform, LoadingController } from '@ionic/angular';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 import { File, FileEntry } from '@ionic-native/file/ngx';
@@ -39,13 +39,27 @@ export class HomePage {
   fileUrl: any = null;
   respData: any;
   images = [];
+  reportingData = [];
+  geoChordsData = [];
+  geoToData = [];
+  geoFromData = [];
   public positionData: any;
 
   // these are the  on click button show and hide the  fetures 
   public loginButton: boolean = false;
   public signUpButton: boolean = false;
   public uploadImage: boolean = false;
+  public scheduleButton: boolean = false;
+  public getEmployeeList: boolean = false;
   public mapsData: boolean = true;
+  public userMessage: string;
+  private handleData: any;
+  public adminData: any;
+  public scheduleTable:boolean =  false;
+  public from: string;
+  public to:string;
+  public vendorName: string;
+  public simNumber:number;
 
   // error messages 
   public userEmailMessage: string;
@@ -163,6 +177,8 @@ export class HomePage {
     this.message = '';
     this.uploadImage = false;
     this.mapsData = false;
+    this.scheduleButton = false;
+    this.scheduleTable = false;
 
   }
   signUp() {
@@ -171,6 +187,8 @@ export class HomePage {
     this.uploadImage = false;
     this.message = '';
     this.mapsData = false;
+    this.scheduleButton = false;
+    this.scheduleTable = false;
   }
   RegisterSubmit() {
 
@@ -236,6 +254,19 @@ export class HomePage {
     this.loginButton = false;
     this.message = '';
     this.mapsData = false;
+    this.scheduleButton = false;
+    this.scheduleTable = false;
+    //alert("upload data")
+  }
+  schedule() {
+    this.scheduleButton = !this.scheduleButton;
+    this.signUpButton = false;
+    this.loginButton = false;
+    this.message = '';
+    this.mapsData = false;
+    this.uploadImage = false;
+    this.scheduleTable = true;
+    //this.getGeoChordsReportData();
     //alert("upload data")
   }
   checkUserNameExists(email) {
@@ -459,6 +490,98 @@ loadStoredImages() {
         }
       });
   }
+
+
+  submitChordsData(){
+       this.reportData();
+    }
+
+    reportData(){
+      //alert("selected Sim Info " + JSON.stringify(val));
+        let url = apiService.getChords +'from=' + this.from + '&to='+ this.to;
+         //alert("sim Number" +  val.simNumber)
+        //this.userMessage = ' Kindly wait we are preparng the Client List ........ ';
+        console.log(url);
+        this.http.get(url).subscribe(data => {
+          this.handleData = data;
+         console.log(this.handleData);
+         this.storeChords(data);
+          if (this.handleData.length == 0) {
+            this.userMessage = " oops! no records are found.";
+            this.getEmployeeList = false;
+          } else {
+            this.userMessage = '';
+                     
+
+                         
+                        this.reportingData.push(this.handleData.message[0].legs[0]);
+                        
+                        console.log("loop  changed path", this.reportingData)
+                        //console.log(JSON.stringify(this.adminData));
+
+                    
+                    
+          }
+        })
+    }
+
+
+    storeChords(data) {
+console.log("ORG Name -->",this.vendorName)
+
+     let url = apiService.storeGeoLocation + '?collection=' + values.geoCollection;
+
+       //console.log('store',url)
+    this.http.post(url,{
+      _id: this.simNumber,
+      from:this.handleData.message[0].legs[0].start_address,
+      to:this.handleData.message[0].legs[0].end_address,
+      distance:this.handleData.message[0].legs[0].distance.text,
+      duration:this.handleData.message[0].legs[0].duration.text,
+      contactBelongsTo:this.vendorName
+    }).subscribe((res: Response) => {
+      console.log('storedData', res)
+                 this.userMessage = "Data submitted "
+      //this.resetEmployeeData();
+    },
+      error => {
+        console.log('error', error)
+
+      })
+    
+  }
+   
+   
+   getGeoChordsReportData(){
+      //alert("selected Sim Info " + JSON.stringify(val));
+        let url = apiService.fetchGeoChords + 'recordBelongsTo='+ this.vendorName +  '&collection=' + values.geoCollection;
+         //alert("sim Number" +  val.simNumber)
+        //this.userMessage = ' Kindly wait we are preparng the Client List ........ ';
+        //console.log(url);
+        this.http.get(url).subscribe(data => {
+          this.handleData = data;
+         console.log(this.handleData);
+
+         this.adminData = this.handleData.message;
+
+       
+          if (this.handleData.length == 0) {
+            this.userMessage = " oops! no records are found.";
+            this.getEmployeeList = false;
+          } else {
+            this.userMessage = '';
+             for (let i in this.adminData){
+             this.geoChordsData.push(this.adminData[i]);
+             this.geoFromData.push(this.adminData[i].from);
+             console.log(this.geoFromData);
+             this.geoToData.push(this.adminData[i].to);
+             console.log(this.geoToData);
+
+         }
+
+        }
+        })
+    }
  
   
 

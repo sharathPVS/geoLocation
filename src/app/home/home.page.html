@@ -11,6 +11,7 @@
     <span style="color: red">{{message}}</span>
     <div style="float:right">
         <a (click)="upload()">Upload</a> | <a (click)="login()">Login</a> | <a (click)="signUp()">Sign Up </a>
+        | <a (click)="schedule()">Schedule </a>
   </div>
     <br>
     <div *ngIf="loginButton">
@@ -81,6 +82,56 @@
     </ion-item>
   </ion-list>
 </div>
+
+<div *ngIf="scheduleTable">
+    <br>
+    <br>
+     <ion-item>
+    <ion-label>From</ion-label>
+     <ion-input type="text" [(ngModel)]="from" name="from">
+       
+     </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>To</ion-label>
+   <ion-input type="text" [(ngModel)]="to" name="to">
+       
+     </ion-input>
+  </ion-item>
+  <ion-row>
+    <ion-col>
+      <ion-button color="success" style="float: left;" (click)="submitChordsData()">Submit</ion-button>
+    </ion-col>
+  </ion-row>
+  </div>
+
+  <div *ngIf="scheduleTable">
+    <br>
+    <br>
+    <p>Your Plan Schedule Data</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start</th>
+          <th>End</th>
+          <th>Distance</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of reportingData">
+          <td>{{item.start_address}}</td>
+          <td>{{item.end_address}}</td>
+          <td> {{item.distance.text}}</td>
+          <td> {{item.duration.text}}</td>
+          
+          
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 <div #map class="map" *ngIf="mapsData"></div>
 </ion-content>
