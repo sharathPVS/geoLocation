@@ -35,8 +35,8 @@ export class vendorDashboardPage implements OnInit {
   public getEmployeeList: boolean = false;
   public UpdateDataFeilds:boolean = false;
   public reportsTable:boolean = false;
-  public filteredTable:boolean = false;
   public scheduleTable:boolean =  false;
+  public filteredTable:boolean = false;
 
   public name: string;
   public Phone: number;
@@ -70,8 +70,9 @@ export class vendorDashboardPage implements OnInit {
   Customers = [];
   reportingData = [];
   geoChordsData = [];
-  geoToData = [];
+  reportedData = [];
   geoFromData = [];
+  geoToData = [];
   ngOnInit() {
     this.userMessage = '';
     this.vendorName =  (loginUserData.getLoginUserData() == undefined) ? '' : loginUserData.getLoginUserData().company
@@ -85,14 +86,14 @@ export class vendorDashboardPage implements OnInit {
     this.userMessage = '';
     this.UpdateDataFeilds = false;
     this.scheduleTable = false;
-    //this.getGeoChordsReportData();
+    this.getGeoChordsReportData();
     
   }
 
   schedule(){
     this.scheduleTable = true;
-    this.reportsTable = false;
     this.filteredTable = false;
+    this.reportsTable = false;
     this.addEmployee = false;
     this.getEmployeeList = false;
     this.userMessage = '';
@@ -103,11 +104,11 @@ export class vendorDashboardPage implements OnInit {
 
   createEmployee() {
     this.addEmployee = true;
+    this.filteredTable = false;
     this.getEmployeeList = false;
     this.userMessage = '';
     this.UpdateDataFeilds = false;
     this.reportsTable = false;
-    this.filteredTable = false;
     this.scheduleTable = false;
 
   };
@@ -118,11 +119,11 @@ export class vendorDashboardPage implements OnInit {
     //console.log('get login data', this.LoginCollection);
 
     this.getEmployeeList = true;
+    this.filteredTable = false;
     this.addEmployee = false;
     this.userMessage = '';
     this.UpdateDataFeilds = false;
     this.reportsTable = false;
-    this.filteredTable = false;
     this.scheduleTable = false;
 
   }
@@ -226,8 +227,7 @@ console.log("ORG Name -->",this.vendorName)
     })
   }
   }
-
-  // update  employee data 
+// update  employee data 
 
   edit(val){
     console.log(val);
@@ -322,6 +322,26 @@ console.log("ORG Name -->",this.vendorName)
       
     })
   }
+
+  //TO Get the Location Co-ordinates
+  trackByGeoLocation(val){
+    this.mapOnDisplay = true;
+    console.log("DB Obj-->"+val.mnc);
+    let url = apiService.geoFetchMobileLocation ;
+    console.log(url);
+    this.http.post(url,{
+      mcc: val.mcc,
+      mnc: val.mnc,
+      lac: val.lac,
+      cid: val.cellId
+    }).subscribe(data => {
+      this.handleData = data
+      console.log("Db Data --> " ,data)
+      this.userMessage =  this.handleData.message+"LAT"+this.handleData.lat+"Long-->"+this.handleData.lon ;      
+      this.mapData({latitude:this.handleData.lat,longitude:this.handleData.lon});
+      
+    })
+  }
     // display in map 
     public mapData(val) {
       let coordsData = { lat: val.latitude, lng: val.longitude };
@@ -397,7 +417,96 @@ console.log("ORG Name -->",this.vendorName)
         })
     }
 
+    submit(){
+       this.reportData();
+    }
+
+    reportData(){
+      //alert("selected Sim Info " + JSON.stringify(val));
+        let url = apiService.getChords +'from=' + this.from + '&to='+ this.to;
+         //alert("sim Number" +  val.simNumber)
+        //this.userMessage = ' Kindly wait we are preparng the Client List ........ ';
+        console.log(url);
+        this.http.get(url).subscribe(data => {
+          console.log(data);
+          this.handleData = data;
+         //console.log(this.handleData);
+         this.storeChords(data);
+          if (this.handleData.length == 0) {
+            this.userMessage = " oops! no records are found.";
+            this.getEmployeeList = false;
+          } else {
+            this.userMessage = '';
+                     
+
+                         
+                        this.reportingData.push(this.handleData.message[0].legs[0]);
+                        
+                        console.log("loop  changed path", this.reportingData)
+                        //console.log(JSON.stringify(this.adminData));
+
+                    
+                    
+          }
+        })
+    }
+
+
+    storeChords(data) {
+console.log("ORG Name -->",this.vendorName)
+
+     let url = apiService.storeGeoLocation + '?collection=' + values.geoCollection;
+
+       //console.log('store',url)
+    this.http.post(url,{
+      _id: this.simNumber,
+      from:this.handleData.message[0].legs[0].start_address,
+      to:this.handleData.message[0].legs[0].end_address,
+      distance:this.handleData.message[0].legs[0].distance.text,
+      duration:this.handleData.message[0].legs[0].duration.text,
+      contactBelongsTo:this.vendorName
+    }).subscribe((res: Response) => {
+      console.log('storedData', res)
+                 this.userMessage = "Data submitted "
+      //this.resetEmployeeData();
+    },
+      error => {
+        console.log('error', error)
+
+      })
     
+  }
+
+   getGeoChordsReportData(){
+     this.geoChordsData = [];
+      //alert("selected Sim Info " + JSON.stringify(val));
+        let url = apiService.fetchGeoChords + 'recordBelongsTo='+ this.vendorName +  '&collection=' + values.geoCollection;
+         //alert("sim Number" +  val.simNumber)
+        //this.userMessage = ' Kindly wait we are preparng the Client List ........ ';
+        console.log(url);
+        this.http.get(url).subscribe(data => {
+          this.handleData = data;
+         console.log(this.handleData);
+
+         this.adminData = this.handleData.message;
+
+       
+          if (this.handleData.length == 0) {
+            this.userMessage = " oops! no records are found.";
+            this.getEmployeeList = false;
+          } else {
+            this.userMessage = '';
+             for (let i in this.adminData){
+             this.geoChordsData.push(this.adminData[i]);
+             this.geoFromData.push(this.adminData[i].from);
+             console.log(this.geoFromData);
+             this.geoToData.push(this.adminData[i].to);
+             console.log(this.geoToData);
+         }
+
+        }
+        })
+    }
 
     onSelectingChords(){
        this.reportDataFromTo();
@@ -422,9 +531,9 @@ console.log("ORG Name -->",this.vendorName)
                      
 
                          
-                        this.reportingData.push(this.handleData.message[0].legs[0]);
+                        this.reportedData.push(this.handleData.message[0].legs[0]);
                          this.filteredTable = true;
-                        console.log("loop  changed path", this.reportingData)
+                        console.log("loop  changed path", this.reportedData)
                         //console.log(JSON.stringify(this.adminData));
 
                     
@@ -434,4 +543,5 @@ console.log("ORG Name -->",this.vendorName)
     }
 
 
-   }
+
+}

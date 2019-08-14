@@ -13,10 +13,10 @@
   <p style="color:red"> {{userMessage}}</p>
   <ion-row>
     <ion-col>
-      <ion-button color="success" style="float: left;" (click)="createEmployee()">Add Employee</ion-button>
+      <ion-button color="success" style="float: left;" (click)="createEmployee()">Add Vehicle</ion-button>
     </ion-col>
     <ion-col>
-      <ion-button color="warning" style="float: left;" (click)="getAllEmployees()">Get All Employee List</ion-button>
+      <ion-button color="warning" style="float: left;" (click)="getAllEmployees()">Get All Vehicles List</ion-button>
     </ion-col>
     <ion-col>
       <ion-button color="primary" style="float: left;" (click)="reports()">Reports</ion-button>
@@ -27,6 +27,7 @@
 
 
   </ion-row>
+
   <div *ngIf="reportsTable">
   <ion-item>
     <ion-label>From</ion-label>
@@ -88,6 +89,57 @@
         </tr>
       </thead>
       <tbody>
+        <tr *ngFor="let item of reportedData">
+          <td>{{item.start_address}}</td>
+          <td>{{item.end_address}}</td>
+          <td> {{item.distance.text}}</td>
+          <td> {{item.duration.text}}</td>
+          
+          
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div *ngIf="scheduleTable">
+    <br>
+    <br>
+     <ion-item>
+    <ion-label>From</ion-label>
+     <ion-input type="text" [(ngModel)]="from" name="from">
+       
+     </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>To</ion-label>
+   <ion-input type="text" [(ngModel)]="to" name="to">
+       
+     </ion-input>
+  </ion-item>
+  <ion-row>
+    <ion-col>
+      <ion-button color="success" style="float: left;" (click)="submit()">Submit</ion-button>
+    </ion-col>
+  </ion-row>
+  </div>
+
+  <div *ngIf="scheduleTable">
+    <br>
+    <br>
+    <p>Your Plan Schedule Data</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start</th>
+          <th>End</th>
+          <th>Distance</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
         <tr *ngFor="let item of reportingData">
           <td>{{item.start_address}}</td>
           <td>{{item.end_address}}</td>
@@ -101,12 +153,10 @@
     </table>
   </div>
 
-  
-
   <div *ngIf="addEmployee">
     <br>
     <br>
-    <p>Add Your Employee</p>
+    <p>Add Your Vehicle</p>
     <ion-item>
       <ion-label floating>Name <span style="color:red">*</span></ion-label>
       <ion-input [(ngModel)]="name" type="text" value="" (change)="onChange()"></ion-input>
@@ -171,7 +221,7 @@
       <ion-input [(ngModel)]="vehicleSachtNumber" type="text" value="" (change)="onChange()"></ion-input>
     </ion-item>
     <br>
-    <p> Add mobile Detils</p>
+    <p> Add mobile Details</p>
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -213,7 +263,7 @@
   <div *ngIf="getEmployeeList">
     <br>
     <br>
-    <p> All Your Employee List </p>
+    <p> All Your Vehicles List </p>
     <table>
       <thead>
         <tr>
@@ -257,7 +307,7 @@
   <div *ngIf="UpdateDataFeilds">
     <br>
     <br>
-    <p>update Your Employee</p>
+    <p>update Your Vehicle</p>
     <ion-item>
       <ion-label floating>Name<span style="color:red">*</span></ion-label>
       <ion-input [(ngModel)]="name" type="text" value="" (change)="onChange()"></ion-input>
@@ -322,7 +372,7 @@
       <ion-input [(ngModel)]="vehicleSachtNumber" type="text" value="" (change)="onChange()"></ion-input>
     </ion-item>
     <br>
-    <p> Update mobile Detils</p>
+    <p> Update mobile Details</p>
     <ion-grid>
       <ion-row>
         <ion-col>
